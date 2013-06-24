@@ -1,0 +1,113 @@
+<!-- <div class="container"> -->
+	
+		<div id="myCarousel" class="carousel slide">
+			<div class="carousel-inner">
+				<div class="item item1 active">
+					
+						<div class="container">
+							<div class="carousel-caption">
+								<h1>Join.</h1>
+								<p class="lead">Sign up with TooManyChips and start planning.  It's that simple.</p>
+							</div>
+						</div>
+				</div>
+				<div class="item item2">
+					
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Organize.</h1>
+							<p class="lead">Give us the details of your event to stay organized and keep tabs on your guests.</p>
+						
+						</div>
+					</div>
+				</div>
+				<div class="item item3">
+					
+					<div class="container">
+						<div class="carousel-caption">
+							<h1>Enjoy!</h1>
+							<p class="lead">Now you can sit back and allow us to handle reminders to your friends. Party on!</p>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+		</div>
+
+
+<div class="container">
+	<div class="row signup_forms">
+		<div class="span6">
+			<div class="signup_container">
+				<div class="signup_form">
+					<h4>Sign up and start</h4>
+					<h4>planning your potluck!</h4><br>
+					<%= render 'layouts/create_user_form' %>
+
+					
+					<div class="fb_button"><%= button_to "Sign in with Facebook", "/auth/facebook", id: "sign_in", class: :"btn btn-primary" %>
+					</div>
+				</div>
+				<div class="cover"></div>
+		  </div>
+		</div>
+
+		<div class="span6">
+			<div class="signup_container">
+				<div class="signin_form">
+					<h4>Login to check on your</h4>
+					<h4>event, or add more to it!</h4><br>
+					<%= render 'layouts/user_login_form' %>
+					
+				</div>
+				<div class="cover"></div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row index_panels">
+		<div class="span4">
+			<div class="panel_container">
+				<div class="panel_1">
+
+					<h2>Join.</h2>
+					<h5>The hassle of planning an event is enough to make you steer clear of planning one at all.  TooManyChips is here to make your life easier.</h5>
+					
+
+					
+				</div>
+				<div class="cover"></div>
+		  </div>
+		</div>
+
+		<div class="span4">
+			<div class="panel_container">
+				<div class="panel_2">
+					<h2>Organize.</h2>
+					<h5>We make it simple for you to lay out the details of what you need for your party.  You tell your friends when and where, and we'll do the rest. </h5>
+				
+				</div>
+				<div class="cover"></div>
+		  </div>
+		</div>
+
+		<div class="span4">
+			<div class="panel_container">
+				<div class="panel_3">
+					<h2>Enjoy!</h2>
+					<h5>One visit to our site is all you need for you to be on your way to having a blast with friends, family, and food! </h5>
+				
+				</div>
+				<div class="cover"></div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+	
+
+		

@@ -1,0 +1,17 @@
+<ul id="contributions" class="assigned_items">
+  <p class="lead">Items We Have!</p>
+    <div class="line">
+  <% @event.event_items.each do |ei| %>
+    <div class="already_provided">
+      <li class="item_name"> <%= ei.item.name %> </li>
+    <% ei.assigned_items.each do |ai|%>
+      <ul class="guest_item">
+        <li class="guest_name"> <%= ai.guest.name %> </li>
+        <li class="quantity_provided"> Bringing: <%= ai.quantity_provided %> </li>
+      </ul>
+    <% end %>
+      <div class="show_cover"></div>
+      </div>
+  <% end %>
+    </div>
+</ul>

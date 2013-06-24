@@ -1,0 +1,106 @@
+
+<div class="hero-unit" id="event_new">
+	<div class='container'>
+	</div>
+</div>
+
+
+<div class="event-form-container container">
+	<div class="row gnup_forms">
+		<% if current_user.events.any? %>
+		<div class="span6">
+		<% else %>
+		<div class="span7">
+	  <% end %>
+			<div class="gnup_container">
+				<div class="gnup_form">
+					<div class="errors">
+					<%flash.each do |name,msg| %>
+						<div class="alert alert-success">	
+							<%=msg%>
+						</div>
+						<%end%>
+						</div>
+					<h2> 
+						Welcome, <%= current_user.name.titleize %>! 
+					</h2>
+					<h3> 
+						Account Details:
+					</h3>
+					<h4>
+						Name: <%= current_user.name.titleize %>
+					</h4>
+					<h4>
+						Email: <%= current_user.email %>
+					</h4><br>
+				<!-- 	<div class='user_edit_button'>
+						<%#= button_to 'Edit', edit_user_path(current_user), class: "btn btn-info" %>
+					</div> -->
+					<div class="event_button">
+            <a href="#eventform" class="btn btn-success"> Create Event </a>
+          </div>
+				</div>				
+				<div class="cover"></div>
+			</div>
+		</div>
+
+		<% if current_user.events.any? %>
+			<div class="span6">
+		<% else %>
+			<div class="">
+	  <% end %>
+			<div class="gnup_container">
+				<div class="gnin_form">
+					<% upcoming = current_user.events.where('date>?', Date.today) %>
+
+					<% if upcoming.any? %>
+					<h2> 
+						Upcoming Events: 
+					</h2>
+					
+					<% current_user.events.each do |event| %>
+					<% if event.upcoming? %>
+					<ul>                    
+						<h5>
+							<li>
+								<%= link_to event.name.titleize, event_path(event) %>: <%= event.date %>
+							</li>
+						</h5>
+					</ul>
+					<% end %>
+					<% end %>
+					<% end %>
+					<% past = current_user.events.where('date<?', Date.today) %>
+
+					<% if past.any? %>
+					<h2> 
+						Past Events: 
+					</h2>
+					
+					<% current_user.events.each do |event| %>
+					<% if event.past? %>
+					<ul>
+						<h5>
+							<li>
+								<%= link_to event.name.titleize, event_path(event) %>: <%= event.date %>
+							</li>
+						</h5>
+					</ul>
+					<% end %>
+					<% end %>
+					<% end %>
+
+
+					
+				</div>
+				<div class="cover"></div>
+			</div>
+		</div>
+	</div>
+	  <%= render 'events/create_event_form' %>
+</div>
+
+
+
+
+
