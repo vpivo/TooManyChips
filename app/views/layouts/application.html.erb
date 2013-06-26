@@ -3,8 +3,8 @@
   <head>
     <title>TooManyChips</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>
 
      <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
@@ -12,5 +12,23 @@
   <body>
   	<%= render "layouts/header" %>
     <%= yield %>
+    <%= javascript_include_tag "application" %>
+    <div id="myModal" class="reveal-modal">
+            <fieldset>
+<% @user = User.new %>
+<%= form_for @user do |f| %>
+
+  <%= f.text_field :name, :id => "inputName", :required => true, placeholder: "Name" %><br>
+ 
+  <%= f.email_field :email, :id => "inputEmail", :required => true, placeholder: "Email" %><br>
+
+  <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %><br>
+
+  <div>
+    <span class='left'>stuff</span>    <span><%= f.submit "Sign up", :class => 'button right' %></span>
+  </div>
+<% end %>
+</fieldset>
+
   </body>
 </html>

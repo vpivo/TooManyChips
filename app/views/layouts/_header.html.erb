@@ -1,14 +1,23 @@
-<header>
-	<nav class="navbar">
-		<div class= "navbar-inner">
-				<% if current_user %> 
-				<h1 id="brand" ><a href="/your_profile">TOO<strong>MANY</strong>CHIPS</a></h1>
-					<%= button_to "Sign Out", signout_path, id: "sign_out", class: :"btn btn-warning" %></li>
-					<%= button_to "Your Profile", your_profile_path, :method => :get, id: "profile", class: :"btn btn-warning" %></li>
-				<% else %>
-					<h1 id="brand" ><a href="/">TOO<strong>MANY</strong>CHIPS</a></h1>
-				<%end%>
-			</ul>
-		</div>
-	</nav>
-</header>
+<nav class="top-bar">
+
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">TooManyChips</a></h1>
+    </li>
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+    	
+    </ul>
+
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="#">Sign Out</a></li>
+    </ul>
+  </section>
+
+</nav>
