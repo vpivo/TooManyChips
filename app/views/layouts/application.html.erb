@@ -10,25 +10,12 @@
      <link href='http://fonts.googleapis.com/css?family=Sniglet:800' rel='stylesheet' type='text/css'>
   </head>
   <body>
+   <div class='container'>
   	<%= render "layouts/header" %>
+     
     <%= yield %>
     <%= javascript_include_tag "application" %>
-    <div id="myModal" class="reveal-modal">
-            <fieldset>
-<% @user = User.new %>
-<%= form_for @user do |f| %>
-
-  <%= f.text_field :name, :id => "inputName", :required => true, placeholder: "Name" %><br>
- 
-  <%= f.email_field :email, :id => "inputEmail", :required => true, placeholder: "Email" %><br>
-
-  <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %><br>
-
-  <div>
-    <span class='left'>stuff</span>    <span><%= f.submit "Sign up", :class => 'button right' %></span>
-  </div>
-<% end %>
-</fieldset>
-
+   <%= render "pages/footer" %> 
+</div>
   </body>
 </html>

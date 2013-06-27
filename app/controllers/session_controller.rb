@@ -8,7 +8,6 @@ class SessionController < ApplicationController
 
   def create
     user = User.find_by_email(params[:email])
-    debugger
     if user && user.authenticate(params[:password])
       session[:id] = user.id
       redirect_to your_profile_path, notice: "Signed in!"

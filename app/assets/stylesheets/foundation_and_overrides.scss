@@ -15,7 +15,7 @@
 // $em-base: 16px;
 
 // We use these to control various global styles
-$body-bg: url('furley_bg.png');;
+$body-bg: white;
 $body-font-color: #5a5a5a;
 // $body-font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
 // $body-font-weight: normal;
@@ -28,7 +28,7 @@ $body-font-color: #5a5a5a;
 // $text-direction: ltr;
 
 // We use these as default colors throughout
-// $primary-color: #2ba6cb;
+// $primary-color: #83ca41;
 // $secondary-color: #e9e9e9;
 // $alert-color: #c60f13;
 // $success-color: #5da423;
@@ -968,30 +968,30 @@ $fieldset-border-style: none;
 //
 
 // Background color for the top bar
-$topbar-bg: #f8f8f4;
+$topbar-bg: white;
 
 
 // Height and margin
-$topbar-height: 70px;
-// $topbar-margin-bottom: emCalc(30px);
+$topbar-height: 80px;
+$topbar-margin-bottom: emCalc(0px);
 
 // Control Input height for top bar
 // $topbar-input-height: 2.45em;
 
 // Controlling the styles for the title in the top bar
-$topbar-title-weight: none;
+$topbar-title-weight: 100;
 $topbar-title-font-size: emCalc(30px);
 
 // Set the link colors and styles for top-level nav
-$topbar-link-color: #ff4500;
-// $topbar-link-weight: bold;
+$topbar-link-color: #83ca41;
+$topbar-link-weight: bold;
 // $topbar-link-font-size: emCalc(13px);
 
 // Style the top bar dropdown elements
-$topbar-dropdown-bg: #f8f8f4;
-$topbar-dropdown-link-color: #ff4500;
-// $topbar-dropdown-toggle-size: 5px;
-$topbar-dropdown-toggle-color: #ff4500;
+$topbar-dropdown-bg: white;
+$topbar-dropdown-link-color: #939392;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: black;
 // $topbar-dropdown-toggle-alpha: 0.5;
 $dropdown-label-color: #f8f8f4; 
 $topbar-link-bg-hover: #f8f8f4;
@@ -999,11 +999,11 @@ $topbar-link-bg-hover: #f8f8f4;
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
 // $topbar-menu-link-font-size: emCalc(13px);
-// $topbar-menu-link-weight: bold;
-$topbar-menu-link-color: #ff4500;
-$topbar-menu-icon-color: #ff4500;
-$topbar-menu-link-color-toggled: #ff4500;
-$topbar-menu-icon-color-toggled: #ff4500;
+$topbar-menu-link-weight: bold;
+$topbar-menu-link-color: #83ca41;
+$topbar-menu-icon-color: #83ca41;
+$topbar-menu-link-color-toggled: #83ca41;
+$topbar-menu-icon-color-toggled: #83ca41;
 
 // Transitions and breakpoint styles
 // $topbar-transition-speed: 300ms;

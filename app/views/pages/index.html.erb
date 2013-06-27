@@ -1,38 +1,51 @@
-  <div class='large-12 large-centered columns'>
-  	<div class='row'>
+<div class="full-width blue">
+	<div class='row'>
+		<div class="large-12 columns large-centered info-box">
+			<div class='border small-4 columns'><img src="/assets/103_white.png"></div> 
+			<div class='border small-4 columns'><img src="/assets/104_white.png"></div> 
+			<div class='border small-4 columns'><img src="/assets/172_white.png"></div>
+		</div>	
+	</div>
 
-  		<div class="large-4 columns">
-  			<div class='row login'>
-  				<%= render 'layouts/create_user_form' %>
-  			</div>
-  		</div>
-  		
-  		<div class="large-7 columns">
-  			<div class='row'>
-  				<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+	<div class="small-6 small-centered columns">
+		<div class='row'>
+			<div class="large-12 columns large-centered text-box">
+				<h1 class="subheader">Never worry about messy spreadsheets again.</h1>
+				<p>This is a paragraph. Paragraphs are preset with a font size, line height and spacing to match the overall vertical rhythm. To show what a paragraph looks like this needs a little more content so, did you know that there are storms occurring on Jupiter that are larger than the Earth? Pretty cool. Wrap <strong> around type to <strong>make it bold!</strong>. You can also you <em> to <em>italicize your words</em>.</p>
+			</div>
+		</div>
+	</div>
+</div>
 
-  			</div>
-  		</div>
-  	</div>
-  </div>
+<div class='color-space'></div>
 
-  <footer class="row">
-  	<div class="large-12 columns"><hr/>
-  		<div class="row">
 
-  			<div class="large-6 columns">
-  				<p>&copy; Copyright no one at all. Go to town.</p>
-  			</div>
+<div class="row">
+	<div class='large-12 columns green circle'>
+		<img src="/assets/119_small.png">
+		Make party planning easy. Needs a litte more spacing. 
+	</div>	
+</div>
+<div class="row">
+	<div class='large-12 columns ltblue circle'>
+		<img src="/assets/119_small.png">
+		LIke way more words and spacing. Words. Words. Make party planning easy.
+	</div> 
+</div>	
+<div class="row">
+	<div class='large-12  columns yellow circle'>
+		<img src="/assets/119_small.png">
+		Make party planning easy.
+	</div> 
+</div>
+<div class='row'>
+	<div class='large-12 columns pink circle'>
+		<img src="/assets/119_small.png">
+		This says sooo much stuff. Make party planning easy.
+	</div> 
+</div>
 
-  			<div class="large-6 columns">
-  				<ul class="inline-list right">
-  					<li><a href="#">Link 1</a></li>
-  					<li><a href="#">Link 2</a></li>
-  					<li><a href="#">Link 3</a></li>
-  					<li><a href="#">Link 4</a></li>
-  				</ul>
-  			</div>
-
-  		</div>
-  	</div>
-  </footer>
+<div id="myModal" class="reveal-modal">
+	<%= render 'layouts/login_buttons' %>
+	<%= render 'users/login_form' %>
+</div>

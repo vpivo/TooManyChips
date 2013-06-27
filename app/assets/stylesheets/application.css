@@ -14,43 +14,118 @@
  */
 
 
+/*
+#568cce
+#83ca41
+E1B948
+C7406D pink
+7BC0C4 green blue
+B283CB purple
+#515151*/
 
-
-
- body {
-    color: #5a5a5a;
-    margin: 0;
-    padding: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    background-image: url('furley_bg.png');
-    /*background-repeat:no-repeat;*/
-    /*background-size: cover;*/
+.circle{
+  margin-bottom: 3%;
 }
 
-div.facebook{
-    background-color: #3B5999;
-    height: 45px;
-    margin-bottom: 10px;
-    line-height: 45px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    border-radius: 4px;
-    
-    display: block;
-    color: #5a5a5a;
-    margin-left: 15px;
-    margin-right: 15px;
+.circle > img{
+  border-radius: 50%;
+  vertical-align: middle;
+  padding: 5px;
+
+  
+}
+.green > img{
+  background-color: #83ca41;
 }
 
-.facebook a{
-    color: white 
+.ltblue > img{
+  background-color: #7BC0C4;
 }
 
-div.login{
-    border-spacing: 30px;
-    border-right: 1px solid #5a5a5a;
-    text-align: center;
+.pink > img{
+  background-color: #C7406D;
+}
+
+.yellow > img{
+  background-color: #E1B948;
+}
+
+div.text-box{
+  padding-bottom: 5%;
+}
+
+.logo a{
+  font-weight: 100;
+}
+
+div.border {
+  padding-top: 30px;
+  padding-bottom: 20px;  
+}    
+
+div.color-space{
+  height: 15px;
+  background-color: #cf4343;
+  width: 100%; 
+  margin-bottom: 2%;
+}
+
+.border img {
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 20px;
+}
+
+div.blue{
+  background-color: #71b3ed;
+  top:-10px;
+  padding-top: 0px;
+  margin-top: 0px;
+}
+
+
+div.full-width { width: 100%; 
+  max-width: 100%; 
+}
+
+div.container{
+  margin-right: 0;
+  margin-left: 0;
+  width: 100%;
+}
+
+
+
+div.facebook-button{
+  background-color: #3B5999;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+  color: #5a5a5a;
+  width: 220px;
+
+}
+
+.facebook-button a{
+  color: white 
+}
+
+.login-button a{
+  color: white 
+}
+
+div.login-button{
+  background-color: #ff4500;
+  height: 45px;
+  margin-bottom: 10px;
+  line-height: 45px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  width: 220px;
+  color: #5a5a5a;
+
 }
