@@ -1,13 +1,21 @@
-<div id="eventform" class="new_event_form hidden-event">
-
-  <h2> What are the details of your event? </h2><br>
+<div id='eventform' class="row full-width green-bg">
+  <h3>Event Details</h3>
+  <div class="large-12 columns">
   <%= form_for(@event) do |e| %>
-  <div class="span6">
+    <div class='large-12 columns'>
     <%= e.text_field :name, :class => "name", :placeholder => "Title", :required => true%>
+    </div>
+    <div class='large-7 columns'>
     <%= e.text_field :location, :class => "location", :placeholder => "Location", :required => true %>
-    <%= e.date_select :date, :class => "date", :placeholder => "Date" , :required => true%>
+    </div>
+    <div class='large-5 columns'>
+    <%= e.text_field :date, :class => "date", :placeholder => "Date", :required => true %>
+    </div>
+    <div class='large-12 columns'>
     <%= e.text_area :description, :class => "description", :placeholder => "Description"%>
+    </div>
   </div>
+ </div>
   <div class="span5">
     
       <div class='form-wrap'>

@@ -23,6 +23,36 @@ C7406D pink
 B283CB purple
 #515151*/
 
+.named img {
+  padding-top: 7px;
+  margin-left: 8px;
+  
+}
+
+div.pink-bg {
+  background-color: #CF4343;
+}
+
+
+div.green-bg {
+  background-color: #83ca41;
+}
+
+.named a{
+  color: black;
+  font-size: 28px;
+  font-weight: 100;
+  text-align: center;
+  line-height: 80px;
+  font-family: Helvetica;
+}
+
+div.white-panel{
+  background-color: white;
+  padding: 5%;
+  text-align: center;
+}
+
 .circle{
   margin-bottom: 3%;
 }
@@ -34,7 +64,7 @@ B283CB purple
 
   
 }
-.green > img{
+.green img{
   background-color: #83ca41;
 }
 
@@ -43,7 +73,7 @@ B283CB purple
 }
 
 .pink > img{
-  background-color: #C7406D;
+  background-color: #CF4343;
 }
 
 .yellow > img{
@@ -78,7 +108,7 @@ div.color-space{
 
 div.blue{
   background-color: #71b3ed;
-  top:-10px;
+
   padding-top: 0px;
   margin-top: 0px;
 }
