@@ -3,7 +3,7 @@ $(document).ready(function(){
     e.preventDefault();
     console.log(this)
     $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').hide();
+    $(this).closest('li').remove();
   });
 
   $('.form-wrap').on ('click', '.add_fields', function(e){
@@ -18,6 +18,3 @@ $(document).ready(function(){
   });
 });
 
-$(document).ready(function() {
-    $( "#datepicker" ).datepicker();
-  });

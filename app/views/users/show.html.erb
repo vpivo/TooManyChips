@@ -1,28 +1,18 @@
 
-<div class="full-width row">
-	<div class='large-12 centered columns '>
-		<div class="row">
-			<div class='large-12 columns white-panel blue'>
-				<h1 class='subheader'> Welcome, <%= current_user.name.titleize %>! </h1>
-				<div class='yellow circle'>
-					<img src="/assets/143_rename.png">
-				</div>	
-				<a href="#eventform"> Create A New Event </a>
-			</div>
-		</div>
-		<% current_user.events.each do |event| %>
-		<% if event.upcoming? %>
-		<div class='full-width row'>
-			<div class="large-12 columns pink-bg">
-				<h3><%= link_to event.name.titleize, event_path(event) %> is on <%= event.date %> at <%=event.location%> and 23 guests have contributed 30 items.</h3> 
-			</div>	
-		</div>
-		<% end %>
-		<% end %>
-	</div>
+<div class='large-12 blue columns'>
+  <div class='row'>
+    <h2>Hello <%=current_user.name%> </h2> 
+    <a href="#eventform" class=' button primary medium'> Create A New Event</a>
+  </div>
+  <% current_user.events.each do |event| %>
+  <% if event.upcoming? %>
+  <div class='row'>
+    <%= link_to event.name.titleize, event_path(event) %> <%= event.date %>
+  </div>  
+  <% end %>
+  <% end %>
+  <%= render 'events/create_event_form' %>
 </div>
-<%= render 'events/create_event_form' %>
-
 
 
 

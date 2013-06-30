@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   respond_to :json, :html
-
+  before_filter :format_date, :only => [:create, :update]
   def show
     @event = Event.find(params[:id])
     @guest = Guest.new
@@ -50,6 +50,9 @@ class EventsController < ApplicationController
   end
 
  private
+  def format_date
+    params[:event][:date] = Chronic.parse(params[:event][:date])
+  end
 
   def check_permissions
     @event = Event.find(params[:id])

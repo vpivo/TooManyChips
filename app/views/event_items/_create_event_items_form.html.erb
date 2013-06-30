@@ -1,14 +1,19 @@
-<li class="event_item">
+<li class="event_item ">
   <fieldset>
-    <%= f.fields_for :item do |i| %>
-    <%= i.text_field :name, :class => "item_name", :placeholder => "What item would you like to request?" %>
+      <%= f.fields_for :item do |i| %>
+    <div class='large-8 columns'>
+      <%= i.text_field :name, :class => "item_name", :placeholder => "Name" %>
+    </div>
     <% end %>
-    <%= f.number_field :quantity_needed, :class => "item_quantity_needed", :placeholder => "Amount" %>
-    
-    <%= f.text_field :description, :class => "item_description", :placeholder => "Description" %>
-    <%= f.hidden_field :_destroy %>
-    <%= link_to "Remove Item", '#', class: "remove_fields btn btn-warning " %><br><br>
-
+    <div class='large-4 columns'>
+      <%= f.number_field :quantity_needed, :class => "item_quantity_needed", :placeholder => "Amount" %>
+    </div>
+    <div class='large-12 columns'>
+      <%= f.text_area :description, :class => "item_description", :placeholder => "Description" %>
+    </div>
+      <%= f.hidden_field :_destroy %>
+    <div class='large-9 columns'>
+      <%= link_to "Remove Item", '#', class: "remove_fields" %><br><br>
+    </div>
 </fieldset>
  </li>
-

@@ -1,8 +1,7 @@
 class Event < ActiveRecord::Base
 
   validates :name, :presence => true
-  before_validation :set_url
-  before_save :format_date
+  before_create :set_url
   attr_accessible :date, :description, :name,
     :host_provided, :location, :name, :start_time, :user_id,
     :event_items_attributes
@@ -29,8 +28,5 @@ class Event < ActiveRecord::Base
     self.assigned_items.map {|item| (item.guest) }.uniq
   end
 
-  def format_date
-    debugger
-    self.date = Chronic.parse(self.date)
-  end
+  
 end
