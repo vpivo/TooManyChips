@@ -1,19 +1,34 @@
-
-<div class='large-12 blue columns'>
+  <div class='large-12 blue columns'>
   <div class='row'>
-    <h2>Hello <%=current_user.name%> </h2> 
-    <a href="#eventform" class=' button primary medium'> Create A New Event</a>
+    <div class='large-12 user-show columns'>
+      <div class='row'>
+      </div>
+       <h3 class='subheader'><span class='white'>Your Events</span></h3>
+      <div class='event-list'>
+       
+      <table class='user-show'>
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Share Link</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.events.each do |event| %>
+          <% if event.upcoming? %>
+
+          <tr> <td> <%= link_to event.name.titleize, event_path(event) %></td><td> <%= event.date %></td>
+            <td>www.toomanychips.com/<%= event.url %> </td> <td><%= link_to 'edit', edit_event_path(event)%></td>
+          </tr>
+          <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+      <%= render 'events/create_event_form' %>
+    </div>
   </div>
-  <% current_user.events.each do |event| %>
-  <% if event.upcoming? %>
-  <div class='row'>
-    <%= link_to event.name.titleize, event_path(event) %> <%= event.date %>
-  </div>  
-  <% end %>
-  <% end %>
-  <%= render 'events/create_event_form' %>
 </div>
-
-
-
 

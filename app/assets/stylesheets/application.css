@@ -23,8 +23,44 @@ C7406D pink
 B283CB purple
 #515151*/
 
-.event_items li{
+div.invite{
+  border: solid black 3px;
+  padding: 3%;
+}
+table.user-show{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 1%;
+}
 
+div.form{
+  padding: 1%;
+}
+
+.remove_fields{
+  background-color: #cf4343;
+  padding: 3px;
+  color: white;
+}
+
+div.event-list{
+  border-top: 2px solid white;
+  margin-bottom: 2%;
+
+}
+
+div#eventform, div.event-list{
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 2px solid white;
+  padding: 3%;
+}
+
+div.user-show{ 
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 2%;
 }
 body,html{
   height:100%;
@@ -51,6 +87,9 @@ div.circle {
   
 }
 
+span.white{
+  color: white;
+}
 span.blue{
   color: #71b3ed;
 }
@@ -77,7 +116,9 @@ div.white-panel{
   background-color: white;
   padding: 5%;
   text-align: center;
+  margin-top: 3%;
 }
+
 
 .circle{
   margin-bottom: 3%;
@@ -140,15 +181,6 @@ div.full-width { width: 100%;
   max-width: 100%; 
 }
 
-div.container{
-  margin-right: 0;
-  margin-left: 0;
-  width: 100%;
-  height: 100%
-}
-
-
-
 div.facebook-button{
   background-color: #3B5999;
   height: 45px;
@@ -159,7 +191,6 @@ div.facebook-button{
   margin-bottom: 10px;
   color: #5a5a5a;
   width: 220px;
-
 }
 
 .facebook-button a{
