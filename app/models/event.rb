@@ -1,12 +1,15 @@
 class Event < ActiveRecord::Base
-
+  mount_uploader :image, ImageUploader
   validates :name, :presence => true
   before_create :set_url
   attr_accessible :date, :description, :name,
     :host_provided, :location, :name, :start_time, :user_id,
-    :event_items_attributes
+    :event_items_attributes, :image, :font_color, :state, :city, 
+    :zip, :type_id, :font_family, 
+    :allow_guest_create, :background_color, :host_name
 
   belongs_to :user
+  has_one :type, :as => :typeable
   has_many :event_items, :inverse_of => :event, :dependent => :destroy
   has_many :items, :through => :event_items
   has_many :assigned_items, :through => :event_items, :dependent => :destroy

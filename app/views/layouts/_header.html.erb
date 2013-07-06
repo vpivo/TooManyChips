@@ -1,7 +1,13 @@
 <nav class="top-bar">
   <ul class="title-area">
     <li class="named">
-      <img src="/assets/100_red_copy.png"><a class'logo' href="/">TOO<strong>MANY</strong>CHIPS</a>
+      <img src="/assets/100_red_copy.png"><a class'logo' 
+      <% if current_user%>
+      href="/your_profile">
+      <%else%>
+      href="/">
+      <%end%>
+      TOO<strong>MANY</strong>CHIPS</a>
     </li>
      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
@@ -10,8 +16,11 @@
     <ul class="left">
     </ul>
     <ul class="right">
-      <li><a href="#">Sign Out</a></li>
+      <% if current_user %>
+      <li><a href="signout">Sign Out</a></li>
+      <%else%>
       <li><a class="btn" data-reveal-id="myModal" href="#">Sign In</a></li>
+      <% end %>
     </ul>
   </section>
 </nav>

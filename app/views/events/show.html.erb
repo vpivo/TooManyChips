@@ -1,20 +1,28 @@
-<div class='large-12 columns'>
-<div class="row invite">
-        <h2>You've been invited to: <span class='green'><%= @event.name %></span></h2>
-        <span><%= @event.description %></span>
-        <h3>on: <span class='blue'><%= @event.date %></span></h3> 
 
-        <h3>at: <span class='pink'><%= @event.location %> </span></h3>
+<div class='large-12 columns event-header'>
+  <% if @event.image? %>
+  <%= image_tag @event.image.header %> 
+  <h1 class='event-image-title'><span class='white'><%= @event.name %></span></h1>
+  <% else %>
+  <h1 class='event-title'><%= @event.name %></h1>
+  <%end%>
+</div>  
+
+<div class='row '>
+  <div class="large-12 columns event-info large-centered ">
+    <strong>Hosted by: </strong>
+    <%= @event.user.name%><br>
+    <strong>Date: </strong>
+    <%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %><br>
+    <strong>Location: </strong>
+    <%= @event.location %>
+  </div>  
 
 
-  
-  <div class='event_items'>
-  
-      <div class="guest_items"></div>
-        <%= render 'guest_form', :guest => @guest %>
-      </div>
+  <div class='large-12 guest-view columns'>
+    <p><%= @event.description %></p>
+    <div class='row'>
+      <%= render 'guest_form', :guest => @guest %>
     </div>
- 
-</div>
-
+  </div>
 </div>

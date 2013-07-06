@@ -18,10 +18,104 @@
 #568cce
 #83ca41
 E1B948
+#ffe69c yellow
 C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
+div.wrapper{
+  height: 100%;
+}
+
+span.grey{
+  color: #626261;
+}
+div.new-event-outer{
+    text-align: center;
+    padding-top: 4%;
+    margin-bottom: 4%;
+}
+.new-event{
+  background-color: #83ca41;
+  margin-top: 15px;
+  text-decoration: none;
+  padding: 16px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 18px;
+}
+h3.center{
+  margin-top: 6%;
+  margin-bottom: 10%;
+  padding-bottom: 5%;
+  text-align: center;
+  color: #626261
+}
+div.notifcations{
+  border-top: 2px solid #626261;
+ 
+}
+img.header {
+  width: 100%;
+  height: 100%;
+}
+
+h1.event-image-title{
+  color: white; 
+  text-shadow: black 0.1em 0.1em 0.2em;
+   margin-top: -75px;
+  padding-top: 0;
+  padding-left: 2%;
+}
+
+div.event-header{
+   display: table;
+    margin: 0 auto;
+}
+
+div.event-info{
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  background-color: white;
+}
+
+div.add-item{
+  line-height: 45px;
+  margin-bottom: 14px;
+}
+
+.add-item a{
+  margin-top: 15px;
+  text-decoration: none;
+  background-color: #7BC0C4;
+  padding: 16px;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 18px;
+}
+.event_done{
+ text-decoration: none;
+ font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+ border: none;
+ background-color: #83ca41;
+ padding: 16px;
+ padding-bottom: 15px;
+ color: white;
+ font-size: 18px;
+ padding-left: 40px;
+ padding-right: 40px;
+
+}
+div.white{
+  background-color: white;
+}
+
+.white h3{
+  padding-left: 2%;
+}
 
 div.invite{
   border: solid black 3px;
@@ -30,13 +124,11 @@ div.invite{
 table.user-show{
   margin-left: auto;
   margin-right: auto;
-  text-align: center;
-  margin-top: 1%;
+  margin-top: 2%;
+  padding: 3%;
+
 }
 
-div.form{
-  padding: 1%;
-}
 
 .remove_fields{
   background-color: #cf4343;
@@ -45,25 +137,23 @@ div.form{
 }
 
 div.event-list{
-  border-top: 2px solid white;
   margin-bottom: 2%;
-
 }
 
 div#eventform, div.event-list{
   margin-left: auto;
   margin-right: auto;
-  border-top: 2px solid white;
-  padding: 3%;
+  border-top: 2px solid #626261;
 }
 
 div.user-show{ 
   margin-left: auto;
   margin-right: auto;
   padding-top: 2%;
+  margin-top: 3%;
 }
 body,html{
-  height:100%;
+  height: 100%;
 } 
 
 footer{
@@ -158,7 +248,7 @@ div.text-box{
 div.border {
   padding-top: 30px;
   padding-bottom: 20px;  
-   text-align: center;
+  text-align: center;
   vertical-align: middle;
 }    
 

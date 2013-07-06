@@ -1,6 +1,5 @@
- <h3 class="subheader"><span class='white'>Create a New Event</span></h3>
-<div id='eventform' >
- 
+ <div id='eventform' >
+
   <%= form_for(@event) do |e| %>
   <div class='row'>
     <div class='large-12 columns'>
@@ -19,23 +18,26 @@
     <div class='large-12 columns'>
       <%= e.text_area :description, :class => "description", :placeholder => "Description"%>
     </div>
+    <%= e.file_field :image %>
   </div>
-  
+
   <div class="row">
-    <div class='form-wrap large-4 centered columns'>
-      <%= link_to_add_fields "Add Item", e, :event_items %>
-    </div>  
-    <div class='large-4 centered columns'>
-      <%= e.submit 'Create!', :class => 'event_done' %><br><br>
+
+    <div class='form-wrap add-item large-12 centered columns'>
+      <%= link_to_add_fields "Add More Items", e, :event_items %>
+   <%= e.submit 'Save Event', :class => ' event_done' %>
+
     </div>
   </div>
   <div class='row'>
+
     <ul class='event_items small-block-grid-2'>
       <%= e.fields_for :event_items do |ei| %>    
       <%= render 'event_items/create_event_items_form', f: ei %>
       <% end %>
     </ul>
   </div>
+
   <% end %>
 </div>
 

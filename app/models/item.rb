@@ -1,6 +1,7 @@
 class Item < ActiveRecord::Base
-  attr_accessible :event_id, :name, :suggestion, :quantity_needed, :event_items_attributes
-  
+  attr_accessible :event_id, :name, :suggestion, :quantity_needed, :event_items_attributes, :type_id
+  has_one :type, :as => :typeable
+
   has_many :items, :through => :event_items
   has_many :events, :through => :event_items #:inverse_of => :item
   has_many :event_items, :inverse_of => :item
