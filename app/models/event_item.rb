@@ -1,13 +1,13 @@
 class EventItem < ActiveRecord::Base
-  after_save :check_nil
-  attr_accessible :event_id, :description, :item_id, :quantity_needed, :item_attributes
+  # after_save :check_nil
+  attr_accessible :event_id, :description, :item_id, :quantity_needed, :item_attributes, :guest_created
 
   validates :description, :length => { :maximum => 140 }
 
-  has_many :assigned_items ,:dependent => :destroy
-  belongs_to :event, :inverse_of => :event_items
-  belongs_to :item, :inverse_of => :event_items
-
+  has_many :assigned_items ,:dependent => :destroy, :autosave => true
+  belongs_to :event
+  belongs_to :item 
+  belongs_to :guest, :autosave => true
   accepts_nested_attributes_for :item, :reject_if => :all_blank
 
   def quantity_assigned

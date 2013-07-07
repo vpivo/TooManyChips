@@ -1,9 +1,0 @@
-<%= form_tag session_index_path, :class => "login"  do %>
-<%= email_field_tag :email, nil, placeholder: "Email" %><br>
-<%= password_field_tag :password, nil, placeholder: "Password" %><br><br>
-<%= submit_tag "Log In", class: "btn btn-success" %>
-<% end %>
-
-<%= render 'layouts/create_user_form' %>
-
-<%= render 'layouts/user_login_form' %>

@@ -6,9 +6,10 @@ class Event < ActiveRecord::Base
     :host_provided, :location, :name, :start_time, :user_id,
     :event_items_attributes, :image, :font_color, :state, :city, 
     :zip, :type_id, :font_family, 
-    :allow_guest_create, :background_color, :host_name
+    :allow_guest_create, :background_color, :host_name, :type,
+     :end_time, :street_address, :remote_image_url
 
-  belongs_to :user
+  belongs_to :host, :class_name => "User", :foreign_key => "user_id"  
   has_one :type, :as => :typeable
   has_many :event_items, :inverse_of => :event, :dependent => :destroy
   has_many :items, :through => :event_items

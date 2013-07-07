@@ -1,44 +1,76 @@
  <div id='eventform' >
-
   <%= form_for(@event) do |e| %>
-  <div class='row'>
-    <div class='large-12 columns'>
-      <%= e.text_field :name, :class => "name", :placeholder => "Title", :required => true%>
+  <div class='main-details'>
+    <div class='row'>
+      <div class='large-8 columns'>
+        <%= e.text_field :name, :class => "name", :placeholder => "Title", :required => true%>
+      </div>
+      <div class='large-4 columns'>
+        <%= e.text_field :host_name, :class => "host", :placeholder => "Host's Name", :required => true%>
+      </div>
+    </div> 
+    <div class='row'>
+      <div class='large-4 columns'>
+        <%= e.text_field :type_id, :class => "type", :placeholder => "Event Type", :required => true %>
+      </div> 
+      <div class='large-4 columns'>
+        <%= e.text_field :date, :class => "date", :placeholder => "Date", :required => true %>
+      </div>
+      <div class='large-2 columns'>
+        <%= e.text_field :start_time, :class => "start_time", :placeholder => "Start Time", :required => true %>
+      </div>
+      <div class='large-2 columns'>
+        <%= e.text_field :end_time, :class => "end_time", :placeholder => "End Time", :required => true %>
+      </div>
     </div>
-  </div> 
-  <div class='row'>
-    <div class='large-7 columns'>
-      <%= e.text_field :location, :class => "location", :placeholder => "Location", :required => true %>
+    <div class='row'>
+      <div class='large-4 columns'>
+        <%= e.text_field :location, :class => "Location Name", :placeholder => "Location Name", :required => true %>
+      </div>
+      <div class='large-3 columns'>
+        <%= e.text_field :street_address, :class => "street address", :placeholder => "Street Address", :required => true %>
+      </div>
+      <div class='large-2 columns'>
+        <%= e.text_field :city, :class => "city", :placeholder => "City" %>
+      </div>
+      <div class='large-1 columns'>
+        <%= e.text_field :state, :class => "state", :placeholder => "State" %>
+      </div>
+      <div class='large-2 columns'>
+        <%= e.text_field :zip, :class => "zip", :placeholder => "zip code" %>
+      </div>
     </div>
-    <div class='large-5 columns'>
-      <%= e.text_field :date, :class => "date", :placeholder => "Date", :required => true %>
+    <div class='row'>
+      <div class='large-12 columns'>
+        <%= e.text_area :description, :class => "description", :placeholder => "Description"%>
+      </div>
     </div>
   </div>
-  <div class='row'>
-    <div class='large-12 columns'>
-      <%= e.text_area :description, :class => "description", :placeholder => "Description"%>
+  <div class='row '>
+    <h3 class='subheader'><span class='grey'>Choose A Header Image </span></h3>
+    <div class='image-upload'>
+      <div class='large-3 columns'>
+        <label>From the Web</label>
+        <%= e.text_field :remote_image_url, :placeholder => "Image URL" %> 
+      </div> 
+      <label>From Your Computer</label>
+      <%= e.file_field :image, :class => "image-field" %> 
     </div>
-    <%= e.file_field :image %>
   </div>
-
   <div class="row">
-
+    <h3 class='subheader'><span class='grey'>Add Items </span></h3>
     <div class='form-wrap add-item large-12 centered columns'>
-      <%= link_to_add_fields "Add More Items", e, :event_items %>
-   <%= e.submit 'Save Event', :class => ' event_done' %>
-
+      <div class='new-buttons'>
+        <%= link_to_add_fields "Add More Items", e, :event_items %>
+        <%= e.submit 'Save Event', :class => ' event_done' %>
+        <%= e.check_box :allow_guest_create %> <span class="custom checkbox"></span> Allow unrequested items?
+      </div>
     </div>
   </div>
-  <div class='row'>
-
-    <ul class='event_items small-block-grid-2'>
-      <%= e.fields_for :event_items do |ei| %>    
-      <%= render 'event_items/create_event_items_form', f: ei %>
-      <% end %>
-    </ul>
-  </div>
-
+  <ul class='event_items small-block-grid-2'>
+    <%= e.fields_for :event_items do |ei| %>    
+     <%= render 'event_items/create_event_items_form', f: ei %>
+    <% end %>
+  </ul>
   <% end %>
 </div>
-
-

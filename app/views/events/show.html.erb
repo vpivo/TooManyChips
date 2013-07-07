@@ -1,4 +1,3 @@
-
 <div class='large-12 columns event-header'>
   <% if @event.image? %>
   <%= image_tag @event.image.header %> 
@@ -9,18 +8,19 @@
 </div>  
 
 <div class='row '>
-  <div class="large-12 columns event-info large-centered ">
-    <strong>Hosted by: </strong>
-    <%= @event.user.name%><br>
-    <strong>Date: </strong>
-    <%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %><br>
-    <strong>Location: </strong>
-    <%= @event.location %>
+  <div class="large-12 columns event-info">
+    <ul class='location'>
+    <li><strong>Hosted by: </strong>
+    <%= @event.host_name%></li>
+    <li><strong>Date: </strong>
+    <%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %></li>
+    <li><strong>Location: </strong><%= @event.location %></li>
+    <li><%= @event.street_address %></li>
+    <li><%= @event.city %> <%= @event.state %>, <%= @event.zip %></li>
+    <li><strong>Description: </strong><%= @event.description %></li>
+    </ul>
   </div>  
-
-
   <div class='large-12 guest-view columns'>
-    <p><%= @event.description %></p>
     <div class='row'>
       <%= render 'guest_form', :guest => @guest %>
     </div>

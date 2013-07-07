@@ -1,10 +1,14 @@
 class EventsController < ApplicationController
   respond_to :json, :html
   before_filter :format_date, :only => [:create, :update]
+  before_filter :get_event_type_id, :only => [:create, :update]
+
   def show
     @event = Event.find(params[:id])
     @guest = Guest.new
     @guest.assigned_items.build
+    @guest.event_items.build.item = Item.new
+
   end
 
   def invitation
@@ -49,7 +53,17 @@ class EventsController < ApplicationController
     end
   end
 
- private
+  private
+
+  def get_event_type_id
+    params[:event][:type_id] = event_type_id(params[:event][:type_id])
+  end
+ 
+  def event_type_id(name)
+    type = Type.find_or_create_by_name(name.downcase.singularize)
+    type.id
+  end
+
   def format_date
     params[:event][:date] = Chronic.parse(params[:event][:date])
   end
@@ -57,16 +71,18 @@ class EventsController < ApplicationController
   def check_permissions
     @event = Event.find(params[:id])
     unless current_user.id == @event.user.id
-       redirect_to event_path(@event)
-    end
+     redirect_to event_path(@event)
+   end
 
-  end
+ end
 
-  def logged_in?
-    unless current_user
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to root_path
-    end
+ def logged_in?
+  unless current_user
+    flash[:error] = "You must be logged in to access this section"
+    redirect_to root_path
   end
+end
+
+
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130705221212) do
+ActiveRecord::Schema.define(:version => 20130707013711) do
 
   create_table "assigned_items", :force => true do |t|
     t.integer "event_item_id"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(:version => 20130705221212) do
     t.string   "description"
     t.integer  "item_id"
     t.integer  "quantity_needed", :default => 1
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "guest_created",   :default => false
   end
 
   create_table "events", :force => true do |t|
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20130705221212) do
     t.boolean  "allow_guest_create", :default => false
     t.string   "background_color"
     t.string   "host_name"
+    t.string   "street_address"
   end
 
   create_table "guests", :force => true do |t|
