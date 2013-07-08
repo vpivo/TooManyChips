@@ -1,9 +1,9 @@
 class AssignedItem < ActiveRecord::Base
-  attr_accessible :event_item_id, :quantity_provided, :guest_id
+  attr_accessible :event_item_id, :quantity_provided
   validates :quantity_provided, :presence => true
   validates :quantity_provided, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0}
   belongs_to :event_item
-  belongs_to :guest, :class_name => 'User', :foreign_key => 'guest_id'
+  belongs_to :guest, :class_name => 'User'
   has_many :assigned_items, :through => :event_items
 
   after_create :delete_if_zero

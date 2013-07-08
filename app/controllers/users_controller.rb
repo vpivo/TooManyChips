@@ -14,15 +14,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
-    if @user.save
-      session[:id] = @user.id
-      # UserMailer.signup_confirmation(@user.id).deliver
-      redirect_to your_profile_path, notice: "You've successfully signed up!"
+    unless current_user
+      @user = User.new(params[:user])
+      if @user.save
+        session[:id] = @user.id
+        # UserMailer.signup_confirmation(@user.id).deliver
+        redirect_to your_profile_path, notice: "You've successfully signed up!"
+      else
+        flash[:errors] = @user.errors.messages
+        redirect_to root_path
+      end 
     else
-      flash[:errors] = @user.errors.messages
-      redirect_to root_path
+      params["user"]["assigned_items_attributes"].each do |e|
+        current_user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
+        Rails.logger.info(current_user.errors.inspect) 
+      end
     end
+    render :show
   end
 
   def destroy

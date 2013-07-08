@@ -6,7 +6,9 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user = current_user ||= User.new
-    @assigned_
+    @assigned_items = @user.assigned_items.build
+    @user.event_items.build.item = Item.new
+
   end
 
   def invitation

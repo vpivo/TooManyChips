@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20130708001137) do
   create_table "assigned_items", :force => true do |t|
     t.integer "event_item_id"
     t.integer "quantity_provided", :null => false
-    t.integer "guest_id"
+    t.integer "user_id"
   end
 
   create_table "event_items", :force => true do |t|

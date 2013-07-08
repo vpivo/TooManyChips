@@ -7,7 +7,7 @@
         <h3 class='subheader'><span class='grey'>Your Upcoming Events</span></h3>
         <div class='event-list'>
 
-          <% if current_user.events.length > 1 %>
+          <% if current_user.events.length >= 1 %>
           <table class='user-show'>
             <thead>
               <tr>
@@ -19,12 +19,10 @@
             </thead>
             <tbody>
               <% current_user.events.each do |event| %>
-              <% if event.upcoming? %>
-
               <tr> <td> <%= link_to event.name.titleize, event_path(event) %></td><td> <%= event.date %></td>
                 <td>www.toomanychips.com/<%= event.url %> </td> <td><%= link_to 'edit', edit_event_path(event)%></td>
               </tr>
-              <% end %>
+            
               <% end %>
 
             </tbody>
