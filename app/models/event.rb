@@ -8,12 +8,12 @@ class Event < ActiveRecord::Base
     :zip, :type_id, :font_family, 
     :allow_guest_create, :background_color, :host_name, :type,
      :end_time, :street_address, :remote_image_url
-
-  belongs_to :host, :class_name => "User", :foreign_key => "user_id"  
+  belongs_to :host, :class_name => "User", :foreign_key => 'user_id'
   has_one :type, :as => :typeable
   has_many :event_items, :inverse_of => :event, :dependent => :destroy
   has_many :items, :through => :event_items
   has_many :assigned_items, :through => :event_items, :dependent => :destroy
+  has_many :guests, :through => :assigned_items, :class_name => "User", :foreign_key => "user_id"  
 
   accepts_nested_attributes_for :event_items, :reject_if => :all_blank, :allow_destroy => true
   def set_url

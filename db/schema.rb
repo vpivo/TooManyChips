@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130707013711) do
+ActiveRecord::Schema.define(:version => 20130708001137) do
 
   create_table "assigned_items", :force => true do |t|
     t.integer "event_item_id"
@@ -53,12 +53,6 @@ ActiveRecord::Schema.define(:version => 20130707013711) do
     t.string   "street_address"
   end
 
-  create_table "guests", :force => true do |t|
-    t.string "email"
-    t.string "name"
-    t.string "url"
-  end
-
   create_table "items", :force => true do |t|
     t.text     "suggestion"
     t.string   "name",       :null => false
@@ -74,15 +68,17 @@ ActiveRecord::Schema.define(:version => 20130707013711) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",            :null => false
-    t.string   "name",             :null => false
-    t.string   "password_digest",  :null => false
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.string   "email",                               :null => false
+    t.string   "name",                                :null => false
+    t.string   "password_digest",                     :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.boolean  "guest",            :default => false
+    t.string   "url"
   end
 
 end
