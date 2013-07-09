@@ -28,9 +28,9 @@ class Event < ActiveRecord::Base
     self.date  <= DateTime.now
   end
 
-  def guests
-    self.assigned_items.map {|item| (item.guest) }.uniq
-  end
+  # def guests
+  #   self.assigned_items.map {|item| (item.guest) }.uniq
+  # end
 
   
 end

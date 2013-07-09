@@ -22,7 +22,21 @@
   </div>  
   <div class='large-12 guest-view columns'>
     <div class='row'>
+      <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Needed</th>
+      <th>Description</th>
+      <th>Select Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% unless current_user %>
       <%= render 'guest_form' %>
+      <%else%>
+      <%= render 'assigned_items_form'%>
+      <%end%>
     </div>
   </div>
 </div>

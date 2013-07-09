@@ -4,11 +4,15 @@ class EventsController < ApplicationController
   before_filter :get_event_type_id, :only => [:create, :update]
 
   def show
+
+    if current_user
+      @user = current_user 
+    else
+      @user = User.new
+    end
     @event = Event.find(params[:id])
-    @user = current_user ||= User.new
     @assigned_items = @user.assigned_items.build
     @user.event_items.build.item = Item.new
-
   end
 
   def invitation
@@ -58,7 +62,7 @@ class EventsController < ApplicationController
   def get_event_type_id
     params[:event][:type_id] = event_type_id(params[:event][:type_id])
   end
- 
+
   def event_type_id(name)
     type = Type.find_or_create_by_name(name.downcase.singularize)
     type.id

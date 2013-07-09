@@ -1,0 +1,29 @@
+<div class='large-12 blue wrapper columns'>
+	<div class='row'>
+		<div class='large-12 panel white user-show columns'>
+			<h3 class='subheader'><span class='grey'>Your Contributions</span></h3>
+			<div class='event-list'>
+				<table>
+				<tr>
+					<th>Item</th>
+					<th>How Many</th>
+					<th>Item Information</th>
+					<th>Link to Event</th>
+					<th>Delete Item</th>
+				</tr>
+				<% @user.assigned_items.each do |item| %>
+
+				<tr>  
+					<td><%= item.event_item.item.name %></td>
+					<td><%= item.quantity_provided %></td>
+					<td><%= item.event_item.description%></td>
+					<td> <%= link_to "#{item.event_item.event.name}", event_path(item.event_item.event)%></td>
+					<td> <%= button_to 'remove', assigned_items_path(item), :method => :delete, :remote => :true %></td>
+					<% end %>
+				</table>
+			</div>
+		</div> 
+		</div>
+		</div> 
+
+

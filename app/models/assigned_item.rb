@@ -1,11 +1,9 @@
 class AssignedItem < ActiveRecord::Base
-  attr_accessible :event_item_id, :quantity_provided
+  attr_accessible :event_item_id, :quantity_provided, :user_id
   validates :quantity_provided, :presence => true
   validates :quantity_provided, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0}
   belongs_to :event_item
-  belongs_to :guest, :class_name => 'User'
-  has_many :assigned_items, :through => :event_items
-
+  belongs_to :guest, class_name: 'User', foreign_key: 'user_id'
   after_create :delete_if_zero
 
   # def find_all_user_items #this name isn't very descriptive.

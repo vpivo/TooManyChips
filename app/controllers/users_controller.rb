@@ -14,29 +14,35 @@ class UsersController < ApplicationController
   end
 
   def create
-    unless current_user
+    @user = User.find_by_email(params[:user][:email]) 
+    if @user
+      params["user"]["assigned_items_attributes"].each do |e|
+        @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
+       redirect_to guest_path(@user.url)
+      end
+    else
       @user = User.new(params[:user])
       if @user.save
-        session[:id] = @user.id
+       Rails.logger.info(@user.errors.inspect) 
+       session[:id] = @user.id unless @user.guest
         # UserMailer.signup_confirmation(@user.id).deliver
-        redirect_to your_profile_path, notice: "You've successfully signed up!"
+        redirect_to guest_path(@user.url)
       else
-        flash[:errors] = @user.errors.messages
-        redirect_to root_path
-      end 
-    else
-      params["user"]["assigned_items_attributes"].each do |e|
-        current_user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
-        Rails.logger.info(current_user.errors.inspect) 
-      end
-    end
-    render :show
-  end
+       Rails.logger.info(@user.errors.inspect) 
+       flash[:errors] = @user.errors.messages
+       redirect_to root_path
+     end 
+   end
+ end
 
   def destroy
     @user.destroy
   end
 
+  def guest
+    @user = User.find_by_url(params[:url])
+    render 'users/guest'
+  end
 end
 
 # class GuestsController < ApplicationController
