@@ -1,24 +1,17 @@
 <h3 class='subheader'><span class='grey'>Your Contributions</span></h3>
 <div class='event-list'>
-	<table>
-		<tr>
-			<th>Item</th>
-			<th>How Many</th>
-			<th>Item Information</th>
-			<th>Link to Event</th>
-			<th>Delete Item</th>
-		</tr>
+	<table class='user-show'>
 		<% @user.assigned_items.each do |item| %>
-
-		<tr>  
+		<tr id="<%= item.id %>">  
 			<td><%= item.event_item.item.name %></td>
 			<td><%= item.quantity_provided %></td>
 			<td><%= item.event_item.description%></td>
 			<td> <%= link_to "#{item.event_item.event.name}", event_path(item.event_item.event)%></td>
-			<td> <%= link_to 'remove', remove_path(item), :method => :delete, :remote => :true %></td>
-			<% end %>
-		</table>
-	</div>
+			<td> <%= link_to 'remove', remove_path(item), class: 'remove_fields', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json , :confirm => 'Are you sure?'%></td>
+		</tr>  
+		<% end %>
+	</table>
+</div>
 
 
 

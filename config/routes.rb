@@ -6,7 +6,7 @@ Toomanychips::Application.routes.draw do
   root to: 'pages#index'
   resources :users, :only => [:show, :create, :new, :edit] 
   resources :assigned_items, :except => [:index]
-  match 'remove', to: 'assigned_items#destroy', as: 'remove'
+  match 'remove/:id', to: 'assigned_items#destroy', as: 'remove'
 
   get 'your_profile', to: 'users#your_profile', as: 'your_profile'
   resources :session, :only => [:destroy, :create]
@@ -16,6 +16,7 @@ Toomanychips::Application.routes.draw do
 
   resources :events
   get '/:url' => 'events#invitation', :as => 'invitation'
+  get '/contributions/:id' => 'events#contributions', :as => 'contributions'
 
   resources :items
   

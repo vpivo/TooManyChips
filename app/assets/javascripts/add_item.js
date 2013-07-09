@@ -2,8 +2,8 @@ $(document).ready(function(){
   $('.event_items').on('click','.remove_fields', function(e){
     e.preventDefault();
     console.log(this)
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('li').remove();
+    $(this).prev('input[type=hidden]').val('true');
+    $(this).closest('li').hide();
   });
 
   $('.form-wrap').on ('click', '.add_fields', function(e){

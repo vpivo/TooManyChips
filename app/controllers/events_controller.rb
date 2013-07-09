@@ -4,7 +4,6 @@ class EventsController < ApplicationController
   before_filter :get_event_type_id, :only => [:create, :update]
 
   def show
-
     if current_user
       @user = current_user 
     else
@@ -57,6 +56,9 @@ class EventsController < ApplicationController
     end
   end
 
+  def contributions
+    @event = Event.find(params[:id])
+  end
   private
 
   def get_event_type_id

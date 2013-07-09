@@ -8,11 +8,10 @@ class AssignedItemsController < ApplicationController
 	end
 
 	def destroy
-		@item = AssignedItem.find(params[:format])
+		@item = AssignedItem.find(params[:id])
 		@item.destroy
 		respond_to do |format|
-			format.html { redirect_to user_path(current_user) }
-			format.xml  { head :ok }
+			format.js { render :json => @item }
 		end
 	end
 

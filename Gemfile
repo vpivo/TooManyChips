@@ -10,7 +10,6 @@ gem 'slim'
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'chronic'
-
 gem 'omniauth-facebook'
  gem 'faker'
 # gem "mail"

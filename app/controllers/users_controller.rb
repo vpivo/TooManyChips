@@ -18,17 +18,15 @@ class UsersController < ApplicationController
     if @user
       params["user"]["assigned_items_attributes"].each do |e|
         @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
-       redirect_to guest_path(@user.url)
       end
+      redirect_to guest_path(@user.url)
     else
       @user = User.new(params[:user])
       if @user.save
-       Rails.logger.info(@user.errors.inspect) 
        session[:id] = @user.id unless @user.guest
         # UserMailer.signup_confirmation(@user.id).deliver
         redirect_to guest_path(@user.url)
       else
-       Rails.logger.info(@user.errors.inspect) 
        flash[:errors] = @user.errors.messages
        redirect_to root_path
      end 
@@ -41,7 +39,7 @@ class UsersController < ApplicationController
 
   def guest
     @user = User.find_by_url(params[:url])
-    render 'users/guest'
+    render 'show'
   end
 end
 

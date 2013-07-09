@@ -1,47 +1,11 @@
 <div class='large-12 blue wrapper columns'>
   <div class='row'>
     <div class='large-12 panel white user-show columns'>
-     <div class=' new-event-outer'>
-      <%= link_to "Create A New Event",  new_event_path, class: "new-event"%>
-    </div>
-    <h3 class='subheader'><span class='grey'>Your Upcoming Events</span></h3>
-    <div class='event-list'>
-
-      <% if current_user.events.length >= 1 %>
-      <table class='user-show'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Share Link</th>
-            <th>Edit</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% current_user.events.each do |event| %>
-          <tr> <td> <%= link_to event.name.titleize, event_path(event) %></td><td> <%= event.date %></td>
-            <td>www.toomanychips.com/<%= event.url %> </td> <td><%= link_to 'edit', edit_event_path(event)%></td>
-          </tr>
-
-          <% end %>
-
-        </tbody>
-      </table>
-      <%else%>
-
-      <h3 class='subheader center'> <span class='grey'>You don't have any upcoming events.</span></h3>
-      <% end %>
-
-      <h3 class="subheader"><span class='grey'>Notifications</span></h3>
-      <div class='notifcations large-12 columns'>
-       <h3 class="subheader center"><span class='grey'>You don't have any notifcations.</span></h3>
-     </div>
-     <h3 class="subheader"><span class='grey'>Your Past Events</span></h3>
-
-     <div class='notifcations large-12 columns'>
-       <h3 class="subheader center"><span class='grey'>You don't have any past events.</span></h3>
-     </div>
-
+     <% if current_user %>
+     <%= render 'show_events' %>
+     <%else%>
+     <%= render 'guest' %>
+     <%end%>
    </div>
  </div>
 </div>
