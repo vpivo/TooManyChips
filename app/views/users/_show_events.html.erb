@@ -6,19 +6,12 @@
 
   <% if current_user.events.length >= 1 %>
   <table class='user-show'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Share Link</th>
-        <th>Edit</th>
-      </tr>
-    </thead>
+    
     <tbody>
       <% current_user.events.each do |event| %>
       <tr> <td> <%= link_to event.name.titleize, event_path(event) %></td><td> <%= event.date %></td>
-        <td>www.toomanychips.com/<%= event.url %> </td> <td><%= link_to 'edit', edit_event_path(event)%>
-        <%= link_to 'View Contributions', contributions_path(event)%></td>
+        <td>www.toomanychips.com/<%= event.url %> </td> <td><%= link_to 'Edit |', edit_event_path(event)%>
+        <%= link_to 'View Guests', contributions_path(event)%></td>
       </tr>
       <% end %>
     </tbody>

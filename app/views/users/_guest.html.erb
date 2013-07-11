@@ -1,6 +1,9 @@
 <h3 class='subheader'><span class='grey'>Your Contributions</span></h3>
 <div class='event-list'>
 	<table class='user-show'>
+		<% unless @user.assigned_items.length < 0 %>
+		<h3 class='subheader center'><span class='grey'> You don't have any contributions.</span></h3>
+		<%else%>
 		<% @user.assigned_items.each do |item| %>
 		<tr id="<%= item.id %>">  
 			<td><%= item.event_item.item.name %></td>
@@ -11,6 +14,7 @@
 		</tr>  
 		<% end %>
 	</table>
+	<%end%>
 </div>
 
 

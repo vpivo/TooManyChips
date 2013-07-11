@@ -51,6 +51,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'quiet_assets'
   gem "nyan-cat-formatter"
+  gem 'debugger'
 end
 
 # To use ActiveModel has_secure_password
@@ -66,4 +67,4 @@ end
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+
