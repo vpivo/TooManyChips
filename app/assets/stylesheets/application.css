@@ -23,6 +23,13 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
+
+div.cont-show{
+margin-top: 3%;
+}
+a.dropdown{
+  margin-top: 1%;
+}
 div.border-top{
   border-top: 2px solid #626261;
 }
