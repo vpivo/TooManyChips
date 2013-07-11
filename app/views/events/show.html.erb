@@ -9,34 +9,31 @@
 
 <div class='row '>
   <div class="large-12 columns event-info">
-    <ul class='location'>
-    <li><strong>Hosted by: </strong>
-    <%= @event.host_name%></li>
-    <li><strong>Date: </strong>
-    <%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %></li>
-    <li><strong>Location: </strong><%= @event.location %></li>
-    <li><%= @event.street_address %></li>
-    <li><%= @event.city %> <%= @event.state %>, <%= @event.zip %></li>
-    <li><strong>Description: </strong><%= @event.description %></li>
+    <ul class='no-style'>
+      <li><strong>Hosted by: </strong><%= @event.host_name%></li>
+      <li><strong>Date: </strong><%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %></li>
+      <li><strong>Location: </strong><%= @event.location %></li>
+      <li><%= @event.street_address %></li>
+      <li><%= @event.city %> <%= @event.state %>, <%= @event.zip %></li>
+      <li><strong>Description: </strong><%= @event.description %></li>
     </ul>
   </div>  
-  <div class='large-12 guest-view columns'>
-    <div class='row'>
-      <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Needed</th>
-      <th>Description</th>
-      <th>Select Quantity</th>
-    </tr>
-  </thead>
-  <tbody>
+  <h3 class='subheader'>Sign up and Contribute</h3>
+  <div class='border-top'>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>#</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
       <% unless current_user %>
       <%= render 'guest_form' %>
       <%else%>
       <%= render 'assigned_items_form'%>
       <%end%>
-    </div>
-  </div>
+      </div>
 </div>

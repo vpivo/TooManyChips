@@ -48,6 +48,10 @@ class User < ActiveRecord::Base
   #   EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')
   # end
 
+  def get_contributions(id)
+    self.assigned_items.select { |item| item if (item.event_item.event_id == id) }
+  end
+
   def send_email
     EmailWorker.perform_async(self.id)
   end

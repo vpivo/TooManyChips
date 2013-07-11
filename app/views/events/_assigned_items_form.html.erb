@@ -1,21 +1,21 @@
 <%= form_for(@assigned_items) do |ai| %> 
-    <% @event.event_items.each do |ei| %> 
-  <% if ei.needed? %>
-      <tr>
-        <td> <%= ei.item.name %> </td>
-        <td> <%= ei.quantity_still_needed %> </td>
-        <td> <%= ei.description %> </td>
-        <td>
-            <%= ai.hidden_field :event_item_id, :value => ei.id %> 
-            <%= ai.select :quantity_provided, 0..ei.
-              quantity_still_needed, {}, :class => "#{ei.item.name}" %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-  <% end %>
+<% @event.event_items.each do |ei| %> 
+<% if ei.needed? %>
+<tr>
+  <td> <%= ei.item.name %> </td>
+  <td> <%= ei.quantity_still_needed %> </td>
+  <td> <%= ei.description %> </td>
+  <td><%= ai.hidden_field :event_item_id, :value => ei.id %> 
+    <%= ai.select :quantity_provided, 0..ei.
+    quantity_still_needed, {}, :class => "#{ei.item.name}" %>
+     
+     <% end %>
+     </td>
+</tr>
+</tbody>
+<% end %>
 </table>
-  <%= ai.submit "Bring Items", :class=>"btn" %>
+<%= ai.submit "Bring Items", :class=>"btn" %>
 </div>
 </div>
 <% end %>

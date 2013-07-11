@@ -911,15 +911,15 @@ $table-border-size: 0px;
 // These control the table head styles
 $table-head-bg: #fff;
 // $table-head-font-size: emCalc(14px);
-// $table-head-font-color: #222;
+$table-head-font-color: #5a5a5a;;
 // $table-head-font-weight: bold;
-// $table-head-padding: emCalc(8px) emCalc(10px) emCalc(10px);
+$table-head-padding: emCalc(8px) emCalc(10px) emCalc(10px);
 
 // These control the row padding and font styles
-// $table-row-padding: emCalc(9px) emCalc(10px);
+$table-row-padding: emCalc(8px) emCalc(10px) emCalc(2px);
 // $table-row-font-size: emCalc(14px);
-// $table-row-font-color: #222;
-// $table-line-height: emCalc(18px);
+$table-row-font-color: #5a5a5a;;
+$table-line-height: emCalc(17px);
 
 // These are for controlling the display and margin of tables
 // $table-display: table-cell;

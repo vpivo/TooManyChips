@@ -23,7 +23,18 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
-
+div.border-top{
+  border-top: 2px solid #626261;
+}
+.active{
+  display: block;
+}
+.hidden{
+  display: none;
+}
+.center{
+  text-align: center;
+}
 input.image-url{
   width: 40%;
 }
@@ -42,7 +53,7 @@ div.new-buttons{
   margin-top: 3%;
   margin-bottom: 2%;
 }
-ul.location{
+ul.no-style{
   list-style-type: none;
 }
 div.image-upload{
@@ -157,10 +168,10 @@ div.invite{
   border: solid black 3px;
   padding: 3%;
 }
-table.user-show{
+table{
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
+  margin-top: 1%;
   padding: 3%;
 
 }
@@ -215,18 +226,6 @@ div.circle {
 span.white{
   color: white;
 }
-span.blue{
-  color: #71b3ed;
-}
-
-span.pink {
-  color: #CF4343;
-}
-
-
-span.green{
-  color: #83ca41;
-}
 
 .named a{
   color: black;
@@ -244,7 +243,6 @@ div.white-panel{
   margin-top: 3%;
 }
 
-
 .circle{
   margin-bottom: 3%;
 }
@@ -253,6 +251,7 @@ div.white-panel{
   border-radius: 50%;
   vertical-align: middle;
   padding: 5px;
+  margin-bottom: 5%;
 
   
 }
@@ -291,7 +290,7 @@ div.color-space{
   height: 15px;
   background-color: #cf4343;
   width: 100%; 
-  margin-bottom: 2%;
+  margin-bottom: 3%;
 }
 
 
