@@ -1,5 +1,4 @@
-
- <div id='eventform' >
+<div id='eventform' >
   <%= form_for(@event) do |e| %>
   <div class='main-details'>
     <div class='row'>
@@ -47,20 +46,10 @@
       </div>
     </div>
   </div>
-  <div class='row '>
-    <h3 class='subheader'><span class='grey'>Choose A Header Image </span></h3>
-    <div class='image-upload'>
-      <div class='large-3 columns'>
-        <label>From the Web</label>
-        <%= e.text_field :remote_image_url, :placeholder => "Image URL" %> 
-      </div> 
-      <label>From Your Computer</label>
-      <%= e.file_field :image, :class => "image-field" %> 
-    </div>
-  </div>
+
   <div class="row">
     <h3 class='subheader'><span class='grey'>Add Items </span></h3>
-    <div class='form-wrap add-item large-12 centered columns'>
+    <div class='form-wrap add-item border-top large-12 centered columns'>
       <div class='new-buttons'>
         <%= link_to_add_fields "Add More Items", e, :event_items %>
         <%= e.submit 'Save Event', :class => ' event_done' %>

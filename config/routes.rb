@@ -7,6 +7,7 @@ Toomanychips::Application.routes.draw do
   resources :users, :only => [:show, :create, :new, :edit] 
   resources :assigned_items, :except => [:index]
   match 'remove/:id', to: 'assigned_items#destroy', as: 'remove'
+  get 'add_image/:id', to: "events#add_image", as: 'add_image'
 
   get 'your_profile', to: 'users#your_profile', as: 'your_profile'
   resources :session, :only => [:destroy, :create]

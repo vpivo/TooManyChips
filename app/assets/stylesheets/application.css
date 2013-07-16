@@ -105,10 +105,7 @@ h1.center{
   margin-bottom: 6%;
   text-align: center;
 }
-div.notifcations, .form-wrap, .image-upload{
-  border-top: 2px solid #626261;
- 
-}
+
 img.header {
   width: 100%;
   height: 100%;

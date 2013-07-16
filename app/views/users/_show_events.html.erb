@@ -2,7 +2,7 @@
   <%= link_to "Create A New Event",  new_event_path, class: "new-event"%>
 </div>
 <h3 class='subheader'><span class='grey'>Your Upcoming Events</span></h3>
-<div class='event-list'>
+<div class='event-list border-top'>
 
   <% if current_user.events.length >= 1 %>
   <table class='user-show'>
@@ -24,6 +24,6 @@
   <%= render 'guest'%>
  <h3 class="subheader"><span class='grey'>Your Past Events</span></h3>
 
- <div class='notifcations large-12 columns'>
+ <div class='notifcations border-top large-12 columns'>
    <h3 class="subheader center"><span class='grey'>You don't have any past events.</span></h3>
  </div>
