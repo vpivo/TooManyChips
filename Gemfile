@@ -21,11 +21,10 @@ gem 'compass-rails'
 gem 'compass-foundation'
 gem 'simple_form'
 gem 'zurb-foundation', '~> 4.0.0'
-gem 'carrierwave'
-gem 'rmagick'
-gem 'fog'
+gem 'paperclip'
+gem 'aws-sdk'
 
-gem 'carrierwave_direct'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

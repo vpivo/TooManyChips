@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   respond_to :json, :html
   before_filter :format_date, :only => [:create, :update]
-  before_filter :get_event_type_id, :only => [:create, :update]
+  # before_filter :get_event_type_id, :only => [:create, :update]
 
   def show
     if current_user
@@ -31,16 +31,15 @@ class EventsController < ApplicationController
   
   def add_image
     @event = Event.find(params[:id])
-    @uploader = @event.image
-    @uploader.success_action_redirect = event_path(@event)
-
+    # @uploader = ImageUploader.new
+    # @uploader.success_action_redirect = event_path(@event)
   end
 
   def create
     @event = Event.new(params[:event])
     @event.user_id = current_user.id
     if @event.save
-      redirect_to add_image_path(@event)
+      redirect_to event_path(@event)
     else
       render 'users/show'
     end

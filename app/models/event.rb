@@ -1,13 +1,12 @@
 class Event < ActiveRecord::Base
-  mount_uploader :image, ImageUploader
   validates :name, :presence => true
   before_create :set_url
+ # after_save :enqueue_image
   attr_accessible :date, :description, :name,
     :host_provided, :location, :name, :start_time, :user_id,
-    :event_items_attributes, :image, :font_color, :state, :city, 
-    :zip, :type_id, :font_family, 
-    :allow_guest_create, :background_color, :host_name, :type,
-     :end_time, :street_address, :remote_image_url
+    :event_items_attributes, :state, :city, :zip, :type_id, :allow_guest_create, 
+    :host_name, :type, :end_time, :street_address, :remote_image_url, :image,
+    :image_file_name, :image_content_type, :image_file_size, :image_updated_at
   belongs_to :host, :class_name => "User", :foreign_key => 'user_id'
   has_one :type, :as => :typeable
   has_many :event_items, :inverse_of => :event, :dependent => :destroy
@@ -16,6 +15,13 @@ class Event < ActiveRecord::Base
   has_many :guests, :through => :assigned_items, :class_name => "User", :foreign_key => "user_id"  
 
   accepts_nested_attributes_for :event_items, :reject_if => :all_blank, :allow_destroy => true
+ 
+ has_attached_file :image, styles: {
+    thumb: '100x100>',
+    square: '200x200#',
+    header: '1000x400>'
+  }
+
   def set_url
     self.url ||= SecureRandom.urlsafe_base64
   end

@@ -56,18 +56,27 @@ Toomanychips::Application.configure do
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found)
-  config.i18n.fallbacks = true
+config.i18n.fallbacks = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-   :port =>           '587',
-   :address =>        'smtp.mandrillapp.com',
-   :user_name =>      ENV['MANDRILL_USERNAME'],
-   :password =>       ENV['MANDRILL_APIKEY'],
-   :domain =>         'heroku.com',
-   :authentication => :plain
-     }
-    ActionMailer::Base.delivery_method = :smtp
+config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => 'toomanyc',
+    :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+    :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+  }
+}
+
+config.action_mailer.delivery_method = :smtp
+config.action_mailer.smtp_settings = {
+ :port =>           '587',
+ :address =>        'smtp.mandrillapp.com',
+ :user_name =>      ENV['MANDRILL_USERNAME'],
+ :password =>       ENV['MANDRILL_APIKEY'],
+ :domain =>         'heroku.com',
+ :authentication => :plain
+}
+ActionMailer::Base.delivery_method = :smtp
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify

@@ -1,6 +1,6 @@
 <div class='large-12 columns event-header'>
   <% if @event.image? %>
-  <%= image_tag @event.image.header %> 
+  <%= image_tag @event.image(:header) %> 
   <h1 class='event-image-title'><span class='white'><%= @event.name %></span></h1>
   <% else %>
   <h1 class='event-title'><%= @event.name %></h1>
@@ -11,7 +11,7 @@
   <div class="large-12 columns event-info">
     <ul class='no-style'>
       <li><strong>Hosted by: </strong><%= @event.host_name%></li>
-      <li><strong>Date: </strong><%= @event.date.strftime("%A, %B #{@event.date.day.ordinalize} %Y") %></li>
+      <li><strong>Date: </strong><%= @event.date %></li>
       <li><strong>Location: </strong><%= @event.location %></li>
       <li><%= @event.street_address %></li>
       <li><%= @event.city %> <%= @event.state %>, <%= @event.zip %></li>
