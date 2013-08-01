@@ -1,6 +1,9 @@
 class EventsController < ApplicationController
   respond_to :json, :html
   before_filter :format_date, :only => [:create, :update]
+  before_filter :check_permissions, :except => [:invitation, :new]
+  before_filter :logged_in?, :only => [:new]
+ 
   # before_filter :get_event_type_id, :only => [:create, :update]
 
   def show
@@ -15,8 +18,14 @@ class EventsController < ApplicationController
   end
 
   def invitation
+    if current_user
+      @user = current_user 
+    else
+      @user = User.new
+    end
     @event = Event.find_by_url(params[:url])
-    redirect_to event_path(@event)
+    @assigned_items = @user.assigned_items.build
+    render 'show'
   end
 
   def new
@@ -82,18 +91,6 @@ class EventsController < ApplicationController
     params[:event][:date] = Chronic.parse(params[:event][:date])
   end
 
-  def check_permissions
-    @event = Event.find(params[:id])
-    unless current_user.id == @event.user.id
-     redirect_to event_path(@event)
-   end
- end
-
- def logged_in?
-  unless current_user
-    flash[:error] = "You must be logged in to access this section"
-    redirect_to root_path
-  end
-end
+  
 end
 

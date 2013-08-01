@@ -1,5 +1,5 @@
 class EventItem < ActiveRecord::Base
-  # after_save :check_nil
+  after_save :check_nil
   attr_accessible :event_id, :description, :item_id, :quantity_needed, :item_attributes, :guest_created
 
   validates :description, :length => { :maximum => 140 }

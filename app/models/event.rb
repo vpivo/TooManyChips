@@ -1,7 +1,6 @@
 class Event < ActiveRecord::Base
   validates :name, :presence => true
   before_create :set_url
- # after_save :enqueue_image
   attr_accessible :date, :description, :name,
     :host_provided, :location, :name, :start_time, :user_id,
     :event_items_attributes, :state, :city, :zip, :type_id, :allow_guest_create, 

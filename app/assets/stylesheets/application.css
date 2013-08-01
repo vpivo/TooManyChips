@@ -78,6 +78,8 @@ div.new-event{
 
 div.wrapper{
   height: 100%;
+  min-height: 100%;
+  background-color: #71b3ed;
 }
 
 span.grey{
@@ -203,9 +205,6 @@ div.user-show{
   padding-top: 5%;
   margin-top: 3%;
 }
-body,html{
-  height: 100%;
-} 
 
 footer{
   background-color: white;
@@ -303,6 +302,7 @@ div.blue{
   background-color: #71b3ed;
   padding-top: 0px;
   margin-top: 0px;
+
 }
 
 

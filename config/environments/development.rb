@@ -30,10 +30,11 @@ Toomanychips::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'toomanyc',
-      :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-      :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+      :access_key_id => 'AKIAI27AZMOBC4PYCBJQ',
+      :secret_access_key => '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'
     }
   }
+
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
