@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802051518) do
+ActiveRecord::Schema.define(:version => 20130802054533) do
 
   create_table "assigned_items", :force => true do |t|
     t.integer "event_item_id"
@@ -42,11 +42,8 @@ ActiveRecord::Schema.define(:version => 20130802051518) do
     t.string   "state"
     t.string   "city"
     t.string   "zip"
-    t.integer  "type_id"
     t.string   "font_color"
-    t.string   "font_family"
     t.boolean  "allow_guest_create", :default => false
-    t.string   "background_color"
     t.string   "host_name"
     t.string   "street_address"
     t.string   "image_file_name"
@@ -55,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130802051518) do
     t.datetime "image_updated_at"
     t.time     "start_time"
     t.time     "end_time"
+    t.string   "event_type"
   end
 
   create_table "items", :force => true do |t|
