@@ -10,24 +10,27 @@
 <div class='row '>
   <div class="large-12 columns event-info">
     <ul class='no-style'>
-      <li><strong>Hosted by: </strong><%= @event.host_name%></li>
-      <li><strong></strong><%= @event.date %> at 
-      <%= @event.start_time.strftime('%l:%M%P') if @event.start_time%> until 
-      <%= @event.end_time.strftime('%l:%M%P') if @event.end_time%></li>
-      <li><strong></strong><%= @event.location %></li>
-      <li><%= @event.street_address %></li>
-      <li><%= @event.city %> <%= @event.state %>, <%= @event.zip %></li>
+      <li><strong>Hosted by: </strong><%= @event.host_name.titleize  %></li>
+      <li><strong>Date: </strong><%= @event.date %> 
+      <strong> </strong><%= @event.start_time.strftime('%l:%M%P') if @event.start_time%> 
+      <%unless @event.end_time%>
+       until
+      <%= @event.end_time.strftime('%l:%M%P') %></li>
+      <%end%>
+      <li><strong></strong><%= @event.location.titleize   %></li>
+      <li><%= @event.street_address.titleize  %></li>
+      <li><%= @event.city.titleize  %> <%= @event.state.titleize   %>, <%= @event.zip %></li>
       <br>
       <li> </strong><%= @event.description %></li>
     </ul>
   </div>  
-  <h3 class='subheader'>Sign up and Contribute</h3>
+  <h3 class='subheader'>Contribute</h3>
   <div class='border-top'>
   <table>
     <thead>
       <tr>
         <th>Item</th>
-        <th>#</th>
+        <th>Amount</th>
         <th>Description</th>
         <th></th>
       </tr>
