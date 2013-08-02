@@ -1,9 +1,13 @@
+<div class='facebook-button'>
+  <span><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"%></span>
+</div>
+
 <div>
   <fieldset>
     <%= form_tag session_index_path, :class => "login"  do %>
     <%= email_field_tag :email, nil, placeholder: "Email" %><br>
     <%= password_field_tag :password, nil, placeholder: "Password" %><br><br>
-    <%= submit_tag "Log In", class: "btn btn-success" %>
+    <%= submit_tag "Log In", class: "event_done right" %>
     <% end %>
   </fieldset>
 </div>
@@ -20,7 +24,7 @@
     <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %><br>
 
     <div>
-      <span class='left'>stuff</span>    <span><%= f.submit "Sign up", :class => 'button right' %></span>
+     <span><%= f.submit "Sign up", class: 'event_done right' %></span>
     </div>
     <% end %>
   </fieldset>

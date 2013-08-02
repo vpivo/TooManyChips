@@ -1,5 +1,4 @@
 <%= form_for(@user) do |g| %> 
-
 <% @event.event_items.each do |ei| %> 
 <% if ei.needed? %>
 <tr>
@@ -24,7 +23,7 @@
     <%= g.hidden_field :guest, :value => true %>
     <div class="input-append">
       <%= g.email_field :email, :placeholder => "Your Email", :required => true %>
-      <%= g.submit "Bring Items", :class=>"btn" %>
+      <%= g.submit "Bring Items", :class=>"event_done" %>
     </div>
   </div>
   <% end %>
