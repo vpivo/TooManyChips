@@ -12,8 +12,8 @@
     <ul class='no-style'>
       <li><strong>Hosted by: </strong><%= @event.host_name.titleize  %></li>
       <li><strong>Date: </strong><%= @event.date %> 
-      <strong> </strong><%= @event.start_time.strftime('%l:%M%P') if @event.start_time%> 
-      <%unless @event.end_time%>
+      <strong> </strong><%= @event.start_time.strftime('%l:%M%P') unless @event.start_time.nil?%> 
+      <%unless @event.end_time.nil?%>
        until
       <%= @event.end_time.strftime('%l:%M%P') %></li>
       <%end%>
