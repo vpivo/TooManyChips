@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130726055611) do
+ActiveRecord::Schema.define(:version => 20130802051518) do
 
   create_table "assigned_items", :force => true do |t|
     t.integer "event_item_id"
@@ -32,8 +32,6 @@ ActiveRecord::Schema.define(:version => 20130726055611) do
   create_table "events", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.time     "start_time"
-    t.time     "end_time"
     t.date     "date"
     t.string   "location"
     t.string   "url"
@@ -55,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20130726055611) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.time     "start_time"
+    t.time     "end_time"
   end
 
   create_table "items", :force => true do |t|
