@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   respond_to :json, :html
   before_filter :format_date, :only => [:create, :update]
-  before_filter :check_permissions, :except => [:invitation, :create, :new, :edit]
+  before_filter :check_permissions, :only => [:edit]
   before_filter :logged_in?, :only => [:new, :create]
  
   # before_filter :get_event_type_id, :only => [:create, :update]

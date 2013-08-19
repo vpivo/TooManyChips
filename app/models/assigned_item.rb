@@ -1,15 +1,21 @@
 class AssignedItem < ActiveRecord::Base
   attr_accessible :event_item_id, :quantity_provided, :user_id
   validates :quantity_provided, :presence => true
-  validates :quantity_provided, :numericality => {:only_integer => true, :greater_than_or_equal_to => 0}
+  validates :quantity_provided, :numericality => {:only_integer => true, :greater_than => 0}
   belongs_to :event_item
   belongs_to :guest, class_name: 'User', foreign_key: 'user_id'
-  after_create :delete_if_zero
+  before_create :check_for_duplicate
 
-  # def find_all_user_items #this name isn't very descriptive.
-  #   AssignedItem.where('guest_email=?', self.guest_email)
-  # end
-  def delete_if_zero
-    self.destroy if self.quantity_provided == 0
+  def check_for_duplicate
+    unless duplicate_item.nil?
+      self.quantity_provided += duplicate_item.quantity_provided
+      duplicate_item.destroy
+    end
+  end
+
+  private
+
+  def duplicate_item
+    self.guest.assigned_items.find_by_event_item_id(self.event_item_id)
   end
 end

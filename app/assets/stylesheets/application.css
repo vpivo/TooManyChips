@@ -23,7 +23,18 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
-
+td{
+  height:18px;
+  font-size: 16px;
+}
+td.small{
+  padding-left: 35%;
+  padding-right: 3%;
+  text-align: center;
+}
+div.form{
+  padding: 4%;
+}
 div.cont-show{
 margin-top: 3%;
 }
@@ -128,7 +139,6 @@ h1.event-image-title{
 div.event-header{
    display: table;
     margin: 0 auto;
-    padding-bottom: 3%;
 }
 
 div.event-info{
@@ -153,6 +163,7 @@ div.add-item{
   color: white;
   font-size: 18px;
 }
+
 .event_done{
  text-decoration: none;
  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;

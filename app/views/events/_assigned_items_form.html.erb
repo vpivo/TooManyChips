@@ -5,10 +5,11 @@
   <td> <%= ei.item.name %> </td>
   <td> <%= ei.quantity_still_needed %> </td>
   <td> <%= ei.description %> </td>
+  <tr>
   <td><%= ai.hidden_field :event_item_id, :value => ei.id %> 
     <%= ai.select :quantity_provided, 0..ei.
     quantity_still_needed, {}, :class => "#{ei.item.name}" %>
-     
+     <?tr>
      <% end %>
      </td>
 </tr>

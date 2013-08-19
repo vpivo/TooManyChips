@@ -2,28 +2,38 @@
 <% @event.event_items.each do |ei| %> 
 <% if ei.needed? %>
 <tr>
-  <td> <%= ei.item.name %> </td>
-  <td> <%= ei.quantity_still_needed %> </td>
-  <td> <%= ei.description %> </td>
-  <td>
-    <%= g.fields_for :assigned_items do |ai| %>
-    <%= ai.hidden_field :event_item_id, :value => ei.id %> 
-    <%= ai.select :quantity_provided, 0..ei.
-    quantity_still_needed, {}, :class => "#{ei.item.name}" %>
-    <% end %>
-  </td>
+<td> <%= ei.item.name %> </td>
+<td> <%= ei.quantity_still_needed %> </td>
+<td> <%= ei.description %> </td>
+<td>
+<%= g.fields_for :assigned_items do |ai| %>
+<%= ai.hidden_field :event_item_id, :value => ei.id %> 
+<tr><td></td><td></td><td class='small'>
+<%= ai.select :quantity_provided, 0..ei.
+quantity_still_needed, {}, :class => "#{ei.item.name}" %>
+</td></tr>
+<% end %>
+</td>
 </tr>
 </tbody>
 <% end %>
 <% end %>
 </table>
-<div "bringin_items">
-  <%= g.text_field :name, :placeholder =>"Your Name", :required => true %>
-  <div class="input-append">
-    <%= g.hidden_field :guest, :value => true %>
-    <div class="input-append">
-      <%= g.email_field :email, :placeholder => "Your Email", :required => true %>
-      <%= g.submit "Bring Items", :class=>"event_done" %>
-    </div>
-  </div>
-  <% end %>
+<div class='row large-centered form'>
+
+<div class='large-6 columns'>
+<%= g.text_field :name, :placeholder =>"Your Name", :required => true %>
+</div>
+<%= g.hidden_field :guest, :value => true %>
+<div class='large-6 columns'>
+<%= g.email_field :email, :placeholder => "Your Email", :required => true %>
+</div>
+<div class='large-12 columns'>
+<%= g.submit "Bring Items", :class=>"right event_done" %>
+<% end %>
+</div>
+</div>
+
+
+
+
