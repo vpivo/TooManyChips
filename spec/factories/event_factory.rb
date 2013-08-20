@@ -13,35 +13,17 @@ FactoryGirl.define do
 		start_time				"7pm"
 		end_time          "10pm"
 		event_type				"BBQ"
-		date 							Chronic.parse(11/12/2016)
-		after(:create) do |event|
-			event.event_items << FactoryGirl.build(:ei_cheese)
-		end
+		date 							11/12/2016
+
+		# factory :event_with_associations do
+		# 	before_create do |event|
+		# 		4.times do 
+		# 			item = create(:assigned_item, user_id: 4)
+		# 			event.assigned_items << item
+		# 		end
+		# 	end
+		# end 
 	end
+
+
 end
-
-# schema
-
-# t.string   "name"
-# t.text     "description"
-# t.date     "date"
-# t.string   "location"
-# t.string   "url"
-# t.integer  "user_id"
-# t.datetime "created_at",                            :null => false
-# t.datetime "updated_at",                            :null => false
-# t.string   "image"
-# t.string   "state"
-# t.string   "city"
-# t.string   "zip"
-# t.string   "font_color"
-# t.boolean  "allow_guest_create", :default => false
-# t.string   "host_name"
-# t.string   "street_address"
-# t.string   "image_file_name"
-# t.string   "image_content_type"
-# t.integer  "image_file_size"
-# t.datetime "image_updated_at"
-# t.time     "start_time"
-# t.time     "end_time"
-# t.string   "event_type"
