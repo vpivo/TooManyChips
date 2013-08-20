@@ -14,16 +14,5 @@ FactoryGirl.define do
 		end_time          "10pm"
 		event_type				"BBQ"
 		date 							11/12/2016
-
-		# factory :event_with_associations do
-		# 	before_create do |event|
-		# 		4.times do 
-		# 			item = create(:assigned_item, user_id: 4)
-		# 			event.assigned_items << item
-		# 		end
-		# 	end
-		# end 
 	end
-
-
 end
