@@ -1,1 +1,0 @@
-# guest_spec.rb

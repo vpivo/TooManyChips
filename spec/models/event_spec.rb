@@ -20,6 +20,31 @@ describe Event do
   it { should validate_presence_of(:name)}
   it { should validate_presence_of(:date)}
   it { should accept_nested_attributes_for(:event_items).allow_destroy true }
+  it {should_respond_to(:name)}
+  it {should_respond_to(:description)}
+  it {should_respond_to(:date)}
+  it {should_respond_to(:location)}
+  it {should_respond_to(:url)}
+  it {should_respond_to(:user_id)}
+  it {should_respond_to(:created_at)}
+  it {should_respond_to(:updated_at)}
+  it {should_respond_to(:image)}
+  it {should_respond_to(:state)}
+  it {should_respond_to(:city)}
+  it {should_respond_to(:zip)}
+  it {should_respond_to(:font_color)}
+  it {should_respond_to(:allow_guest_create)}
+  it {should_respond_to(:host_name)}
+  it {should_respond_to(:street_address)}
+  it {should_respond_to(:image_file_name)}
+  it {should_respond_to(:image_content_type)}
+  it {should_respond_to(:image_file_size)}
+  it {should_respond_to(:image_updated_at)}
+  it {should_respond_to(:start_time)}
+  it {should_respond_to(:end_time)}
+  it {should_respond_to(:event_type)}
+
+
 
   describe "set_url" do
     it "should be a url when it is saved" do
