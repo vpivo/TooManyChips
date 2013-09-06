@@ -2,16 +2,35 @@ require 'spec_helper'
 
 describe User do 
 
-  subject {FactoryGirl.create(:registered_user)}
-  let(:guest) {FactoryGirl.create(:guest)}
+  subject {create(:registered_user)}
+  let(:guest) {create(:guest)}
   let(:event) {build(:event)}
-  it { should allow_mass_assignment_of :name }
-  it { should allow_mass_assignment_of :email }
-  it { should allow_mass_assignment_of :password }
+  it { should allow_mass_assignment_of(:email)}
+  it { should allow_mass_assignment_of(:name)}
+  it { should allow_mass_assignment_of(:guest)}
+  it { should allow_mass_assignment_of(:url)}
+  it { should_not allow_mass_assignment_of(:password_digest)}
+  it { should_not allow_mass_assignment_of(:created_at)}
+  it { should_not allow_mass_assignment_of(:updated_at)}
+  it { should_not allow_mass_assignment_of(:provider)}
+  it { should_not allow_mass_assignment_of(:uid)}
+  it { should_not allow_mass_assignment_of(:oauth_token)}
+  it { should_not allow_mass_assignment_of(:oauth_expires_at)}
   it { should have_many(:events).class_name("Event")}
   it { should have_many(:event_items)}
   it { should ensure_length_of(:password).is_at_least(6).with_short_message(/must have at least 6 characters/)}
   it { should validate_presence_of(:name)}
+  it { should respond_to(:email)}
+  it { should respond_to(:name)}
+  it { should respond_to(:guest)}
+  it { should respond_to(:url)}
+  it { should_not allow_value("amy").for :email }
+  it { should allow_value("amylukima@gmail.com").for :email }
+  it { should allow_value("amy").for :name }
+  it { should_not allow_value("").for :name }
+  it { should allow_value("123456").for :password }
+  it { should_not allow_value("12345").for :password }
+
 
   describe '#new' do
     context 'guest' do
@@ -26,7 +45,7 @@ describe User do
 
     context 'registered user' do
       it 'does not allows creation without a password' do
-        expect{FactoryGirl.create(:user, password: '')}.to raise_error
+        expect{create(:user, password: '')}.to raise_error
       end
 
       it 'does not set a url' do
@@ -56,11 +75,15 @@ describe User do
       end
     end
 
-    # describe ".get_contributions" do
-    #   it 'return the users contributions' do
-    #     expect(guest.get_contributions(event.id)).to include(assigned_item)
-    #   end
-    # end
+    describe ".get_contributions" do
+      it 'return the users contributions' do
+        event = create(:event)
+        guest = create(:guest, email: 'joe@test.com')
+        ei = create(:event_item, event: event)
+        ai = create(:assigned_item, guest: guest, event_item: ei)
+        expect(guest.get_contributions(event.id)).to include(ai)
+      end
+    end
   end
 end
 

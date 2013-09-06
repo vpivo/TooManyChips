@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :events
-  has_many :assigned_items, :class_name => 'AssignedItem', :foreign_key => 'user_id'
-  validates_presence_of :name
+  require 'bcrypt'
+  include ActiveModel::SecurePassword::InstanceMethodsOnActivation
+  attr_reader :password #allow user to be guest ot registered
+
+  validates_presence_of :name, :email
   validates :email, :uniqueness => {:case_sensitive => false, :message => "has already been registered"}, 
   :format => {:with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, 
   :message => "must be a valid format" }
@@ -9,19 +11,17 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password
   has_many :assigned_items, :dependent => :destroy
   has_many :event_items, :through => :assigned_items
+  has_many :events
+  has_many :assigned_items, :class_name => 'AssignedItem', :foreign_key => 'user_id'
   attr_accessible :name, :email, :url, :assigned_items_attributes, 
-                  :event_items_attributes, :assigned_items, :event_items, 
-                  :guest, :password
+  :event_items_attributes, :assigned_items, :event_items, 
+  :guest, :password
   belongs_to :event, :class_name => 'User', foreign_key: 'user_id'
   accepts_nested_attributes_for :assigned_items, :event_items
+  
   # after_save :registration_emails!
   before_create :set_url
   
-  require 'bcrypt'
-  attr_reader :password
-  include ActiveModel::SecurePassword::InstanceMethodsOnActivation
-
-
   def get_contributions(id)
     self.assigned_items.select { |item| item if (item.event_item.event_id == id) }
   end

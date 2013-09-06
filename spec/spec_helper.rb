@@ -1,4 +1,17 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
+module Helpers
+  def log_in(fabricator=nil)
+    user = create(fabricator || :registered_user)
+    log_in_user(user)
+    user
+  end
+
+  def log_in_user(user)
+    session[:id] = user.id
+  end
+end
+
+
+    # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'

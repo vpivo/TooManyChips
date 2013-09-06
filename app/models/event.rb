@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :date, :host_name
   attr_accessible :date, :description, :name, 
-  :location, :name, :start_time, :user_id,
+  :location, :name, :start_time, 
   :event_items_attributes, :state, :city, :zip, :event_type, 
   :allow_guest_create, :image, :image_updated_at,
   :host_name, :type, :end_time, :street_address, :remote_image_url, 
@@ -30,10 +30,6 @@ class Event < ActiveRecord::Base
   end
 
   private
-
-  # def get_event_type_id
-  #   params[:event][:type_id] = event_type_id(params[:event][:type_id])
-  # end
 
   def event_type_id(name)
     type = Type.find_or_create_by_name(name.downcase.singularize)

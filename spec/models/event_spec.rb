@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Event do
+
   let(:event)          { create(:event) }
   let(:event_item)     { build(:event_item, quantity_needed: 4) }
   let(:assigned_item)  { build(:assigned_item) }           
@@ -9,7 +10,6 @@ describe Event do
   it {should allow_mass_assignment_of(:description)}
   it {should allow_mass_assignment_of(:date)}
   it {should allow_mass_assignment_of(:location)}
-  it {should allow_mass_assignment_of(:user_id)}
   it {should allow_mass_assignment_of(:image)}
   it {should allow_mass_assignment_of(:state)}
   it {should allow_mass_assignment_of(:city)}
@@ -24,6 +24,7 @@ describe Event do
   it {should allow_mass_assignment_of(:start_time)}
   it {should allow_mass_assignment_of(:end_time)}
   it {should allow_mass_assignment_of(:event_type)}
+  it {should_not allow_mass_assignment_of(:user_id)}
   it {should respond_to(:name)}
   it {should respond_to(:description)}
   it {should respond_to(:date)}
@@ -56,8 +57,6 @@ describe Event do
   it { should validate_presence_of(:host_name)}
   it { should accept_nested_attributes_for(:event_items).allow_destroy true }
 
-
-
   describe "set_url" do
     it "should be a url when it is saved" do
       expect(event.url.length).to eq(22)
@@ -67,6 +66,23 @@ describe Event do
       original_url = event.url
       event.save
       expect(event.url).to eq(original_url)
+    end
+  end
+
+  describe "#format_date" do
+    let(:event) { build(:event, date: '2020-07-26')  }
+    context 'new record' do
+      it 'formats event date before save' do
+        expect(event.date).to eq(Date.new(2020, 7, 26))
+      end
+
+      context 'existing record' do
+        it 'formats event date before save' do
+          event.update_attributes!(date:'may 3, 2015')
+          event.save
+          expect(event.date).to eq(Chronic.parse('may 3, 2015'))
+        end
+      end
     end
   end
 

@@ -9,10 +9,11 @@ class UsersController < ApplicationController
     render :show
   end
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
+#only adds for guests, not registered users
   def create
     @user = User.find_by_email(params[:user][:email]) 
     if @user

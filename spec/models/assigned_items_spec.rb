@@ -30,15 +30,19 @@ describe AssignedItem do
   #   expect(guest.assigned_items.first.quantity_provided).to eq(8)
   # end
 
-  # it "delete duplicate items" do
-  #   guest.assigned_items << build(:assigned_item, quantity_provided: 4, user_id: guest.id )
-  #   guest.assigned_items << build(:assigned_item, quantity_provided: 4, user_id: guest.id )
-  #   expect(guest.assigned_items.length).to eq(1)
-  # end
+  # describe '#check_for_duplicate' do
+  #   it "deletes duplicate items" do
+  #     event = create(:event)
+  #     guest = create(:guest)
+  #     ei = create(:event_item, event: event, quantity_needed: 12)
+  #     ai = create(:assigned_item, guest: guest, event_item: ei)
+  #     ai2 = create(:assigned_item, guest: guest, event_item: ei)
+  #     guest.assigned_items << ai
+  #     guest.assigned_items << ai2
+  #     expect(guest.assigned_items).to eq(1)
+  #   end
 
-  it "does not save if quantity provided is 0" do
-    expect(build(:assigned_item, quantity_provided: 0)).to_not be_valid
-  end
-
-
+    it "does not save if quantity provided is 0" do
+      expect(build(:assigned_item, quantity_provided: 0)).to_not be_valid
+    end
 end

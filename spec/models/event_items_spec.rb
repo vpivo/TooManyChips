@@ -22,12 +22,12 @@ describe EventItem do
 
   describe "#needed?" do
     it "should true if quantity_needed is > 0" do
-      event_item.needed?.should == true
+      expect(event_item.needed?).to eq(true)
     end
 
     it "should return false if quantity_needed < 1" do
       event_item.quantity_needed = 0
-      event_item.needed?.should == false
+      expect(event_item.needed?).to eq(false)
     end
   end
 
@@ -39,10 +39,10 @@ describe EventItem do
     end
 
     it "should find all assigned items" do
-      event_item.assigned_items.length.should == 3
+      expect(event_item.assigned_items.length).to eq(3)
     end
     it "should return the sum of quantity_provided by all assigned_items" do
-      event_item.quantity_assigned.should == 9
+      expect(event_item.quantity_assigned).to eq(9)
     end
   end
 
