@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   respond_to :json, :html
-  before_filter :check_permissions, :only => [:edit]
-  before_filter :logged_in?, :only => [:new, :create]
+  before_filter :check_permissions, :only => [:edit, :add_image, :destroy]
+  before_filter :logged_in?, :only => [:new, :update, :create]
  
   def show
     if current_user
@@ -40,10 +40,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
+    puts params
     @event.user_id = current_user.id
     if @event.save
+      puts @event.errors.full_messages
       redirect_to invitation_path(@event.url)
     else
+      puts @event.errors.full_messages
       render 'users/show'
     end
   end

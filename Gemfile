@@ -26,7 +26,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-
 group :development, :test do
   gem 'faker'
   gem 'rspec-rails'

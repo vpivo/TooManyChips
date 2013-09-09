@@ -19,6 +19,13 @@ describe UsersController do
 				expect(response).to render_template(:show) 
 			end
 		end
+
+		context 'without a current user' do
+			it 'redirects to the root path' do
+				get :your_profile
+				expect(response).to redirect_to(root_path)
+			end
+		end
 	end
 
 	describe 'Get #guest' do
@@ -53,8 +60,8 @@ describe UsersController do
 
 		context 'with an existing user' do
 			it 'does not create a new user' do
-				FactoryGirl.create(:guest)
-				expect{post :create, "user"=>{"assigned_items_attributes"=>{"0"=>{"event_item_id"=>"87", "quantity_provided"=>"2"}}, "name"=>"blahsdhjsakdhk", "guest"=>"true", "email"=>"amy1@amy.com"}}.to change(User, :count).by 0
+				FactoryGirl.create(:guest, email: 'amy@gmail.com')
+				expect{post :create, "user"=>{"assigned_items_attributes"=>{"0"=>{"event_item_id"=>"87", "quantity_provided"=>"2"}}, "name"=>"blahsdhjsakdhk", "guest"=>"true", "email"=>"amy@gmail.com"}}.to change(User, :count).by 0
 			end
 		end
 

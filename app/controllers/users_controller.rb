@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :logged_in?, :only => [:show, :edit, :update, :destroy]
+  before_filter :logged_in?, :only => [:show, :edit, :update, :destroy, :your_profile]
   before_filter :load_and_authorize_user, :only => [:show, :edit, :update, :destroy]
 
   def your_profile
@@ -8,10 +8,6 @@ class UsersController < ApplicationController
     @event.event_items.build.item = Item.new
     render :show
   end
-
-  # def new
-  #   @user = User.new
-  # end
 
 #only adds for guests, not registered users
   def create
