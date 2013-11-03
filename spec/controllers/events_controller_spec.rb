@@ -67,13 +67,26 @@ describe EventsController do
 		end
 	end
 
+	describe 'Get #new' do
+
+		it 'redirects if there is not a current user' do
+			get :new, event: attributes_for(:invalid_event)
+			expect(response).to redirect_to(root_path)
+		end
+
+		it 'renders the correct view' do
+			log_in_user(user)
+			get :new, id: event.url
+			expect(response).to render_template(:new) 
+		end
+	end
+
 	describe 'Get #edit' do
 		
 		it 'assigns the requested event to @event' do
 			get :edit, id: event.id
 			expect(assigns(:event)).to eq event
 		end	
-
 
 		context 'as a guest viewer' do
 			it 'redirects to invitation view' do
@@ -94,10 +107,50 @@ describe EventsController do
 	end
 
 	describe 'Post #create' do 
+		
+		it 'redirects if there is not a current user' do
+			post :create, event: attributes_for(:invalid_event)
+			expect(response).to redirect_to(root_path)
+		end
+
 		context 'with valid attributes' do
+
+			before(:each) do
+				log_in_user(user)
+			end
+
 			it 'saves a new event in the database' do
-				expect{post :create, attributes_for(:event)}.to change(Event, :count).by 1
+				expect{post :create, event: attributes_for(:event)}.to change(Event, :count).by 1
+			end
+
+			it 'redirects to the invitation_path' do
+				post :create, event: attributes_for(:event)
+				expect(response).to redirect_to(invitation_path(assigns(:event).url))
+			end
+		end
+
+		context'with invalid attributes' do 
+
+			before(:each) do
+				log_in_user(user)
+			end
+
+			it 'does not saves a new event in the database' do
+				expect{post :create, event: attributes_for(:invalid_event)}.to change(Event, :count).by 0
+			end
+
+			it 'redirects to the invitation_path' do
+				post :create, event: attributes_for(:invalid_event)
+				expect(response).to render_template(:new)
 			end
 		end
 	end
+
+	describe 'Post #create' do
+		before(:each) do 
+			event = create(:event)
+		end
+		
+	end
+
 end

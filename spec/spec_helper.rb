@@ -1,15 +1,3 @@
-module Helpers
-  def log_in(fabricator=nil)
-    user = create(fabricator || :registered_user)
-    log_in_user(user)
-    user
-  end
-
-  def log_in_user(user)
-    session[:id] = user.id
-  end
-end
-
 
     # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
@@ -21,10 +9,11 @@ require 'capybara/rails'
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-
+Capybara.default_driver = :selenium
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
+  config.include Login
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

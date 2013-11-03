@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe 'Event Show' do
+  let:(:host)          { create(:host)}
   let(:event)          { create(:event) }
   let(:item1)          { create(:item) }
   let(:item2)          { create(:item) }

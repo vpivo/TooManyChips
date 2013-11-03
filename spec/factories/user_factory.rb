@@ -8,8 +8,7 @@ FactoryGirl.define do
 
 	factory :guest, class: User do
 		name "amy"
-				sequence(:email) {|n| "guest_person#{n}@example.com" }
-
+		sequence(:email) {|n| "guest_person#{n}@example.com" }
 		guest true
 	end
 

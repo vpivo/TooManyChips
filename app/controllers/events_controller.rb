@@ -40,14 +40,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(params[:event])
-    puts params
     @event.user_id = current_user.id
     if @event.save
       puts @event.errors.full_messages
       redirect_to invitation_path(@event.url)
     else
-      puts @event.errors.full_messages
-      render 'users/show'
+      render 'new'
     end
   end
 

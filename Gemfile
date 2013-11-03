@@ -38,6 +38,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'thin'
 end
 
 

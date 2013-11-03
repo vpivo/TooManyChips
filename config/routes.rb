@@ -4,7 +4,7 @@ Toomanychips::Application.routes.draw do
   match 'auth/failure', to: redirect('/')
 
   root to: 'pages#index'
-  resources :users, :only => [:show, :create, :new, :edit] 
+  resources :users, :only => [:show, :create, :new, :edit, :guest_create] 
   resources :assigned_items, :except => [:index]
   match 'remove/:id', to: 'assigned_items#destroy', as: 'remove'
   get 'add_image/:id', to: "events#add_image", as: 'add_image'
@@ -14,7 +14,7 @@ Toomanychips::Application.routes.draw do
   post 'login' => 'session#create', :as => 'login'
   match 'signout', to: 'session#destroy', as: 'signout'
   get 'guest/:url' => 'users#guest', as: 'guest'
-
+  
   resources :events
   get '/:url' => 'events#invitation', :as => 'invitation'
   get '/contributions/:id' => 'events#contributions', :as => 'contributions'

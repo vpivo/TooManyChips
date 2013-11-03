@@ -23,6 +23,16 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
+
+.errors{
+  min-height: 20px;
+}
+.error-border{
+    outline:none;
+    border-color:#F7204F;
+    box-shadow:0 0 10px #F7204F
+}
+
 td{
   height:18px;
   font-size: 16px;
@@ -177,10 +187,10 @@ div.add-item{
  padding-right: 40px;
 
 }
+
 div.white{
   background-color: white;
 }
-
 
 .white h3{
   padding-left: 2%;
@@ -320,7 +330,6 @@ div.blue{
 
 }
 
-
 div.full-width { width: 100%; 
   max-width: 100%; 
 }
@@ -335,6 +344,7 @@ div.facebook-button{
   margin-bottom: 10px;
   color: #5a5a5a;
   width: 220px;
+  margin-left: .6em;
 }
 
 .facebook-button a{
@@ -355,5 +365,4 @@ div.login-button{
   color: white;
   width: 220px;
   color: #5a5a5a;
-
 }

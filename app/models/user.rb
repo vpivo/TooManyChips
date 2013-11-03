@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :assigned_items, :class_name => 'AssignedItem', :foreign_key => 'user_id'
   attr_accessible :name, :email, :url, :assigned_items_attributes, 
   :event_items_attributes, :assigned_items, :event_items, 
-  :guest, :password
+  :guest, :password, :password_confirmation
   belongs_to :event, :class_name => 'User', foreign_key: 'user_id'
   accepts_nested_attributes_for :assigned_items, :event_items
   
