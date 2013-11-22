@@ -45,6 +45,13 @@ class UsersController < ApplicationController
   end
 
   def simple_login
+    render '' 
+  end
 
+  private
+
+  def person_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, 
+      assigned_items_attributes: [:event_item_id, :quantity_provided])
   end
 end

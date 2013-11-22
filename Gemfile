@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 ruby "1.9.3"
-gem 'rails', '3.2.13'
+gem 'rails', '4.0.0'
 gem 'sinatra', require: false
-gem 'slim'
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'chronic'
@@ -14,22 +13,21 @@ gem 'sidekiq-status'
 gem 'sidekiq-failures'
 gem 'compass-rails'
 gem 'compass-foundation'
-gem 'simple_form'
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'jquery-rails'
+gem 'uglifier', '>= 1.3.0'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+##
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+gem 'activerecord-deprecated_finders'
 
 group :development, :test do
-  gem 'faker'
   gem 'rspec-rails'
-  gem 'sextant'
   gem 'better_errors'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'

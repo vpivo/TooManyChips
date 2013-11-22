@@ -1,6 +1,4 @@
 class EventItem < ActiveRecord::Base
-
-  attr_accessible :event_id, :description, :item_id, :quantity_needed, :item_attributes, :guest_created
   has_many :assigned_items ,:dependent => :destroy, :autosave => true
   belongs_to :event
   belongs_to :item 

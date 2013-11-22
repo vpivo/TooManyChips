@@ -1,11 +1,5 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :date, :host_name
-  attr_accessible :date, :description, :name, 
-  :location, :name, :start_time, 
-  :event_items_attributes, :state, :city, :zip, :event_type, 
-  :allow_guest_create, :image, :image_updated_at,
-  :host_name, :type, :end_time, :street_address, :remote_image_url, 
-  :image_file_name, :image_content_type, :image_file_size
   belongs_to :host, :class_name => "User", :foreign_key => 'user_id'
   has_many :event_items, :inverse_of => :event, :dependent => :destroy
   has_many :items, :through => :event_items

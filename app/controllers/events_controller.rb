@@ -71,7 +71,13 @@ class EventsController < ApplicationController
   def contributions
     @event = Event.find(params[:id])
   end
-
-  
+ def person_params
+    params.require(:event).permit(:date, :description, :name, 
+  :location, :name, :start_time, 
+  :event_items_attributes, :state, :city, :zip, :event_type, 
+  :allow_guest_create, :image, :image_updated_at,
+  :host_name, :type, :end_time, :street_address, :remote_image_url, 
+  :image_file_name, :image_content_type, :image_file_size)
+  end
 end
 
