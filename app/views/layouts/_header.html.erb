@@ -17,7 +17,7 @@
     </ul>
     <ul class="right">
       <% if current_user %>
-      <li><a href="/signout">Sign Out</a></li>
+      <li><%= link_to "Sign Out", signout_path, method: :delete %></li>
       <%else%>
       <li><a class="btn" data-reveal-id="myModal" href="#">Log In/Sign Up</a></li>
       <% end %>

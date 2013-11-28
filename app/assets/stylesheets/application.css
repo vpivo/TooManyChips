@@ -25,6 +25,7 @@ B283CB purple
 #515151*/
 
 .errors{
+  color: #cf4343;
   min-height: 20px;
 }
 .error-border{

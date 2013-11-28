@@ -9,14 +9,18 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def simple_login
+    @login_error = session[:login_error]
+  end
+
   def create_guest
-    @user = User.find_by_email(params[:user][:email]) 
+    @user = User.find_by_email(person_params[:user][:email]) 
     if @user
       params["user"]["assigned_items_attributes"].each do |e|
         @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
       end
     else
-      @user = User.new(params[:user])
+      @user = User.new(person_params[:user])
       @user.guest = true
     end 
     if @user.save
@@ -25,13 +29,13 @@ class UsersController < ApplicationController
   end
 
   def create 
-    @user = User.new(params[:user])
+    @user = User.new(person_params[:user])
     if @user.save
       session[:id] = @user.id
       redirect_to your_profile_path
     else
       puts @user.errors.messages
-      redirect_to root_path
+      redirect_to login_path
     end 
   end
 
@@ -42,10 +46,6 @@ class UsersController < ApplicationController
   def guest
     @user = User.find_by_url(params[:url])
     render 'show'
-  end
-
-  def simple_login
-    render '' 
   end
 
   private

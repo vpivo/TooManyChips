@@ -1,16 +1,29 @@
-<div class='facebook-button'>
+<div class="row">
+      <div class="large-12 columns">
+<div class='facebook-button center'>
   <span><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"%></span>
 </div>
-
+</div>
+</div>
 <div class='login'>
   <fieldset>
-    <span class='errors'></span>
     <%= form_tag session_index_path, :class => "login"  do %>
-    <span class='errors'></span>
-    <%= email_field_tag :email, nil, placeholder: "Email" %><br>
-    <span class='errors'></span>
-    <%= password_field_tag :password, nil, placeholder: "Password" %>
+    <div class="row">
+      <div class="large-12 columns">
+          <span class='errors'> <%= @login_error if @login_error %></span>
+        <%= email_field_tag :email, nil, placeholder: "Email" %><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= password_field_tag :password, nil, placeholder: "Password" %>
+      </div>
+    </div>
+     <div class="row">
+      <div class="large-12 columns">
     <%= submit_tag "Log In", class: "event_done right" %>
+    </div>
+    </div>
     <% end %>
   </fieldset>
 </div>
@@ -19,36 +32,38 @@
   <fieldset>
     <% @user = User.new %>
     <%= form_for @user do |f| %>
-
     <div class="row">
       <div class="large-12 columns">
-        <label>Your name.</label>
+        <label>Your name</label>
         <%= f.text_field :name, :id => "inputName", :required => true, placeholder: "Name" %>
       </div>
     </div>
 
     <div class="row">
       <div class="large-12 columns">
-        <label>Your email address.</label>
+        <label>Your email address</label>
         <%= f.email_field :email, :id => "inputEmail", :required => true, placeholder: "Email" %>
       </div>
     </div>
 
     <div class="row">
       <div class="large-12 columns">
-        <label>A unique password.</label>
-         <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %>
+        <label>A unique password</label>
+        <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %>
       </div>
     </div>
 
     <div class="row">
       <div class="large-12 columns">
-        <label>Confirm your password.</label>
+        <label>Confirm your password</label>
         <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
       </div>
     </div>
-
+     <div class="row">
+      <div class="large-12 columns">
     <%= f.submit "Sign up", class: 'event_done right' %>
+    </div>
+    </div>
     <% end %>
   </fieldset>
 </div>

@@ -9,41 +9,44 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130802054533) do
+ActiveRecord::Schema.define(version: 20130802054533) do
 
-  create_table "assigned_items", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "assigned_items", force: true do |t|
     t.integer "event_item_id"
-    t.integer "quantity_provided", :null => false
+    t.integer "quantity_provided", null: false
     t.integer "user_id"
   end
 
-  create_table "event_items", :force => true do |t|
+  create_table "event_items", force: true do |t|
     t.integer  "event_id"
     t.string   "description"
     t.integer  "item_id"
-    t.integer  "quantity_needed", :default => 1
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.boolean  "guest_created",   :default => false
+    t.integer  "quantity_needed", default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "guest_created",   default: false
   end
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.date     "date"
     t.string   "location"
     t.string   "url"
     t.integer  "user_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "image"
     t.string   "state"
     t.string   "city"
     t.string   "zip"
     t.string   "font_color"
-    t.boolean  "allow_guest_create", :default => false
+    t.boolean  "allow_guest_create", default: false
     t.string   "host_name"
     t.string   "street_address"
     t.string   "image_file_name"
@@ -55,31 +58,31 @@ ActiveRecord::Schema.define(:version => 20130802054533) do
     t.string   "event_type"
   end
 
-  create_table "items", :force => true do |t|
+  create_table "items", force: true do |t|
     t.text     "suggestion"
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "type_id"
   end
 
-  create_table "types", :force => true do |t|
+  create_table "types", force: true do |t|
     t.string  "name"
     t.integer "typeable_id"
     t.string  "typeable_type"
   end
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                               :null => false
-    t.string   "name",                                :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",                            null: false
+    t.string   "name",                             null: false
     t.string   "password_digest"
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
-    t.boolean  "guest",            :default => false
+    t.boolean  "guest",            default: false
     t.string   "url"
   end
 

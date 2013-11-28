@@ -1,19 +1,19 @@
 class SessionController < ApplicationController
+  respond_to :json
 
   def oauth_create
     user = User.from_omniauth(env["omniauth.auth"])
     session[:id] = user.id 
-    redirect_to your_profile_path, notice: "Signed in!"
   end
 
   def create
-    user = User.find_by_email(params[:email])
-    if user && user.authenticate(params[:password])
-      session[:id] = user.id
-      redirect_to your_profile_path, notice: "Signed in!"
+    @user = User.find_by_email(params[:email])
+    if @user && @user.authenticate(params[:password])
+      session[:id] = @user.id
+      redirect_to your_profile_path
     else
-      flash[:errors] = {"Login" => ["Email and Password combination not found"]}
-      redirect_to root_path
+      session[:login_error] =  'Incorrect Email/Password Combination'
+      redirect_to login_path
     end
   end
 
@@ -21,5 +21,4 @@ class SessionController < ApplicationController
     session.clear
     redirect_to root_path
   end
-
 end

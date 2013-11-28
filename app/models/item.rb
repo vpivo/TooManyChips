@@ -1,5 +1,5 @@
 class Item < ActiveRecord::Base
-	attr_accessible :name, :suggestion, :quantity_needed, :type_id
+	# attr_accessible :name, :suggestion, :quantity_needed, :type_id
 	has_one :type, :as => :typeable
 	# after_save :check_nil
 	has_many :items, :through => :event_items

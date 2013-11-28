@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+ruby "2.0.0"
 gem 'rails', '4.0.0'
 gem 'sinatra', require: false
 gem 'pg'
@@ -11,8 +11,6 @@ gem 'redis'
 gem 'sidekiq', '>= 2.12.1'
 gem 'sidekiq-status'
 gem 'sidekiq-failures'
-gem 'compass-rails'
-gem 'compass-foundation'
 gem 'zurb-foundation', '~> 4.0.0'
 gem 'paperclip'
 gem 'aws-sdk'
@@ -20,11 +18,11 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 
 ##
-gem 'protected_attributes'
-gem 'rails-observers'
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
-gem 'activerecord-deprecated_finders'
+# gem 'protected_attributes'
+# gem 'rails-observers'
+# gem 'actionpack-page_caching'
+# gem 'actionpack-action_caching'
+# gem 'activerecord-deprecated_finders'
 
 group :development, :test do
   gem 'rspec-rails'
