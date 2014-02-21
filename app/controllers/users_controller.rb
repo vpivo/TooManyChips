@@ -29,7 +29,12 @@ class UsersController < ApplicationController
   end
 
   def create 
-    @user = User.new(person_params[:user])
+    @user = User.new(person_params)
+    p 'the params'
+    p params
+    p 'person_params'
+    p person_params
+
     if @user.save
       session[:id] = @user.id
       redirect_to your_profile_path

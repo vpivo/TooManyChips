@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Event.new(event_params)
     @event.user_id = current_user.id
     if @event.save
       puts @event.errors.full_messages
@@ -71,7 +71,7 @@ class EventsController < ApplicationController
   def contributions
     @event = Event.find(params[:id])
   end
- def person_params
+ def event_params
     params.require(:event).permit(:date, :description, :name, 
   :location, :name, :start_time, 
   :event_items_attributes, :state, :city, :zip, :event_type, 

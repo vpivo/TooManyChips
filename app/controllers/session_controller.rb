@@ -6,8 +6,12 @@ class SessionController < ApplicationController
     session[:id] = user.id 
   end
 
+
   def create
     @user = User.find_by_email(params[:email])
+    p "under this"
+    p params[:email]
+
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
       redirect_to your_profile_path

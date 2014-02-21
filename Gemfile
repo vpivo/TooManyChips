@@ -22,9 +22,10 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'rails-observers'
 # gem 'actionpack-page_caching'
 # gem 'actionpack-action_caching'
-# gem 'activerecord-deprecated_finders'
+gem 'activerecord-deprecated_finders'
 
 group :development, :test do
+  gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'better_errors'
   gem 'factory_girl_rails'
