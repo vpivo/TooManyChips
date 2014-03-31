@@ -1,0 +1,17 @@
+<!-- in use on events create -->
+  <div class="row">
+    <h3 class='subheader'><span class='grey'>Add Items </span></h3>
+    <div class='form-wrap add-item border-top large-12 centered columns'>
+      <div class='new-buttons'>
+        <%= link_to_add_fields "Add More Items", e, :event_items %>
+        <%= e.submit 'Save Event', :class => ' event_done' %>
+        <%= e.check_box :allow_guest_create %> <span class="custom checkbox"></span> Allow unrequested items?
+      </div>
+    </div>
+  </div>
+  <ul class='event_items small-block-grid-2'>
+    <%= e.fields_for :event_items do |ei| %>    
+    <%= render 'event_items/create_event_items_form', f: ei %>
+    <% end %>
+  </ul>
+  
