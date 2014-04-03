@@ -1,0 +1,35 @@
+%script{:type => "text/javascript"}
+
+.eventform
+  %form{data:{bind:"attr: { 'event': submit }"}}
+  .main-details
+    .row
+  .large-8.columns
+    .input
+    = e.text_field :name, :class => "name", :placeholder => "Title", :required => true
+  .large-4.columns
+    = e.text_field :host_name, :class => "host", :placeholder => "Host's Name", :required => true
+.row
+  .large-4.columns
+    %input{"data-bind" => "value: name", "class" => 'large', 'placeholder' => "Event Type"}
+  .large-4.columns
+    %input{"data-bind" => "value: date", "class" => 'large', 'placeholder' => "Date"}
+  .large-2.columns
+    %input{"data-bind" => "value: start_time", "class" => 'large', 'placeholder' => "Start Time"}
+  .large-2.columns
+    = e.text_field :end_time, :class => "end_time", :placeholder => "End Time"
+.row
+  .large-4.columns
+    = e.text_field :location, :class => "Location Name", :placeholder => "Location Name"
+  .large-3.columns
+    = e.text_field :street_address, :class => "street address", :placeholder => "Street Address"
+  .large-2.columns
+    = e.text_field :city, :class => "city", :placeholder => "City"
+  .large-1.columns
+    = e.text_field :state, :class => "state", :placeholder => "State"
+  .large-2.columns
+    = e.text_field :zip, :class => "zip", :placeholder => "zip code"
+.row
+  .large-12.columns
+    = e.text_area :description, :class => "description", :placeholder => "Description"
+

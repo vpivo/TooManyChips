@@ -54,16 +54,21 @@ end
 end
 
 25.times do
-  Guest.create(email: Faker::Internet.email, name: Faker::Name.name , url: SecureRandom.urlsafe_base64)
+  User.create(email: Faker::Internet.email, name: Faker::Name.name , url: SecureRandom.urlsafe_base64, guest: true)
 end
 
 25.times do 
-  event= Event.create(name: events.sample, description: "Awesome Party!", date: Chronic.parse("tomorrow"), location: "#{Faker::Name.name}'s House", user_id: 1 + rand(20))
+  event= Event.create(name: events.sample, description: "Awesome Party!", date: Chronic.parse("january 15th 2015"), location: "#{Faker::Name.name}'s House", 
+    user_id: 1 + rand(20), state: "CA", city: "San Franciso", zip: "94117", 
+    font_color: "0", allow_guest_create: true, 
+    host_name: "amy", street_address: "100 Broderick apt 505", 
+    start_time: Time.new(800), end_time: Time.new(800), event_type: "BBQ")
   10.times do
     event_item = EventItem.create(event_id: event.id, description: Faker::Lorem.sentence(word_count = 4), item_id: 1 + rand(40), quantity_needed: 6 + rand(20))
     2.times do
-      AssignedItem.create(event_item_id: event_item.id , quantity_provided: rand(6), guest_id: 1 + rand(20)  ) 
+      AssignedItem.create(event_item_id: event_item.id , quantity_provided: rand(6), user_id: 1 + rand(20)  ) 
     end
   end
+  event.save!
 end
 

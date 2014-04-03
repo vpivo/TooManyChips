@@ -7,7 +7,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'chronic'
 gem 'omniauth-facebook'
 # gem "mail"
-gem 'haml-rails'
+gem "haml"
 gem 'redis'
 gem 'sidekiq', '>= 2.12.1'
 gem 'sidekiq-status'
@@ -36,6 +36,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'quiet_assets'
   gem 'debugger'
+  gem 'faker'
   gem 'thin'
 end
 

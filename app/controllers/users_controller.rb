@@ -14,17 +14,29 @@ class UsersController < ApplicationController
   end
 
   def create_guest
+    p "+++++++++++++++++"
     @user = User.find_by_email(person_params[:user][:email]) 
     if @user
-      params["user"]["assigned_items_attributes"].each do |e|
-        @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"])
-      end
+      p user
+      p params ["user"]["assigned_items_attributes"]
+      # params["user"]["assigned_items_attributes"].each do |e|
+      #   @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"]) if e[1]["quantity_provided"] > 0
+      # end
     else
       @user = User.new(person_params[:user])
       @user.guest = true
+      p user
+      puts "**************************"
+            p params ["user"]["assigned_items_attributes"]
+
+      # params["user"]["assigned_items_attributes"].each do |e|
+      #   @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"]) if e[1]["quantity_provided"] > 0
+      # end
     end 
     if @user.save
       redirect_to guest_path(@user.url) 
+    else 
+      puts @user.errors.full_messages
     end
   end
 
@@ -51,7 +63,7 @@ class UsersController < ApplicationController
   private
 
   def person_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, 
+    params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
       assigned_items_attributes: [:event_item_id, :quantity_provided])
   end
 end

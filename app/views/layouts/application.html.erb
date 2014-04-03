@@ -3,9 +3,7 @@
   <head>
     <title>TooManyChips</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_include_tag "vendor/custom.modernizr" %>
+    
     <%= csrf_meta_tags %>
     
 
@@ -17,10 +15,14 @@
   	<%= render "layouts/header" %>
      
     <%= yield %>
-    <%= javascript_include_tag "application" %>
+  
 
   <div id="myModal" class="reveal-modal medium">
   <%= render 'users/login_form' %>
 </div>
   </body>
+
 </html>
+  <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "vendor/custom.modernizr" %>

@@ -18,5 +18,7 @@
 
 
 
-
 $(document).foundation();
+
+EVM = new EventVM();
+ko.applyBindings(EVM);
