@@ -348,6 +348,9 @@ div.facebook-button{
   margin-left: .6em;
 }
 
+.input{
+  margin-left: 0px;
+}
 .facebook-button a{
   color: white 
 }

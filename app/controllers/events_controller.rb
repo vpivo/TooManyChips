@@ -41,7 +41,9 @@ class EventsController < ApplicationController
   def add_items
     @event = Event.find(params[:id])
   end
+
   def create
+    p params
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     if @event.save
