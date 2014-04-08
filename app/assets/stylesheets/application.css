@@ -24,6 +24,14 @@ C7406D pink
 B283CB purple
 #515151*/
 
+
+
+div.accordion{
+  height: 75px;
+  color: grey;
+  border: solid 4px grey;
+}
+/*above is new*/
 .errors{
   color: #cf4343;
   min-height: 20px;

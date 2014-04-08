@@ -1,10 +1,10 @@
-%form
+%form{"data-bind" => "submit: addEvent"}
   .fieldset
     .row
       .large-4.columns
         %label 
           Title
-          %input{"data-bind" => "value: title", "type" => "text", 'placeholder' => "4th of July Party!", "type" => "text"}
+          %input{"data-bind" => "value: name", "type" => "text", 'placeholder' => "4th of July Party!", "type" => "text"}
       .large-4.columns
         %label 
           Host
@@ -18,7 +18,7 @@
       .large-4.columns
         %label 
           Date
-          %input{"data-bind" => "value:date", "type" => "text", 'placeholder' => "July 4th, 2015"}
+          %input{"data-bind" => "value: date", "type" => "text", 'placeholder' => "July 4th, 2015"}
       .large-2.columns.left
         %label 
           Start Time
@@ -55,5 +55,4 @@
         %label
           Details
           %textarea{"data-bind" => "value: description", 'placeholder' => "Information about this event..."}
-    %button{"type"=>"submit", "data-bind" => "click:save"}
-      Save
+    

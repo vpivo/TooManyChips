@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   respond_to :json, :html
   before_filter :check_permissions, :only => [:edit, :add_image, :destroy]
   before_filter :logged_in?, :only => [:new, :update, :create]
- 
+
   def show
     if current_user
       @user = current_user 
@@ -46,17 +46,19 @@ class EventsController < ApplicationController
     p params
     @event = Event.new(event_params)
     @event.user_id = current_user.id
+    @event.date = Chronic.parse(event_params[:date])
     if @event.save
-      puts @event.errors.full_messages
-      redirect_to invitation_path(@event.url)
+
+      render json: @event
     else
-      render 'new'
+      puts @event.errors.full_messages
+      render json: @event.errors.full_messages
     end
   end
 
   def update
     @event = Event.find(params[:id])
-    puts params
+    puts params[:items]
     if @event.update_attributes(params[:event])
       redirect_to event_path
     else
@@ -76,32 +78,12 @@ class EventsController < ApplicationController
   def contributions
     @event = Event.find(params[:id])
   end
- def event_params
+  def event_params
     params.require(:event).permit(:date, :description, :name, 
-  :location, :name, :start_time, 
-  :event_items_attributes, :state, :city, :zip, :event_type, 
-  :allow_guest_create, :image, :image_updated_at,
-  :host_name, :type, :end_time, :street_address, :remote_image_url, 
-  :image_file_name, :image_content_type, :image_file_size,  event_items_attributes:  
-  [ :name, :quantity_needed ], item_attributes: [:description, :_destroy])
+      :location, :name, :start_time, 
+      :event_items_attributes, :state, :city, :zip, :event_type, 
+      :allow_guest_create, :image, :image_updated_at,
+      :host_name, :type, :end_time, :street_address, :remote_image_url, 
+      :image_file_name, :image_content_type, :image_file_size, :items)
   end
 end
-
-# {"name"=>"amy", "host_name"=>"amy", 
-#   "event_type"=>"bbq", "date"=>"11/13/2015", "start_time"=>"8", 
-#   "end_time"=>"8", "location"=>"home", "street_address"=>"100 broderick ", 
-#   "city"=>"san francisco ", "state"=>"ca", "zip"=>"94117", "description"=>"adjlkdafjkdlaf", 
-#   "allow_guest_create"=>"0", 
-#   "event_items_attributes"=>{"1396231210528"=>{"item_attributes"=>{"name"=>"afdadf"}, 
-#   "quantity_needed"=>"3000", "description"=>"dafadadf", "_destroy"=>"false"}, 
-#   "1396231210527"=>{"item_attributes"=>{"name"=>""}, "quantity_needed"=>"1",
-#    "description"=>"", "_destroy"=>"false"}, "1396231210306"=>
-#    {"item_attributes"=>{"name"=>""}, "quantity_needed"=>"1", "description"=>"", 
-#    "_destroy"=>"false"}, "1396231210305"=>{"item_attributes"=>{"name"=>""}, 
-#    "quantity_needed"=>"1", "description"=>"", "_destroy"=>"false"}, 
-#    "1396231209791"=>{"item_attributes"=>{"name"=>""}, "quantity_needed"=>"1", 
-#    "description"=>"", "_destroy"=>"false"}, "1396231209790"=>{"item_attributes"=>
-#     {"name"=>""}, 
-# "quantity_needed"=>"1", "description"=>"", "_destroy"=>"false"}, "0"=>
-# {"item_attributes"=>{"name"=>""}, "quantity_needed"=>"1", "description"=>"", 
-# "_destroy"=>"false"}}}, "commit"=>"Save Event"}

@@ -18,8 +18,6 @@
 
 
 
-$(document).foundation();
-
-EVM = new EventVM();
+EVM = new MasterVM();
 ko.applyBindings(EVM);
 $(function(){ $(document).foundation(); });

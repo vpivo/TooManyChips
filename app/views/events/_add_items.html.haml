@@ -1,0 +1,10 @@
+%h3 Item
+%form{"data-bind" => "submit: addItem"}
+  Add task:
+  %input{"data-bind" => "value: newItemName", placeholder: "What do you need?"}
+  %button{type: "submit"} Add
+%ul{"data-bind" => "foreach: items, visible: items().length > 0"}
+  %li
+    %input{"data-bind" => "checked: isDone", type: "checkbox"}
+    %input{"data-bind" => "value: name, disable: isDone"}
+    %a{"data-bind" => "click: $root.removeItem", href: "#"} Delete
