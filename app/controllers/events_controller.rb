@@ -42,13 +42,17 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
+
+
   def create
-    p params
+    p params[:event][:items]
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     @event.date = Chronic.parse(event_params[:date])
     if @event.save
-
+      params[:event][:items].each do |item|
+        @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
+      end
       render json: @event
     else
       puts @event.errors.full_messages

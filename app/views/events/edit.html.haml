@@ -1,0 +1,10 @@
+  .row
+    .large-12.new-event.white.columns
+      %h1.center.subheader
+        %span.grey
+          Edit #{@event.name}
+      %h3.subheader
+        %span.grey Edit Event Details
+      .event-list
+        .event_details
+          = render 'create_event_form'

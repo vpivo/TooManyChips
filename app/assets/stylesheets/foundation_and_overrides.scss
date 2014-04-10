@@ -1256,12 +1256,12 @@ $default-float: left;
 // Background color for the top bar
 
 // $topbar-bg-color: #111;
-// $topbar-bg: $topbar-bg-color;
+$topbar-bg: white;
 
 // Height and margin
 
-// $topbar-height: 45px;
-// $topbar-margin-bottom: 0;
+$topbar-height: 80px;
+$topbar-margin-bottom: emCalc(0px);
 
 // Control Input height for top bar
 
@@ -1283,35 +1283,37 @@ $default-float: left;
 
 // Set the link colors and styles for top-level nav
 
-// $topbar-link-color: #fff;
+$topbar-link-color: #83ca41;
 // $topbar-link-color-hover: #fff;
 // $topbar-link-color-active: #fff;
-// $topbar-link-weight: bold;
+$topbar-link-weight: bold;
 // $topbar-link-font-size: em-calc(13);
 // $topbar-link-hover-lightness: -30%; // Darken by 30%
 // $topbar-link-bg-hover: darken($topbar-bg-color, 3%);
 // $topbar-link-bg-active: darken($topbar-bg-color, 3%);
 
-// $topbar-dropdown-label-color: #555;
-// $topbar-dropdown-label-text-transform: uppercase;
-// $topbar-dropdown-label-font-weight: bold;
-// $topbar-dropdown-label-font-size: em-calc(10);
-// $topbar-dropdown-label-bg: lighten($topbar-bg-color, 5%);
+$topbar-dropdown-bg: white;
+$topbar-dropdown-link-color: #939392;
+$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: black;
+// $topbar-dropdown-toggle-alpha: 0.5;
+$dropdown-label-color: #f8f8f4; 
+$topbar-link-bg-hover: white;
 
 // Top menu icon styles
-
 // $topbar-menu-link-transform: uppercase;
-// $topbar-menu-link-font-size: em-calc(13);
-// $topbar-menu-link-weight: bold;
-// $topbar-menu-link-color: #fff;
-// $topbar-menu-icon-color: #fff;
-// $topbar-menu-link-color-toggled: #888;
-// $topbar-menu-icon-color-toggled: #888;
+// $topbar-menu-link-font-size: emCalc(13px);
+$topbar-menu-link-weight: bold;
+$topbar-menu-link-color: #83ca41;
+$topbar-menu-icon-color: #83ca41;
+$topbar-menu-link-color-toggled: #83ca41;
+$topbar-menu-icon-color-toggled: #83ca41;
+
 
 // Transitions and breakpoint styles
 
 // $topbar-transition-speed: 300ms;
-// $topbar-breakpoint: 940 !default; // Change to 9999px for always mobile layout
+// $topbar-breakpoint: 940 !default; 
 // $topbar-media-query: "only screen and (min-width: #{$topbar-breakpoint})";
 
 // Divider Styles

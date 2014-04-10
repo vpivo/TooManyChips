@@ -1,14 +1,8 @@
 .large-12.new-event.columns
-  .accordion 
-    %span.grey Details
+  %span.grey Details
   = render 'create_event_form'
-  .accordion  
-    %span.grey Items
+  %span.grey Items
   = render 'add_items'
-  .accordion     
-    %span.grey Style  
-  .accordion     
-    %span.grey Carpool
   %button{"type"=>"submit", "data-bind" => "click:save"}
     Save
 
