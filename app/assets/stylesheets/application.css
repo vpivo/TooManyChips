@@ -23,13 +23,23 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
+*{font-family: 'Tienne', serif;}
 
+div.background {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 85%;
+  min-width: 100%;
+}
 
-
-div.accordion{
-  height: 75px;
-  color: grey;
-  border: solid 4px grey;
+h1.center{
+  font-family: 'Tienne', serif;
+  color: white;
+  padding-top: 15%;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 60px;
 }
 /*above is new*/
 .errors{
@@ -37,9 +47,9 @@ div.accordion{
   min-height: 20px;
 }
 .error-border{
-    outline:none;
-    border-color:#F7204F;
-    box-shadow:0 0 10px #F7204F
+  outline:none;
+  border-color:#F7204F;
+  box-shadow:0 0 10px #F7204F
 }
 
 td{
@@ -55,7 +65,7 @@ div.form{
   padding: 4%;
 }
 div.cont-show{
-margin-top: 3%;
+  margin-top: 3%;
 }
 a.dropdown{
   margin-top: 1%;
@@ -69,8 +79,10 @@ div.border-top{
 .hidden{
   display: none;
 }
-.center{
+a.center{
   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 input.image-url{
   width: 40%;
@@ -105,8 +117,8 @@ div.new-event{
   margin-top: 3%;
   margin-bottom: 3%
 }
+
 html, body{
-  
   height: 100%;
 }
 
@@ -114,23 +126,18 @@ div.wrapper{
   min-height: 100%;
   background-color: #71b3ed;
 }
-
 span.grey{
   color: #626261;
-}
-div.new-event-outer{
-    text-align: center;
-    margin-bottom: 4%;
 }
 a.new-event{
   background-color: #83ca41;
   margin-top: 15px;
   text-decoration: none;
   padding: 16px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   color: white;
   font-size: 18px;
 }
+
 h3.center{
   margin-top: 6%;
   margin-bottom: 6%;
@@ -142,31 +149,6 @@ h1.center{
   text-align: center;
 }
 
-img.header {
-  width: 100%;
-  height: 100%;
-}
-
-h1.event-image-title{
-  color: white; 
-  text-shadow: black 0.1em 0.1em 0.2em;
-   margin-top: -75px;
-  padding-top: 0;
-  padding-left: 2%;
-}
-
-div.event-header{
-   display: table;
-    margin: 0 auto;
-}
-
-div.event-info{
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  background-color: white;
-}
 
 div.add-item{
   line-height: 45px;
@@ -178,7 +160,7 @@ div.add-item{
   text-decoration: none;
   background-color: #7BC0C4;
   padding: 16px;
-  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+  font-family
   color: white;
   font-size: 18px;
 }
@@ -266,19 +248,12 @@ span.white{
 }
 
 .named a{
+  padding-left: 15px;
   color: black;
-  font-size: 28px;
+  font-size: 27px;
   font-weight: 100;
   text-align: center;
   line-height: 80px;
-  font-family: Helvetica;
-}
-
-div.white-panel{
-  background-color: white;
-  padding: 5%;
-  text-align: center;
-  margin-top: 3%;
 }
 
 .circle{
@@ -307,10 +282,6 @@ div.white-panel{
 
 .yellow > img{
   background-color: #E1B948;
-}
-
-div.text-box{
-  padding-bottom: 5%;
 }
 
 .logo a{

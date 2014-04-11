@@ -1,10 +1,34 @@
-  .row
-    .large-12.new-event.white.columns
-      %h1.center.subheader
-        %span.grey
-          Edit #{@event.name}
-      %h3.subheader
-        %span.grey Edit Event Details
-      .event-list
-        .event_details
-          = render 'create_event_form'
+.background{"data-bind" => "with: currentEvent, style: {backgroundImage: 'url(/assets/fire.jpg)'}"}
+
+  .cover-info
+    %h1.center{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
+    %input{:class => 'center', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
+    %a{:href => '#details', :class => 'center'}>RSVP 
+.details{:id => 'details', "data-bind" => "with: currentEvent"}
+  %span{'data-bind' => "text:date().text, visible: !date().editing(), click: edit(date())"}
+  %input{'data-bind' => 'text:date().text, type: text, visible: date().editing(), value: date().text, hasFocus: date().editing'}
+
+  %span{'data-bind' => "text:start_time().text, visible: !start_time().editing(), click: edit(start_time())"}
+  %input{'data-bind' => 'text:start_time().text, type: text, visible: start_time().editing(), value: start_time().text, hasFocus: start_time().editing'}
+
+  %span{'data-bind' => "text:end_time().text, visible: !end_time().editing(), click: edit(end_time())"}
+  %input{'data-bind' => 'text:end_time().text, type: text, visible: end_time().editing(), value: end_time().text, hasFocus: end_time().editing'}
+
+  %span{'data-bind' => "text:location().text, visible: !location().editing(), click: edit(location())"}
+  %input{'data-bind' => 'text:location().text, type: text, visible: location().editing(), value: location().text, hasFocus: location().editing'}
+
+  %span{'data-bind' => "text:city().text, visible: !city().editing(), click: edit(city())"}
+  %input{'data-bind' => 'text:city().text, type: text, visible: city().editing(), value: city().text, hasFocus: city().editing'}
+  %br
+  %span{'data-bind' => "text:state().text, visible: !state().editing(), click: edit(state())"}
+  %input{'data-bind' => 'text:state().text, type: text, visible: state().editing(), value: state().text, hasFocus: state().editing'}
+  %br
+
+  %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
+  %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
+
+  %span{'data-bind' => "text:event_type().text, visible: !event_type().editing(), click: edit(event_type())"}
+  %input{'data-bind' => 'text:event_type().text, type: text, visible: event_type().editing(), value: event_type().text, hasFocus: event_type().editing'}
+
+  %span{'data-bind' => "text:description().text, visible: !description().editing(), click: edit(description())"}
+  %textarea{'data-bind' => 'text:description().text, type: text, visible: description().editing(), value: description().text, hasFocus: description().editing'}

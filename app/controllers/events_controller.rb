@@ -3,15 +3,15 @@ class EventsController < ApplicationController
   before_filter :check_permissions, :only => [:edit, :add_image, :destroy]
   before_filter :logged_in?, :only => [:new, :update, :create]
 
+  def index
+    @event = Event.find(params[:id])
+    render json: @event
+  end
+
   def show
-    if current_user
-      @user = current_user 
-    else
-      @user = User.new
-    end
     @event = Event.find(params[:id])
     @assigned_items = @user.assigned_items.build
-    @user.event_items.build.item = Item.new
+    render json: @event
   end
 
   def invitation

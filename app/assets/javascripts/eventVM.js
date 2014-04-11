@@ -1,71 +1,47 @@
-// Class to represent a row in the seat reservations grid
-// function Event(title, description, date, location, state, city, zip, allow_guest_create, host_name, street_address, start_time, end_time, event_type) {
+//classes
+function Item(data) {
+    this.name = ko.observable(data.name);
+    this.isDone = ko.observable(data.isDone);
+}
 
-    function Item(data) {
-        this.name = ko.observable(data.name);
-        this.isDone = ko.observable(data.isDone);
-    }
+function Event(data) {
+    var self = this;
+    self.name = ko.observable(new EditableText(data.name, false));
+    self.description = ko.observable(new EditableText(data.description, false));
+    self.date = ko.observable(new EditableText(data.date, false));
+    self.location = ko.observable(new EditableText(data.location, false));
+    self.state = ko.observable(new EditableText(data.state, false));
+    self.city = ko.observable(new EditableText(data.city, false));
+    self.zip = ko.observable(new EditableText(data.zip, false));
+    self.allow_guest_create = ko.observable(new EditableText(data.allow_guest_create, false));
+    self.host_name = ko.observable(new EditableText(data.host_name, false));
+    self.street_address = ko.observable(new EditableText(data.street_address, false));
+    self.start_time = ko.observable(new EditableText(data.start_time, false));
+    self.end_time = ko.observable(new EditableText(data.end_time, false));
+    self.event_type = ko.observable(new EditableText(data.event_type, false));
+    
+    self.edit = function (model) {
+        console.log(model.text())
+        model.editing(true);
+    };
+}
 
-
-    function Event(data) {
-        var self = this;
-        self.name = ko.observable(data.name);
-        self.description = ko.observable(data.description);
-        self.date = ko.observable(date.date);
-        self.location = ko.observable(data.location);
-        self.state = ko.observable(data.state);
-        self.city = ko.observable(data.city);
-        self.zip = ko.observable(data.zip);
-        self.allow_guest_create = ko.observable(data.allow_guest_create);
-        self.host_name = ko.observable(data.host_name);
-        self.street_address = ko.observable(data.street_address);
-        self.start_time = ko.observable(data.start_time);
-        self.end_time = ko.observable(data.end_time);
-        self.event_type = ko.observable(data.event_type);
-        self.items = ko.observableArray(data.items);
-    }
-
-
-//ajax call
-
-
+function EditableText(text, editable) {
+    var self = this;
+    self.text = ko.observable(text);
+    self.editing = ko.observable(false);
+}
 
 
 function MasterVM() {
-    var self = this;
-    var self = this;
-    
-    //Event placeholders
-    self.name = ko.observable("tomorrow");
-    self.description = ko.observable("tomorrow");
-    self.date = ko.observable("tomorrow");
-    self.location = ko.observable("tomorrow");
-    self.state = ko.observable("tomorrow");
-    self.city = ko.observable("tomorrow");
-    self.zip = ko.observable("tomorrow");
-    self.allow_guest_create = ko.observable("tomorrow");
-    self.host_name = ko.observable("tomorrow");
-    self.street_address = ko.observable("tomorrow");
-    self.start_time = ko.observable("tomorrow");
-    self.end_time = ko.observable("tomorrow");
-    self.event_type = ko.observable("tomorrow");
-    
-
-    //Item placeholders
+    var self = this;    
     self.newItemName = ko.observable();
+    self.items = ko.observableArray([]);
+    self.events = ko.observableArray([]);
 
-    //relationship objects
+    self.currentEvent = ko.observable();
 
-    self.items = ko.observableArray([
-        ]);
-
-    self.events = ko.observableArray([
-        ]);
-
-    self.addEvent = function(data) {
-        console.log('hello')
-        self.events.push(new Event(data));
-    }
+    self.addEvent = function(data) { self.events.push(new Event(data));};
 
     self.removeEvent = function(event) { self.events.remove(event) }
 
@@ -74,11 +50,7 @@ function MasterVM() {
         self.newItemName("");
     };
 
-    self.removeItem = function(item) { 
-        console.log('hello')
-        console.log(item);
-        self.items.destroy(item);
-    };
+    self.removeItem = function(item) { self.items.destroy(item);};
 
     self.save = function(data) {
         console.log(ko.toJSON({ event: self }))
@@ -88,6 +60,18 @@ function MasterVM() {
             success: function(result) { console.log(result) }
         });
     }
+
+    self.getEvent = function(data) {
+        $.ajax("/events/", {
+            data: { id: 50 },
+            type: "get", contentType: "application/json",
+            success: function(result) { 
+                self.currentEvent(new Event(result));
+            }
+        });
+    }
+
+    self.getEvent();
 }
 
 
