@@ -1,34 +1,55 @@
-.background{"data-bind" => "with: currentEvent, style: {backgroundImage: 'url(/assets/fire.jpg)'}"}
-
+.columns.large-10.background{"data-bind" => "with: currentEvent, style: {backgroundImage: 'url(/assets/fire.jpg)'}"}
   .cover-info
-    %h1.center{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
-    %input{:class => 'center', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
-    %a{:href => '#details', :class => 'center'}>RSVP 
-.details{:id => 'details', "data-bind" => "with: currentEvent"}
-  %span{'data-bind' => "text:date().text, visible: !date().editing(), click: edit(date())"}
-  %input{'data-bind' => 'text:date().text, type: text, visible: date().editing(), value: date().text, hasFocus: date().editing'}
+    %h1{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
+    %input{:class => 'title-input', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
+      %br
+      %br
+      %br
+    .row.center   
+      %a{:href => '#details', :class => 'rsvp-btn'}>RSVP 
+.editing-panel.large-2.columns
+  .panel
+    %span
+    Add Items
+  .panel
+    %span
+      %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
+  .panel{:id => "save"}
+    %span
+    Save  
+  .panel
+    %span
+    Cancel  
 
-  %span{'data-bind' => "text:start_time().text, visible: !start_time().editing(), click: edit(start_time())"}
-  %input{'data-bind' => 'text:start_time().text, type: text, visible: start_time().editing(), value: start_time().text, hasFocus: start_time().editing'}
 
-  %span{'data-bind' => "text:end_time().text, visible: !end_time().editing(), click: edit(end_time())"}
-  %input{'data-bind' => 'text:end_time().text, type: text, visible: end_time().editing(), value: end_time().text, hasFocus: end_time().editing'}
+.details.large-10.columns{:id => 'details', "data-bind" => "with: currentEvent"}
+  .details-left.large-5.columns
+    %p 
+      Hosted by
+      %span{'data-bind' => "text:host_name().text"}
+    %p{'data-bind' => "text:description().text, visible: !description().editing(), click: edit(description())"}
+    %textarea{'data-bind' => 'text:description().text, type: text, visible: description().editing(), value: description().text, hasFocus: description().editing'}
 
-  %span{'data-bind' => "text:location().text, visible: !location().editing(), click: edit(location())"}
-  %input{'data-bind' => 'text:location().text, type: text, visible: location().editing(), value: location().text, hasFocus: location().editing'}
+  .details-right.large-5.columns
+    .date-box
+      %span{'data-bind' => "text:date().text, visible: !date().editing(), click: edit(date())"}
+      %input{'data-bind' => 'text:date().text, type: text, visible: date().editing(), value: date().text, hasFocus: date().editing'}
+      %br
+      %span{'data-bind' => "text:start_time().text, visible: !start_time().editing(), click: edit(start_time())"}
+      %input{'data-bind' => 'text:start_time().text, type: text, visible: start_time().editing(), value: start_time().text, hasFocus: start_time().editing'}
+      %br 
+      %span{'data-bind' => "text:end_time().text, visible: !end_time().editing(), click: edit(end_time())"}
+      %input{'data-bind' => 'text:end_time().text, type: text, visible: end_time().editing(), value: end_time().text, hasFocus: end_time().editing'}
 
-  %span{'data-bind' => "text:city().text, visible: !city().editing(), click: edit(city())"}
-  %input{'data-bind' => 'text:city().text, type: text, visible: city().editing(), value: city().text, hasFocus: city().editing'}
-  %br
-  %span{'data-bind' => "text:state().text, visible: !state().editing(), click: edit(state())"}
-  %input{'data-bind' => 'text:state().text, type: text, visible: state().editing(), value: state().text, hasFocus: state().editing'}
-  %br
+      %span{'data-bind' => "text:location().text, visible: !location().editing(), click: edit(location())"}
+      %input{'data-bind' => 'text:location().text, type: text, visible: location().editing(), value: location().text, hasFocus: location().editing'}
+      %br
+      %span{'data-bind' => "text:city().text, visible: !city().editing(), click: edit(city())"},
+      %input{'data-bind' => 'text:city().text, type: text, visible: city().editing(), value: city().text, hasFocus: city().editing'}
+      %span{'data-bind' => "text:state().text, visible: !state().editing(), click: edit(state())"}
+      %input{'data-bind' => 'text:state().text, type: text, visible: state().editing(), value: state().text, hasFocus: state().editing'}
+      %br
 
-  %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
-  %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
+      %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
+      %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
 
-  %span{'data-bind' => "text:event_type().text, visible: !event_type().editing(), click: edit(event_type())"}
-  %input{'data-bind' => 'text:event_type().text, type: text, visible: event_type().editing(), value: event_type().text, hasFocus: event_type().editing'}
-
-  %span{'data-bind' => "text:description().text, visible: !description().editing(), click: edit(description())"}
-  %textarea{'data-bind' => 'text:description().text, type: text, visible: description().editing(), value: description().text, hasFocus: description().editing'}

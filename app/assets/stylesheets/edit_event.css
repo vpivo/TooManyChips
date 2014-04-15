@@ -1,0 +1,92 @@
+/*
+#568cce
+#83ca41
+E1B948
+#ffe69c yellow
+C7406D pink
+7BC0C4 green blue
+B283CB purple
+#515151*/
+
+div.background {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 70%;
+  min-width: 80%;
+}
+
+.date-box{
+  padding: 3%;
+}
+.editing-panel{
+  background-color:white;
+  padding-top: 2%;
+}
+
+.panel {
+  background-color: #568cce;
+  min-height: 14%;
+  text-align: center;
+  font-family: bold, 'Tienne', serif;
+  color: white;
+}
+.cover-info{
+  padding-top: 10%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  margin-bottom: 10%;
+}
+
+.cover-info h1{
+  font-family: 'Tienne', serif;
+  color: white;
+  text-shadow: black 0.1em 0.1em 0.2em;
+  font-size: 50px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+
+}
+.title-input{
+  font-size: 50px;
+  font-family: 'Tienne', serif;
+  margin-top: 1%;
+  margin-bottom: 3%;
+}
+
+.rsvp-btn {
+  background-color: #ce3028;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+  font-size: 30px;
+  border-radius: 2px;
+}
+
+.details {
+  margin-top: 2%;
+}
+.details-left {
+  font-family: 'Tienne', serif;
+  font-size:15px;
+  color: #626261;
+  padding-top: 3px;
+
+}
+
+.box{
+   margin: 5%;
+}
+.details-right{
+  font-family: 'Tienne', serif;
+  font-size:15px;
+  color: #626261;
+  border: 1px solid #626261;
+}

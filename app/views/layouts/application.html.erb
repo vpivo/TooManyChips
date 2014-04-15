@@ -27,5 +27,11 @@
   <%= yield %>
 
   <%= javascript_include_tag "application" %>
+  <div id="signIn" class="reveal-modal medium">
+    <%= render 'users/login_form' %>
+  </div>
+  <div id="imageUpload" class="reveal-modal large">
+    <%= render 'events/add_image' %>
+  </div>
 </body>
 </html>

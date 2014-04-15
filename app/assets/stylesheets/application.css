@@ -25,42 +25,6 @@ B283CB purple
 #515151*/
 *{font-family: 'Tienne', serif;}
 
-div.background {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  min-height: 85%;
-  min-width: 100%;
-}
-
-h1.center{
-  font-family: 'Tienne', serif;
-  color: white;
-  padding-top: 15%;
-  text-shadow: black 0.1em 0.1em 0.2em;
-  font-size: 60px;
-}
-/*above is new*/
-.errors{
-  color: #cf4343;
-  min-height: 20px;
-}
-.error-border{
-  outline:none;
-  border-color:#F7204F;
-  box-shadow:0 0 10px #F7204F
-}
-
-td{
-  height:18px;
-  font-size: 16px;
-}
-td.small{
-  padding-left: 35%;
-  padding-right: 3%;
-  text-align: center;
-}
 div.form{
   padding: 4%;
 }
@@ -79,11 +43,7 @@ div.border-top{
 .hidden{
   display: none;
 }
-a.center{
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 input.image-url{
   width: 40%;
 }

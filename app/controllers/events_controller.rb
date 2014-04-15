@@ -5,13 +5,12 @@ class EventsController < ApplicationController
 
   def index
     @event = Event.find(params[:id])
-    render json: @event
+    render json: @event.to_ko
   end
 
   def show
     @event = Event.find(params[:id])
-    @assigned_items = @user.assigned_items.build
-    render json: @event
+    render 'show'
   end
 
   def invitation
@@ -45,7 +44,6 @@ class EventsController < ApplicationController
 
 
   def create
-    p params[:event][:items]
     @event = Event.new(event_params)
     @event.user_id = current_user.id
     @event.date = Chronic.parse(event_params[:date])
@@ -62,8 +60,7 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    puts params[:items]
-    if @event.update_attributes(params[:event])
+    if @event.update_attributes(event_params)
       redirect_to event_path
     else
       redirect_to edit_event_path
@@ -87,7 +84,7 @@ class EventsController < ApplicationController
       :location, :name, :start_time, 
       :event_items_attributes, :state, :city, :zip, :event_type, 
       :allow_guest_create, :image, :image_updated_at,
-      :host_name, :type, :end_time, :street_address, :remote_image_url, 
+      :host_name, :type, :end_time, :street_address, :remote_image_url, :image,
       :image_file_name, :image_content_type, :image_file_size, :items)
   end
 end

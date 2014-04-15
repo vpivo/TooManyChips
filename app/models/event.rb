@@ -9,11 +9,28 @@ class Event < ActiveRecord::Base
   before_create :set_url
   accepts_nested_attributes_for :event_items, :reject_if => :all_blank, :allow_destroy => true
 
-  has_attached_file :image, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    header: '1000x400>'
-  }
+  has_attached_file :image, styles: {thumb: '100x100>', square: '200x200#', header: '1000x400>'}
+
+
+  validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+
+
+  def to_ko
+    {
+      id: id,
+      date: date,
+      start_time: start_time,
+      end_time: end_time,
+      location: location,
+      city: city,
+      allow_guest_create: allow_guest_create,
+      state: state,
+      zip: zip,
+      host_name: host_name,
+      name: name,
+      description: description
+    }
+  end
 
   def upcoming?
     self.date  > DateTime.now
@@ -33,7 +50,7 @@ class Event < ActiveRecord::Base
   def set_url
     self.url ||= SecureRandom.urlsafe_base64
   end
-  
+
   def format_date
     unless self.date.class == Time
       self.date = Chronic.parse(self.date)

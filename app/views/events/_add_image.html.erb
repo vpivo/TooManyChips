@@ -2,8 +2,10 @@
     <h3 class='subheader'><span class='grey'>Choose A Header Image </span></h3>
     <div class='image-upload border-top'>
       <div class='large-3 columns'>
-        <%= e.file_field :image, :class => "image-field" %>
+        <%= form_for @event, :url => event_path(@event), :html => { :multipart => true } do |form| %>
+        <%= form.file_field :image, :class => "image-field" %>
+        <%= form.submit %>
+        <% end %>
       </div>
     </div>
   </div>
-  
