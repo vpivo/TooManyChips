@@ -28,7 +28,9 @@ class Event < ActiveRecord::Base
       zip: zip,
       host_name: host_name,
       name: name,
-      description: description
+      description: description,
+      image: image.url, 
+      items: event_items.collect { |item| item.to_ko }
     }
   end
 

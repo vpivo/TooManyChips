@@ -16,5 +16,5 @@
 
 /.DS_Store
 
-secrets.yml
-config/environments/development.rb
+/secrets.yml
+/config/environments/development.rb

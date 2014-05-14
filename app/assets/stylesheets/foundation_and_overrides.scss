@@ -224,8 +224,8 @@ $default-float: left;
 // Style anchors
 
 // $anchor-text-decoration: none;
-// $anchor-font-color: $primary-color;
-// $anchor-font-color-hover: darken($primary-color, 5%);
+$anchor-font-color: white;
+$anchor-font-color-hover: none;
 
 // Style the <hr> element
 
@@ -678,7 +678,7 @@ $default-float: left;
 // $f-dropdown-font-size: em-calc(14);
 // $f-dropdown-list-padding: em-calc(5 10);
 // $f-dropdown-line-height: em-calc(18);
-// $f-dropdown-list-hover-bg: #eeeeee;
+$f-dropdown-list-hover-bg: #eeeeee;
 // $dropdown-mobile-default-float: 0;
 
 // We use this to control the styles for when the dropdown has custom content.
@@ -827,7 +827,7 @@ $default-float: left;
 // We use these to control the left/right nav styles
 
 // $orbit-nav-bg: rgba(0,0,0,0.6);
-// $orbit-nav-bg-hover: rgba(0,0,0,0.6);
+$orbit-nav-bg-hover: none;
 // $orbit-nav-arrow-color: #fff;
 // $orbit-nav-arrow-color-hover: #ccc;
 
@@ -1284,7 +1284,7 @@ $topbar-margin-bottom: emCalc(0px);
 // Set the link colors and styles for top-level nav
 
 $topbar-link-color: #83ca41;
-// $topbar-link-color-hover: #fff;
+$topbar-link-color-hover: none;
 // $topbar-link-color-active: #fff;
 $topbar-link-weight: bold;
 // $topbar-link-font-size: em-calc(13);

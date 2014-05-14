@@ -30,8 +30,8 @@ Toomanychips::Application.configure do
     :storage => :s3,
     :s3_credentials => {
       :bucket => 'toomanyc',
-      :access_key_id => 'secret',
-      :secret_access_key => 'secret'
+    :access_key_id => "AKIAJ5VNTXMNYZKWRDHA",
+    :secret_access_key => "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"
     }
   }
 

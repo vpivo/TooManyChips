@@ -6,7 +6,7 @@ class EventItem < ActiveRecord::Base
   validates :description, :length => { :maximum => 140 }
   validates :quantity_needed, :presence => true
   validates :quantity_needed, :numericality => {:only_integer => true, :greater_than => 0}
-  accepts_nested_attributes_for :item, :reject_if => :all_blank
+
 
   def quantity_still_needed
     quant_needed = self.quantity_needed - self.quantity_assigned
@@ -30,6 +30,15 @@ class EventItem < ActiveRecord::Base
       self.quantity_needed = 1
       self.save
     end
+  end
+
+  def to_ko
+    { id: id,
+      name: item.name,
+      quantity: quantity_needed,
+      description: description,
+      guest_created: guest_created
+    }
   end
 
 end

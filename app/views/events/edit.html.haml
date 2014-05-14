@@ -1,4 +1,7 @@
-.columns.large-10.background{"data-bind" => "with: currentEvent, style: {backgroundImage: 'url(/assets/fire.jpg)'}"}
+/ ko with: currentEvent
+.background{"data-bind" => "style: backgroundImage"}
+/ /ko 
+.columns.large-10{"data-bind" => "with: currentEvent"}
   .cover-info
     %h1{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
     %input{:class => 'title-input', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
@@ -10,7 +13,7 @@
 .editing-panel.large-2.columns
   .panel
     %span
-    Add Items
+      %a{:href => '#items'}Add Items
   .panel
     %span
       %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
@@ -52,4 +55,8 @@
 
       %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
       %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
+  
+.items{:id => 'details', "data-bind" => "with: currentEvent.items"}
+    
+
 
