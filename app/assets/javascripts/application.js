@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require jquery.form
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
 
@@ -21,3 +22,4 @@
 EVM = new MasterVM();
 ko.applyBindings(EVM);
 $(function(){ $(document).foundation(); });
+

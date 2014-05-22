@@ -5,7 +5,8 @@ class EventsController < ApplicationController
 
   def index
     @event = Event.find(params[:id])
-    render json: @event.to_ko
+    hash = @event.to_ko(current_user.id)
+    render json: hash
   end
 
   def show
@@ -41,8 +42,6 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-
-
   def create
     @event = Event.new(event_params)
     @event.user_id = current_user.id
@@ -60,11 +59,8 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    if @event.update_attributes(event_params)
-      redirect_to event_path
-    else
-      redirect_to edit_event_path
-    end
+    @event.update_attributes(event_params)
+    render json: @event 
   end
 
   def destroy
@@ -72,13 +68,9 @@ class EventsController < ApplicationController
     @event.destroy
     respond_to do |format|
       format.html { redirect_to user_path(current_user) }
-      format.xml  { head :ok }
     end
   end
 
-  def contributions
-    @event = Event.find(params[:id])
-  end
   def event_params
     params.require(:event).permit(:date, :description, :name, 
       :location, :name, :start_time, 

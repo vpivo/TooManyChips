@@ -2,6 +2,7 @@ class AssignedItem < ActiveRecord::Base
   validates :quantity_provided, :presence => true
   validates :quantity_provided, :numericality => {:only_integer => true, :greater_than => 0}
   belongs_to :event_item
+  belongs_to :event
   belongs_to :guest, class_name: 'User', foreign_key: 'user_id'
   
   # before_create :check_for_duplicate

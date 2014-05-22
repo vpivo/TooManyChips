@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
 
-  def to_ko
+  def to_ko(user_id)
     {
       id: id,
       date: date,
@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
       name: name,
       description: description,
       image: image.url, 
-      items: event_items.collect { |item| item.to_ko }
+      items: event_items.collect { |item| item.to_ko(user_id) }
     }
   end
 

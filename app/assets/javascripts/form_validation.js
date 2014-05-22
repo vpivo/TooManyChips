@@ -1,11 +1,9 @@
 //calls form validators
 $(document).ready(function(){
-  validateLength(nameInput);
-  validateFormat(emailInput);
-  validateLength(passwordInput);
-  validateMatch(passwordConfirmation);
-})
-
+  $(".edit_event").on('ajaxSuccess', function(e, data, status, xhr){
+    console.log("YAYYYYY")
+  })
+});
 // input blueprint
 function input(id, error, requiredLength){
   this.id = id;

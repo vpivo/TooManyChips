@@ -1,7 +1,7 @@
+.id
+  =@event.id
 / ko with: currentEvent
-.background{"data-bind" => "style: backgroundImage"}
-/ /ko 
-.columns.large-10{"data-bind" => "with: currentEvent"}
+.columns.large-10.background{"data-bind" => "style: backgroundImage"}
   .cover-info
     %h1{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
     %input{:class => 'title-input', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
@@ -25,7 +25,7 @@
     Cancel  
 
 
-.details.large-10.columns{:id => 'details', "data-bind" => "with: currentEvent"}
+.details.large-10.columns{:id => 'details'}
   .details-left.large-5.columns
     %p 
       Hosted by
@@ -55,8 +55,23 @@
 
       %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
       %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
-  
-.items{:id => 'details', "data-bind" => "with: currentEvent.items"}
+
+.row
+  .large-10.columns
+    %table
+      %thead
+        %tr 
+          %th
+          %th{width: ""} Item
+          %th Quantity
+          %th Notes
+      %tbody{"data-bind" =>"foreach: items"}
+        %tr
+          %td{"data-bind" => "text:guestAmount" }
+          %td{"data-bind" => "text:name" }
+          %td{"data-bind" => "text:quantity" }
+          %td{"data-bind" => "text:description" }
     
-
-
+/ /ko
+#imageUpload.reveal-modal.large{style: "display: none"}
+  = render 'events/add_image'

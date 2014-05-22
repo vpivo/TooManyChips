@@ -7,7 +7,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
  <meta charset="utf-8" />
- 
+ <%= csrf_meta_tags %>
  <!-- Uncomment to make IE8 render like IE7 -->
  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
 
@@ -20,6 +20,7 @@
  <%= stylesheet_link_tag    "application" %>
  <%= javascript_include_tag "vendor/custom.modernizr" %>
  <%= csrf_meta_tags %>
+
 </head>
 
 <body>
@@ -30,8 +31,7 @@
   <div id="signIn" class="reveal-modal medium">
     <%= render 'users/login_form' %>
   </div>
-  <div id="imageUpload" class="reveal-modal large">
-    <%= render 'events/add_image' %>
-  </div>
+
 </body>
+
 </html>

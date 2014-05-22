@@ -25,6 +25,10 @@ B283CB purple
 #515151*/
 *{font-family: 'Tienne', serif;}
 
+.id{
+  display: none;
+}
+
 div.form{
   padding: 4%;
 }

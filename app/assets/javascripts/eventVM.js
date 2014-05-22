@@ -1,10 +1,16 @@
+function EditableText(text, editable) {
+    var self = this;
+    self.text = ko.observable(text);
+    self.editing = ko.observable(false);
+}
 
 function Item(data) {
     this.name = ko.observable(data.name);
     this.quantity = ko.observable(data.quantity);
     this.description = ko.observable(data.description);
     this.id = ko.observable(data.id);
-    this.guest_created = ko.observable(data.allow_guest_create);
+    this.guestCreated = ko.observable(data.allow_guest_create);
+    this.guestAmount = ko.observable(data.user_quanity);
 }
 
 function Event(data) {
@@ -27,57 +33,76 @@ function Event(data) {
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.image() + ')' };
     }, self); 
-    self.edit = function (model) {
-        console.log(model.text())
-        model.editing(true);
-    };
-}
 
-function EditableText(text, editable) {
-    var self = this;
-    self.text = ko.observable(text);
-    self.editing = ko.observable(false);
-}
-
-function MasterVM() {
-    var self = this;    
-    self.newItemName = ko.observable();
     self.items = ko.observableArray([]);
-    self.events = ko.observableArray([]);
-    self.currentEvent = ko.observable();
 
-    self.addEvent = function(data) { self.events.push(new Event(data));};
-    self.removeEvent = function(event) { self.events.remove(event) }
-
-    self.addItem = function() {
-        self.currentitems.push(new Item(data));
-        self.newItemName("");
-    };
-    self.removeItem = function(item) { self.items.destroy(item);};
-
-    self.save = function(data) {
-        console.log(ko.toJSON({ event: self }))
-        $.ajax("/events", {
-            data: ko.toJSON({ event: self }),
-            type: "post", contentType: "application/json",
-            success: function(result) { console.log(result) }
-        });
+    self.edit = function(model) {
+        model.editing(true);
     }
 
-    self.getEvent = function(data) {
-        $.ajax("/events/", {
-            data: { id: 50 },
-            type: "get", contentType: "application/json",
-            success: function(result) { 
-                console.log(result)
-                self.currentEvent(new Event(result));
-                console.log(result.items[0])
-
-            }
-        });
+    self.addItems = function(itemsArray){
+        for (var i = 0; i < itemsArray.length; i++){
+            self.items.push(itemsArray[i]);
+        }
     }
-    self.getEvent();
-}
+};
+
+
+
+    //Master View
+    function MasterVM() {
+        var self = this;    
+        self.newItemName = ko.observable();
+        self.items = ko.observableArray([]);
+        self.events = ko.observableArray([]);
+        self.currentEvent = ko.observable();
+
+        self.addEvent = function(data) { self.events.push(new Event(data));};
+        self.removeEvent = function(event) { self.events.remove(event) }
+
+        self.removeItem = function(item) { self.items.destroy(item);};
+
+        self.save = function(data) {
+            $.ajax("/events", {
+                data: ko.toJSON({ event: self }),
+                type: "post", contentType: "application/json",
+                success: function(result) { console.log("+++") }
+            });
+        }
+
+        self.submitPhoto = function(data){
+            $('#upload_pic').click(function() {
+                $("#form_id").ajaxForm().submit(); 
+                $('#imageUpload').foundation('reveal', 'close');
+                self.refreshPhoto();
+                return false;
+            });
+        }
+
+        self.refreshPhoto = function(){
+            $.ajax("/events/", {
+                data: { id: $('.id').text() },
+                type: "get", contentType: "application/json",
+                success: function(result) { 
+                    $('.background').css("background-image","url("+result.image+")");
+                }
+            });
+        }
+
+        self.getEvent = function(data) {
+            $.ajax("/events/", {
+                data: { id: $('.id').text() },
+                type: "get", contentType: "application/json",
+                success: function(result) { 
+                    self.currentEvent(new Event(result));
+                    self.currentEvent().addItems(result.items);
+                    console.log(result.items[0])
+
+                }
+            });
+        }
+        self.getEvent();
+    }
 
 
 
