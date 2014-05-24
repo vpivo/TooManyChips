@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
       name: name,
       description: description,
       image: image.url, 
-      items: event_items.collect { |item| item.to_ko(user_id) }
+      items: event_items.collect { |item| item.to_ko }
     }
   end
 

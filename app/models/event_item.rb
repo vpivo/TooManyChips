@@ -14,7 +14,9 @@ class EventItem < ActiveRecord::Base
   end
 
   def quantity_assigned
-    self.assigned_items.map { |i| i.quantity_provided }.sum
+   quantity =  self.assigned_items.map { |i| i.quantity_provided }.sum 
+   quantity = 0 if quantity.nil?
+   quantity 
   end
 
   def needed?
@@ -32,22 +34,22 @@ class EventItem < ActiveRecord::Base
     end
   end
 
-  def to_ko(user_id)
+  def to_ko
     { id: id,
       name: item.name,
       quantity: quantity_needed,
       description: description,
       guest_created: guest_created,
-      user_quanity: current_user_amount(id, user_id)
+      quantity_promised: quantity_assigned 
     }
   end
 
-  def current_user_amount(id, user_id)
-    user =  User.find_by(user_id)
-    user_quanity = user.assigned_items.find_by_event_item_id(id)
-    return 0 if user_quanity.nil?
-    user_quanity > 0 ? user_quanity : 0
-  end
+  # def current_user_amount(id, user_id)
+  #   user =  User.find_by(user_id)
+  #   user_quanity = user.assigned_items.find_by_event_item_id(id)
+  #   return 0 if user_quanity.nil?
+  #   user_quanity > 0 ? user_quanity : 0
+  # end
 
 end
 

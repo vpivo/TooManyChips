@@ -3,8 +3,8 @@
 / ko with: currentEvent
 .columns.large-10.background{"data-bind" => "style: backgroundImage"}
   .cover-info
-    %h1{'data-bind' => "text:name().text, visible: !name().editing(), click: edit(name())"}
-    %input{:class => 'title-input', 'data-bind' => 'text:name().text, type: text, visible: name().editing(), value: name().text, hasFocus: name().editing'}
+    %h1{'data-bind' => "text:name, visible: !$root.editingText()"}
+    %input{:class => 'title-input', 'data-bind' => 'text:name, type: text, visible: $root.editingText(), value: name()'}
       %br
       %br
       %br
@@ -19,7 +19,7 @@
       %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
   .panel{:id => "save"}
     %span
-    Save  
+      %a{:id => "editToggle", :href => '#', "data-bind" => "click: $root.toggleEdit()"}Edit
   .panel
     %span
     Cancel  
@@ -29,32 +29,32 @@
   .details-left.large-5.columns
     %p 
       Hosted by
-      %span{'data-bind' => "text:host_name().text"}
-    %p{'data-bind' => "text:description().text, visible: !description().editing(), click: edit(description())"}
-    %textarea{'data-bind' => 'text:description().text, type: text, visible: description().editing(), value: description().text, hasFocus: description().editing'}
+      %span{'data-bind' => "text:host_name"}
+    %p{'data-bind' => "text:description, visible: !$root.editingText()"}
+    %textarea{'data-bind' => 'text:description, type: text, visible: $root.editingText(), value: description'}
 
   .details-right.large-5.columns
     .date-box
-      %span{'data-bind' => "text:date().text, visible: !date().editing(), click: edit(date())"}
-      %input{'data-bind' => 'text:date().text, type: text, visible: date().editing(), value: date().text, hasFocus: date().editing'}
+      %span{'data-bind' => "text:date, visible: !$root.editingText()  "}
+      %input{'data-bind' => 'text:date, type: text, visible: $root.editingText(), value: date'}
       %br
-      %span{'data-bind' => "text:start_time().text, visible: !start_time().editing(), click: edit(start_time())"}
-      %input{'data-bind' => 'text:start_time().text, type: text, visible: start_time().editing(), value: start_time().text, hasFocus: start_time().editing'}
+      %span{'data-bind' => "text:start_time, visible: !$root.editingText()"}
+      %input{'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
       %br 
-      %span{'data-bind' => "text:end_time().text, visible: !end_time().editing(), click: edit(end_time())"}
-      %input{'data-bind' => 'text:end_time().text, type: text, visible: end_time().editing(), value: end_time().text, hasFocus: end_time().editing'}
+      %span{'data-bind' => "text:end_time, visible: !$root.editingText()"}
+      %input{'data-bind' => 'text:end_time, type: text, visible: $root.editingText(), value: end_time'}
 
-      %span{'data-bind' => "text:location().text, visible: !location().editing(), click: edit(location())"}
-      %input{'data-bind' => 'text:location().text, type: text, visible: location().editing(), value: location().text, hasFocus: location().editing'}
+      %span{'data-bind' => "text:location, visible: !$root.editingText()"}
+      %input{'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
       %br
-      %span{'data-bind' => "text:city().text, visible: !city().editing(), click: edit(city())"},
-      %input{'data-bind' => 'text:city().text, type: text, visible: city().editing(), value: city().text, hasFocus: city().editing'}
-      %span{'data-bind' => "text:state().text, visible: !state().editing(), click: edit(state())"}
-      %input{'data-bind' => 'text:state().text, type: text, visible: state().editing(), value: state().text, hasFocus: state().editing'}
+      %span{'data-bind' => "text:city, visible: !$root.editingText()"},
+      %input{'data-bind' => 'text:city, type: text, visible: $root.editingText(), value: city'}
+      %span{'data-bind' => "text:state, visible: !$root.editingText()"}
+      %input{'data-bind' => 'text:state, type: text, visible: $root.editingText(), value: state'}
       %br
 
-      %span{'data-bind' => "text:zip().text, visible: !zip().editing(), click: edit(zip())"}
-      %input{'data-bind' => 'text:zip().text, type: text, visible: zip().editing(), value: zip().text, hasFocus: zip().editing'}
+      %span{'data-bind' => "text:zip, visible: !$root.editingText()"}
+      %input{'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
 
 .row
   .large-10.columns
@@ -67,7 +67,7 @@
           %th Notes
       %tbody{"data-bind" =>"foreach: items"}
         %tr
-          %td{"data-bind" => "text:guestAmount" }
+          %td{"data-bind" => "text:amountPromised" }
           %td{"data-bind" => "text:name" }
           %td{"data-bind" => "text:quantity" }
           %td{"data-bind" => "text:description" }
