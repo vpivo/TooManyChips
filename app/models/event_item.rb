@@ -43,14 +43,6 @@ class EventItem < ActiveRecord::Base
       quantity_promised: quantity_assigned 
     }
   end
-
-  # def current_user_amount(id, user_id)
-  #   user =  User.find_by(user_id)
-  #   user_quanity = user.assigned_items.find_by_event_item_id(id)
-  #   return 0 if user_quanity.nil?
-  #   user_quanity > 0 ? user_quanity : 0
-  # end
-
 end
 
 

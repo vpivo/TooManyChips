@@ -46,63 +46,63 @@ function MasterVM() {
     self.currentEvent = ko.observable();
 
     self.editingText = ko.observable(true);
+    self.addEvent = function(data) { self.events.push(new Event(data));};
+    self.removeEvent = function(event) { self.events.remove(event) }
+
+    self.removeItem = function(item) { self.items.destroy(item);};
+
+
+    self.save = function(data) {
+        $.ajax("/events", {
+            data: ko.toJSON({ event: self }),
+            type: "post", contentType: "application/json",
+            success: function(result) { console.log("+++") }
+        });
+    }
+
+    self.submitPhoto = function(data){
+        $('#upload_pic').click(function() {
+            $("#form_id").ajaxForm().submit(); 
+            $('#imageUpload').foundation('reveal', 'close');
+            self.refreshPhoto();
+            return false;
+        });
+    }
+
+    self.refreshPhoto = function(){
+        $.ajax("/events/", {
+            data: { id: $('.id').text() },
+            type: "get", contentType: "application/json",
+            success: function(result) { 
+                $('.background').css("background-image","url("+result.image+")");
+            }
+        });
+    }
 
     self.toggleEdit = function() {
+        console.log("hello world")
         if (self.editingText() == false){
             self.editingText(true);
             $("a#editToggle").text('Save')
 
         }else{
-           self.editingText(false);
-           $("a#editToggle").text('Edit')
-           self.save(currentEvent());
-       }
-   }
-
-   self.addEvent = function(data) { self.events.push(new Event(data));};
-   self.removeEvent = function(event) { self.events.remove(event) }
-
-   self.removeItem = function(item) { self.items.destroy(item);};
-
-
-   self.save = function(data) {
-    $.ajax("/events", {
-        data: ko.toJSON({ event: data }),
-        type: "post", contentType: "application/json",
-        success: function(result) { console.log("+++") }
-    });
-}
-
-self.submitPhoto = function(data){
-    $('#upload_pic').click(function() {
-        $("#form_id").ajaxForm().submit(); 
-        $('#imageUpload').foundation('reveal', 'close');
-        self.refreshPhoto();
-        return false;
-    });
-}
-
-self.refreshPhoto = function(){
-    $.ajax("/events/", {
-        data: { id: $('.id').text() },
-        type: "get", contentType: "application/json",
-        success: function(result) { 
-            $('.background').css("background-image","url("+result.image+")");
+            self.editingText(false);
+            $("a#editToggle").text('Edit')
+            self.save(self.currentEvent());
         }
-    });
-}
+    }
 
-self.getEvent = function(data) {
-    $.ajax("/events/", {
-        data: { id: $('.id').text() },
-        type: "get", contentType: "application/json",
-        success: function(result) { 
-            self.currentEvent(new Event(result));
-            self.currentEvent().addItems(result.items);
-        }
-    });
-}
-self.getEvent();
+    self.getEvent = function(data) {
+        $.ajax("/events/", {
+            data: { id: $('.id').text() },
+            type: "get", contentType: "application/json",
+            success: function(result) { 
+                self.currentEvent(new Event(result));
+                self.currentEvent().addItems(result.items);
+            }
+        });
+    }
+    self.getEvent();
 }
 
 
