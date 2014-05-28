@@ -23,13 +23,12 @@ function Event(data) {
     self.start_time = ko.observable(data.start_time);
     self.end_time = ko.observable(data.end_time);
     self.event_type = ko.observable(data.event_type);
-    self.image = ko.observable(data.image);
+    self.imageString = ko.observable(data.image);
     self.backgroundImage = ko.computed(function() {
-        return { "backgroundImage": 'url(' + self.image() + ')' };
+        return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
-
+    
     self.items = ko.observableArray([]);
-
 
     self.addItems = function(itemsArray){
         for (var i = 0; i < itemsArray.length; i++){
@@ -38,14 +37,21 @@ function Event(data) {
     }
 };
 
+Event.prototype.toJSON = function() {
+    var copy = ko.toJS(this); //easy way to get a clean copy
+    delete copy.imageString; //remove an extra property
+    delete copy.backgroundImage; //remove an extra property
+    return copy; //return the copy to be serialized
+};
+
 function MasterVM() {
     var self = this;    
     self.newItemName = ko.observable();
     self.items = ko.observableArray([]);
     self.events = ko.observableArray([]);
     self.currentEvent = ko.observable();
+    self.editingText = ko.observable(false);
 
-    self.editingText = ko.observable(true);
     self.addEvent = function(data) { self.events.push(new Event(data));};
     self.removeEvent = function(event) { self.events.remove(event) }
 
@@ -54,13 +60,14 @@ function MasterVM() {
 
     self.save = function(data) {
         $.ajax("/events", {
-            data: ko.toJSON({ event: self }),
+            data: ko.toJSON({ event: data }),
             type: "post", contentType: "application/json",
             success: function(result) { console.log("+++") }
         });
     }
 
     self.submitPhoto = function(data){
+        console.log('test')
         $('#upload_pic').click(function() {
             $("#form_id").ajaxForm().submit(); 
             $('#imageUpload').foundation('reveal', 'close');
@@ -70,6 +77,7 @@ function MasterVM() {
     }
 
     self.refreshPhoto = function(){
+        console.log('yep')
         $.ajax("/events/", {
             data: { id: $('.id').text() },
             type: "get", contentType: "application/json",
@@ -80,13 +88,10 @@ function MasterVM() {
     }
 
     self.toggleEdit = function() {
-        console.log("hello world")
         if (self.editingText() == false){
             self.editingText(true);
             $("a#editToggle").text('Save')
-
-        }else{
-            self.editingText(false);
+        } else { self.editingText(false),
             $("a#editToggle").text('Edit')
             self.save(self.currentEvent());
         }

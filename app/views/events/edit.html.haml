@@ -4,7 +4,7 @@
 .columns.large-10.background{"data-bind" => "style: backgroundImage"}
   .cover-info
     %h1{'data-bind' => "text:name, visible: !$root.editingText()"}
-    %input{:class => 'title-input', 'data-bind' => 'text:name, type: text, visible: $root.editingText(), value: name()'}
+    %input{:class => 'title-input', 'data-bind' => 'text:name, type: text, visible: $root.editingText(), value: name'}
       %br
       %br
       %br
@@ -19,7 +19,7 @@
       %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
   .panel{:id => "save"}
     %span
-      %a{:id => "editToggle", :href => '#', "data-bind" => "click: $root.toggleEdit()"}Edit
+      %a{:id => "editToggle", :href => '#', "data-bind" => "click: $root.toggleEdit"}Edit
   .panel
     %span
     Cancel  

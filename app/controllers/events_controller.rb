@@ -43,17 +43,24 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.user_id = current_user.id
-    @event.date = Chronic.parse(event_params[:date])
-    if @event.save
-      params[:event][:items].each do |item|
-        @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
+    @event = Event.find(params[:event][:id])
+    unless @event
+      @event = Event.new(event_params)
+      @event.user_id = current_user.id
+      @event.date = Chronic.parse(event_params[:date])
+      if @event.save && params[:event][:items]
+        params[:event][:items].each do |item|
+          @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
+        end
+        render json: @event
+      else
+        puts @event.errors.full_messages
+        render json: @event.errors.full_messages
       end
-      render json: @event
     else
-      puts @event.errors.full_messages
-      render json: @event.errors.full_messages
+      @event.update(event_params)
+      p @event.errors.full_messages
+      render json: @event
     end
   end
 
@@ -72,7 +79,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:date, :description, :name, 
+    params.require(:event).permit(:id, :date, :description, :name, 
       :location, :name, :start_time, 
       :event_items_attributes, :state, :city, :zip, :event_type, 
       :allow_guest_create, :image, :image_updated_at,
