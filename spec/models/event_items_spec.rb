@@ -2,7 +2,7 @@ require 'spec_helper'
 
 
 describe EventItem do
-  let(:event_item)            { build(:event_item, quantity_needed: 4) }
+  let(:event_item)            { build(:event_item) }
   let(:assigned_item)         { build(:assigned_item) }
   let(:assigned_item1)        { build(:assigned_item, quantity_provided: 2) }
   let(:assigned_item2)        { build(:assigned_item, quantity_provided: 5) }

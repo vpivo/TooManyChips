@@ -2,7 +2,6 @@ class EventItem < ActiveRecord::Base
   has_many :assigned_items ,:dependent => :destroy, :autosave => true
   belongs_to :event
   belongs_to :item 
-  belongs_to :guest, :autosave => true
   validates :description, :length => { :maximum => 140 }
   validates :quantity_needed, :presence => true
   validates :quantity_needed, :numericality => {:only_integer => true, :greater_than => 0}
