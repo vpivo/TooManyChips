@@ -9,7 +9,7 @@ function Item(data) {
 
 function Event(data) {
     var self = this;
-    self.id = ko.observable(data.id )
+    self.id = ko.observable(data.id );
     self.name = ko.observable(data.name);
     self.description = ko.observable(data.description);
     self.date = ko.observable(data.date);
@@ -51,7 +51,7 @@ function MasterVM() {
     self.events = ko.observableArray([]);
     self.currentEvent = ko.observable();
     self.editingText = ko.observable(false);
-    self.newEvent = ko.observable(new Event());
+    self.newEvent = ko.observable(new Event(''));
     self.addEvent = function(data) { self.events.push(new Event(data));};
     self.removeEvent = function(event) { self.events.remove(event) }
 

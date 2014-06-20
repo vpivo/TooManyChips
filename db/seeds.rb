@@ -48,14 +48,22 @@ events = %w{
 30.times do
   User.create(email: Faker::Internet.email , password: "password" , name: Faker::Name.name )
 end
+puts "30 users created"
 
 40. times do 
   Item.create(suggestion: "nothing yet!", name: items.sample )
 end
+puts "40 items created"
 
 25.times do
   User.create(email: Faker::Internet.email, name: Faker::Name.name , url: SecureRandom.urlsafe_base64, guest: true)
 end
+puts "25 guests created"
+
+25.times do 
+  Message.create(sender_id: 1 + rand(20), reciepient_id: 1 + rand(20), subject: Faker::Lorem.sentence(word_count = 4), message: Faker::Lorem.sentence(word_count = 25), read: false)
+end
+puts "25 messages created"
 
 25.times do 
   event= Event.create(name: events.sample, description: "Awesome Party!", date: Chronic.parse("january 15th 2015"), location: "#{Faker::Name.name}'s House", 
@@ -71,4 +79,5 @@ end
   end
   event.save!
 end
+puts "25 event created"
 

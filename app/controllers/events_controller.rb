@@ -27,7 +27,6 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @event.event_items.build.item = Item.new
   end
 
   def edit
@@ -43,26 +42,39 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.find(params[:event][:id])
-    unless @event
-      @event = Event.new(event_params)
-      @event.user_id = current_user.id
-      @event.date = Chronic.parse(event_params[:date])
-      if @event.save && params[:event][:items]
-        params[:event][:items].each do |item|
-          @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
-        end
-        render json: @event
-      else
-        puts @event.errors.full_messages
-        render json: @event.errors.full_messages
-      end
-    else
-      @event.update(event_params)
-      p @event.errors.full_messages
+    @event = Event.create(event_params)
+    @event.user_id = current_user.id
+    @event.date = Chronic.parse(event_params[:date])
+    if @event.save 
       render json: @event
+    else
+      puts @event.errors.full_messages
+      render json: @event.errors.full_messages
     end
   end
+
+
+  # def create
+  #   @event = Event.find(params[:event][:id])
+  #   unless @event
+  #     @event = Event.new(event_params)
+  #     @event.user_id = current_user.id
+  #     @event.date = Chronic.parse(event_params[:date])
+  #     if @event.save && params[:event][:items]
+  #       params[:event][:items].each do |item|
+  #         @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
+  #       end
+  #       render json: @event
+  #     else
+  #       puts @event.errors.full_messages
+  #       render json: @event.errors.full_messages
+  #     end
+  #   else
+  #     @event.update(event_params)
+  #     p @event.errors.full_messages
+  #     render json: @event
+  #   end
+  # end
 
   def update
     @event = Event.find(params[:id])
@@ -84,6 +96,6 @@ class EventsController < ApplicationController
       :event_items_attributes, :state, :city, :zip, :event_type, 
       :allow_guest_create, :image, :image_updated_at,
       :host_name, :type, :end_time, :street_address, :remote_image_url, :image,
-      :image_file_name, :image_content_type, :image_file_size, :items)
+      :image_file_name, :image_content_type, :image_file_size)
   end
 end

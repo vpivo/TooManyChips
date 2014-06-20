@@ -1,13 +1,12 @@
 class Event < ActiveRecord::Base
   validates_presence_of :name, :date, :host_name
   belongs_to :host, :class_name => "User", :foreign_key => 'user_id'
-  has_many :event_items, :inverse_of => :event, :dependent => :destroy
+  has_many :event_items, :dependent => :destroy
   has_many :items, :through => :event_items
   has_many :assigned_items, :through => :event_items, :dependent => :destroy
   has_many :guests, :through => :assigned_items, :class_name => "User", :foreign_key => "user_id"  
   before_save :format_date
   before_create :set_url
-  accepts_nested_attributes_for :event_items, :reject_if => :all_blank, :allow_destroy => true
 
   has_attached_file :image, styles: {thumb: '100x100>', square: '200x200#', header: '1000x400>'}
 

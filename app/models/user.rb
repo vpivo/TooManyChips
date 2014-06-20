@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   has_many :assigned_items, :class_name => 'AssignedItem', :foreign_key => 'user_id'
   belongs_to :event, :class_name => 'User', foreign_key: 'user_id'
   accepts_nested_attributes_for :assigned_items, :event_items
-  
+  has_many :sent_messages, :class_name => 'Message', :foreign_key => 'sender_id'
+  has_many :recieved_messaged, :class_name => 'Message', :foreign_key => 'reciepientId'
+
   # after_save :registration_emails!
   before_create :set_url
   

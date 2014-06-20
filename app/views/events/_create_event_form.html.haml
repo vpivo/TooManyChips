@@ -1,4 +1,4 @@
-%form{"data-bind" => "submit: addEvent"}
+%form{"data-bind" => "submit: $root.addEvent"}
   .fieldset
     .row
       .large-4.columns
@@ -57,5 +57,5 @@
           %textarea{"data-bind" => "value: description", 'placeholder' => "Information about this event..."}
     .row
       .large-12.columns    
-        %button{"class" => "right", "type"=>"submit", "data-bind" => "click:save"}
+        %button{"class" => "right", "type"=>"submit", "data-bind" => "click:$root.save"}
           Save
