@@ -1,11 +1,17 @@
 function Item(data) {
     this.name = ko.observable(data.name);
-    this.quantity = ko.observable(data.quantity);
     this.description = ko.observable(data.description);
     this.id = ko.observable(data.id);
     this.guestCreated = ko.observable(data.allow_guest_create);
     this.amountPromised = ko.observable(data.quantity_promised);
+    this.quantity = ko.observable(data.quantity);
+    this.stillNeeded = ko.computed(function(){
+        return this.quantity - this.amountPromised(); 
+    });
+    
+    this.amountToBring = ko.observable(0);
 }
+
 
 function Event(data) {
     var self = this;
@@ -51,14 +57,25 @@ function MasterVM() {
     self.events = ko.observableArray([]);
     self.currentEvent = ko.observable();
     self.editingText = ko.observable(false);
+    self.editingItems = ko.observable(false);
     self.newEvent = ko.observable(new Event(''));
-    self.addEvent = function(data) { self.events.push(new Event(data));};
-    self.removeEvent = function(event) { self.events.remove(event) }
+    self.addEvent = function(data) { 
+        console.log('hello')
+        self.events.push(new Event(data));
+    };
 
+    self.removeEvent = function(event) { self.events.remove(event) }
     self.removeItem = function(item) { self.items.destroy(item);};
 
 
     self.save = function(data) {
+        $.ajax("/events", {
+            data: ko.toJSON({ event: data }),
+            type: "post", contentType: "application/json"
+        });
+    }
+
+    self.update = function(data) {
         $.ajax("/events", {
             data: ko.toJSON({ event: data }),
             type: "post", contentType: "application/json",

@@ -1,0 +1,21 @@
+.row
+  .large-10.columns{:id => 'items'}
+    %table
+      %thead
+        %tr 
+          %th{width: ""} Name
+          %th Description
+          %th  
+          %th Quanity Requested
+          %th  
+          %th Quanity Promised
+          %th Total
+      %tbody{"data-bind" =>"foreach: items"}
+        %tr
+          %td{"data-bind" => "text:name" }
+          %td{"data-bind" => "text:description" }
+          %td{}+
+          %td{"data-bind" => "text:stillNeeded" }
+          %td{}-
+          %td{"data-bind" => "text:amountPromised" }
+          %td{"data-bind" => "text:quantity" }

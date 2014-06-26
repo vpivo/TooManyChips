@@ -13,7 +13,7 @@
 .editing-panel.large-2.columns
   .panel
     %span
-      %a{:href => '#items'}Add Items
+      %a{:href => '#items'}Add/Edit Items
   .panel
     %span
       %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
@@ -23,6 +23,9 @@
   .panel
     %span
     Cancel  
+  / .panel
+  /   %span
+  /     %a{:href => '#items'}Edit Carpool
 
 
 .details.large-10.columns{:id => 'details'}
@@ -56,22 +59,12 @@
       %span{'data-bind' => "text:zip, visible: !$root.editingText()"}
       %input{'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
 
-.row
-  .large-10.columns
-    %table
-      %thead
-        %tr 
-          %th
-          %th{width: ""} Item
-          %th Quantity
-          %th Notes
-      %tbody{"data-bind" =>"foreach: items"}
-        %tr
-          %td{"data-bind" => "text:amountPromised" }
-          %td{"data-bind" => "text:name" }
-          %td{"data-bind" => "text:quantity" }
-          %td{"data-bind" => "text:description" }
-    
+.items{"data-bind" => "visible:!$root.editingItems()"}
+  = render 'show_event_items'
+
+.items{"data-bind" => "visible:$root.editingItems()"}
+  = render 'edit_event_items'
+
 / /ko
 #imageUpload.reveal-modal.large{style: "display: none"}
   = render 'events/add_image'

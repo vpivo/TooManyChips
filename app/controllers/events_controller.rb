@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     @event.user_id = current_user.id
     @event.date = Chronic.parse(event_params[:date])
     if @event.save 
-      render json: @event
+      render :js => "window.location = '/events/#{@event.id}/edit'"
     else
       puts @event.errors.full_messages
       render json: @event.errors.full_messages
