@@ -6,7 +6,7 @@ function Item(data) {
     this.amountPromised = ko.observable(data.quantity_promised);
     this.quantity = ko.observable(data.quantity);
     this.stillNeeded = ko.computed(function(){
-        return this.quantity - this.amountPromised(); 
+        return this.quantity - this.amountPromised; 
     });
     
     this.amountToBring = ko.observable(0);
