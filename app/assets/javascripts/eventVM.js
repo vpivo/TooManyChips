@@ -34,8 +34,6 @@ function Event(data) {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
     
-    
-
     self.addItems = function(itemsArray){
         for (var i = 0; i < itemsArray.length; i++){
             self.items.push(new Item(itemsArray[i]));
@@ -50,6 +48,16 @@ Event.prototype.toJSON = function() {
     return copy; //return the copy to be serialized
 };
 
+function guest(data) {
+    this.email = ko.observable(data.email);
+    this.name = ko.observable(data.name);
+    this.items = ko.observableArray([]);
+
+    self.addItem = function(items){
+            self.items.push(item);
+    }
+}
+
 function MasterVM() {
     var self = this;    
     self.newItemName = ko.observable();
@@ -62,13 +70,11 @@ function MasterVM() {
     self.guestEmail = ko.observable();
     self.guestName = ko.observable();
     self.addEvent = function(data) { 
-        console.log('hello')
         self.events.push(new Event(data));
     };
 
     self.removeEvent = function(event) { self.events.remove(event) }
     self.removeItem = function(item) { self.items.destroy(item);};
-
 
     self.save = function(data) {
         $.ajax("/events", {
@@ -78,16 +84,14 @@ function MasterVM() {
     }
 
     self.update = function(data) {
-        console.log(data.id())
         $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
             type: "patch", contentType: "application/json",
-            success: function(result) { console.log("+++") }
+            success: function(result) { console.log("") }
         });
     }
 
     self.submitPhoto = function(data){
-        console.log('test')
         $('#upload_pic').click(function() {
             $("#form_id").ajaxForm().submit(); 
             $('#imageUpload').foundation('reveal', 'close');
@@ -97,7 +101,6 @@ function MasterVM() {
     }
 
     self.refreshPhoto = function(){
-        console.log('yep')
         $.ajax("/events/", {
             data: { id: $('.id').text() },
             type: "get", contentType: "application/json",
@@ -115,6 +118,14 @@ function MasterVM() {
             $("a#editToggle").text('Edit Details')
             self.update(self.currentEvent());
         }
+    }
+
+    self.addGuest = function(data){
+        $.ajax("/create_guest/", {
+            data: '{"user": {"email":"' + self.guestEmail() + '"}}',
+            type: "post", contentType: "application/json",
+            success: function(result) { console.log("") }
+        });
     }
 
     self.getEvent = function(data) {

@@ -14,7 +14,8 @@
           %td{"data-bind" => "text:description" }
           %td
             %input{'data-bind' => 'text:amountToBring, type: text, value:amountToBring'}
-/ ko with: $root     
+
+/ ko with: $root.guest     
 .row    
   .large-12.columns
     .large-4.columns
@@ -26,6 +27,6 @@
         Name
       %input{'data-bind' => 'text:guestName, type: text, value:guestName'}
     .large-4.columns
-      %button{"class" => "left", "type"=>"submit", "data-bind" => "click:$root.save"}
+      %button{"class" => "left", "type"=>"submit", "data-bind" => "click: addGuest"}
         Save
 //ko

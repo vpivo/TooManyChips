@@ -5,6 +5,7 @@ Toomanychips::Application.routes.draw do
   delete 'signout', to: 'session#destroy', via: :destroy
   root to: 'pages#index'
   resources :users, :only => [:show, :create, :new, :edit, :guest_create] 
+  post 'create_guest' => 'users#create_guest'
   resources :assigned_items, :except => [:index]
   delete 'remove/:id', to: 'assigned_items#destroy', as: 'remove'
   get 'add_image/:id', to: "events#add_image", as: 'add_image'

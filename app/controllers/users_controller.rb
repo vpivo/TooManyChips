@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  respond_to :json, :html
   before_filter :logged_in?, :only => [:show, :edit, :update, :destroy, :your_profile]
   before_filter :load_and_authorize_user, :only => [:show, :edit, :update, :destroy]
 
