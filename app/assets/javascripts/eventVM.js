@@ -8,10 +8,9 @@ function Item(data) {
     this.stillNeeded = ko.computed(function(){
         return this.quantity - this.amountPromised; 
     });
-    
+
     this.amountToBring = ko.observable(0);
 }
-
 
 function Event(data) {
     var self = this;
@@ -30,11 +29,12 @@ function Event(data) {
     self.end_time = ko.observable(data.end_time);
     self.event_type = ko.observable(data.event_type);
     self.imageString = ko.observable(data.image);
+    self.items = ko.observableArray([]);
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
     
-    self.items = ko.observableArray([]);
+    
 
     self.addItems = function(itemsArray){
         for (var i = 0; i < itemsArray.length; i++){
@@ -59,6 +59,8 @@ function MasterVM() {
     self.editingText = ko.observable(false);
     self.editingItems = ko.observable(false);
     self.newEvent = ko.observable(new Event(''));
+    self.guestEmail = ko.observable();
+    self.guestName = ko.observable();
     self.addEvent = function(data) { 
         console.log('hello')
         self.events.push(new Event(data));
@@ -76,9 +78,10 @@ function MasterVM() {
     }
 
     self.update = function(data) {
-        $.ajax("/events", {
+        console.log(data.id())
+        $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
-            type: "post", contentType: "application/json",
+            type: "patch", contentType: "application/json",
             success: function(result) { console.log("+++") }
         });
     }
@@ -109,8 +112,8 @@ function MasterVM() {
             self.editingText(true);
             $("a#editToggle").text('Save')
         } else { self.editingText(false),
-            $("a#editToggle").text('Edit')
-            self.save(self.currentEvent());
+            $("a#editToggle").text('Edit Details')
+            self.update(self.currentEvent());
         }
     }
 

@@ -5,18 +5,13 @@
         %tr 
           %th{width: ""} Name
           %th Description
-          %th  
           %th Quanity Requested
-          %th  
-          %th Quanity Promised
-          %th Total
       %tbody{"data-bind" =>"foreach: items"}
         %tr
           %td{"data-bind" => "text:name" }
           %td{"data-bind" => "text:description" }
-          %td{}+
-          %td{"data-bind" => "text:quantity" }
-          %td{}-
+          %td
+            %input{'data-bind' => 'text:quantity, type: text, value: quantity'}
   .large-12.columns
     .button Hello
 
