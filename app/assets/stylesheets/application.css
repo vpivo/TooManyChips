@@ -313,3 +313,42 @@ div.login-button{
   width: 220px;
   color: #5a5a5a;
 }
+
+html {
+  background: #252a2d;
+}
+
+.dark {
+  background: #252a2d;
+}
+
+.default_screen_height {
+  height: 100%;
+  min-height: 100%;
+}
+
+.default_margin {
+  margin: 30px 30px;
+}
+
+.default_button {
+  background: transparent;
+  color: #71b3ed;
+  border:  1px solid #71b3ed;
+}
+
+.default_button:hover {
+  background: transparent;
+  color: #02e202;
+  border:  1px solid #02e202;
+}
+
+.default_label {
+  color: #FFF;
+}
+
+.default_input {
+  color: #FFF;
+
+  border: 1px solid #484949;
+}

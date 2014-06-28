@@ -1,65 +1,65 @@
-.large-12.new-event.columns
+.large-12.columns.default_screen_height.dark
   / ko with: newEvent
   %form{"data-bind" => "submit: $root.addEvent"}
-  .fieldset
+  .fieldset.default_margin
     .row
       .large-4.columns
-        %label 
+        %label{"class" => "default_label"}
           Title
-          %input{"data-bind" => "value: name", "type" => "text", 'placeholder' => "4th of July Party!", "type" => "text"}
+          %input{"class" => "default_input dark", "data-bind" => "value: name", "type" => "text", 'placeholder' => "4th of July Party!", "type" => "text"}
       .large-4.columns
-        %label 
+        %label{"class" => "default_label"} 
           Host
-          %input{"data-bind" => "value: host_name", "type" => "text", 'placeholder' => "Mary Smith"}
+          %input{"class" => "default_input dark", "data-bind" => "value: host_name", "type" => "text", 'placeholder' => "Mary Smith"}
       .large-4.columns
-        %label 
+        %label{"class" => "default_label"} 
           Type
-          %input{"data-bind" => "value: event_type", "type" => "text", 'placeholder' => "BBQ"}
+          %input{"class" => "default_input dark", "data-bind" => "value: event_type", "type" => "text", 'placeholder' => "BBQ"}
 
     .row
       .large-4.columns
-        %label 
+        %label{"class" => "default_label"} 
           Date
-          %input{"data-bind" => "value: date", "type" => "text", 'placeholder' => "July 4th, 2015"}
+          %input{"class" => "default_input dark", "data-bind" => "value: date", "type" => "text", 'placeholder' => "July 4th, 2015"}
       .large-2.columns.left
-        %label 
+        %label{"class" => "default_label"} 
           Start Time
-          %input{"data-bind" => "value: start_time", "type" => "text", 'placeholder' => "4:00pm"}
+          %input{"class" => "default_input dark", "data-bind" => "value: start_time", "type" => "text", 'placeholder' => "4:00pm"}
       .large-2.columns.left
-        %label 
+        %label{"class" => "default_label"} 
           End Time
-          %input{"data-bind" => "value: end_time", "type" => "text", 'placeholder' => "12:00am"}
+          %input{"class" => "default_input dark", "data-bind" => "value: end_time", "type" => "text", 'placeholder' => "12:00am"}
 
     .row
       .large-4.columns
-        %label
+        %label{"class" => "default_label"}
           Location
-          %input{"data-bind" => "value: location", "type" => "text", 'placeholder' => "Golden Gate Park"}
+          %input{"class" => "default_input dark", "data-bind" => "value: location", "type" => "text", 'placeholder' => "Golden Gate Park"}
       .large-3.columns
-        %label
+        %label{"class" => "default_label"}
           Street Address
-          %input{"data-bind" => "value: street_address", "type" => "text", 'placeholder' => "1000 John F Kennedy Dr."}
+          %input{"class" => "default_input dark", "data-bind" => "value: street_address", "type" => "text", 'placeholder' => "1000 John F Kennedy Dr."}
       .large-2.columns
-        %label
+        %label{"class" => "default_label"}
           City
-          %input{"data-bind" => "value: city", "type" => "text", 'placeholder' => "San Francisco"}
+          %input{"class" => "default_input dark", "data-bind" => "value: city", "type" => "text", 'placeholder' => "San Francisco"}
       .large-1.columns.left
-        %label
+        %label{"class" => "default_label"}
           State
-          %input{"data-bind" => "value: state", "type" => "text", 'placeholder' => "CA"}
+          %input{"class" => "default_input dark", "data-bind" => "value: state", "type" => "text", 'placeholder' => "CA"}
       .large-2.columns.left
-        %label
+        %label{"class" => "default_label"}
           Zip Code
-          %input{"data-bind" => "value: zip", "type" => "text", 'placeholder' => "94117"}
+          %input{"class" => "default_input dark", "data-bind" => "value: zip", "type" => "text", 'placeholder' => "94117"}
 
     .row
       .large-12.columns
-        %label
+        %label{"class" => "default_label"}
           Details
           %textarea{"data-bind" => "value: description", 'placeholder' => "Information about this event..."}
     .row
       .large-12.columns    
-        %button{"class" => "right", "type"=>"submit", "data-bind" => "click:$root.save"}
+        %button{ "class" => "right default_button new_event_save_button", "type"=>"submit", "data-bind" => "click:$root.save"}
           Save
-  / /ko
+  / /ko"id" => "new_event_save_button"
 
