@@ -5,11 +5,12 @@ function Item(data) {
     this.guestCreated = ko.observable(data.allow_guest_create);
     this.amountPromised = ko.observable(data.quantity_promised);
     this.quantity = ko.observable(data.quantity);
+    this.amountToBring = ko.observable(0);
+    this.eventId= ko.observable(data.event_id);
     this.stillNeeded = ko.computed(function(){
         return this.quantity - this.amountPromised; 
     });
 
-    this.amountToBring = ko.observable(0);
 }
 
 function Event(data) {
@@ -33,7 +34,7 @@ function Event(data) {
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
-    
+    //editing data locally
     self.addItems = function(itemsArray){
         for (var i = 0; i < itemsArray.length; i++){
             self.items.push(new Item(itemsArray[i]));
@@ -48,14 +49,11 @@ Event.prototype.toJSON = function() {
     return copy; //return the copy to be serialized
 };
 
-function guest(data) {
-    this.email = ko.observable(data.email);
-    this.name = ko.observable(data.name);
-    this.items = ko.observableArray([]);
-
-    self.addItem = function(items){
-            self.items.push(item);
-    }
+function Guest(data) {
+    var self = this;    
+    self.email = ko.observable(data.email);
+    self.name = ko.observable(data.name);
+    self.items = ko.observableArray([]);
 }
 
 function MasterVM() {
@@ -67,22 +65,20 @@ function MasterVM() {
     self.editingText = ko.observable(false);
     self.editingItems = ko.observable(false);
     self.newEvent = ko.observable(new Event(''));
-    self.guestEmail = ko.observable();
-    self.guestName = ko.observable();
+    self.guest = ko.observable(new Guest(''));
+    //editing data locally
     self.addEvent = function(data) { 
         self.events.push(new Event(data));
     };
-
     self.removeEvent = function(event) { self.events.remove(event) }
     self.removeItem = function(item) { self.items.destroy(item);};
-
+    //loading and saving data from the server
     self.save = function(data) {
         $.ajax("/events", {
             data: ko.toJSON({ event: data }),
             type: "post", contentType: "application/json"
         });
     }
-
     self.update = function(data) {
         $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
@@ -90,7 +86,6 @@ function MasterVM() {
             success: function(result) { console.log("") }
         });
     }
-
     self.submitPhoto = function(data){
         $('#upload_pic').click(function() {
             $("#form_id").ajaxForm().submit(); 
@@ -99,7 +94,6 @@ function MasterVM() {
             return false;
         });
     }
-
     self.refreshPhoto = function(){
         $.ajax("/events/", {
             data: { id: $('.id').text() },
@@ -109,7 +103,6 @@ function MasterVM() {
             }
         });
     }
-
     self.toggleEdit = function() {
         if (self.editingText() == false){
             self.editingText(true);
@@ -119,15 +112,16 @@ function MasterVM() {
             self.update(self.currentEvent());
         }
     }
-
     self.addGuest = function(data){
+        console.log('yeah')
+        array = self.currentEvent().items()
+        data.items = array.filter(valueOfOneOrMore) 
         $.ajax("/create_guest/", {
-            data: '{"user": {"email":"' + self.guestEmail() + '"}}',
+            data: ko.toJSON({ user: data }),
             type: "post", contentType: "application/json",
             success: function(result) { console.log("") }
         });
     }
-
     self.getEvent = function(data) {
         $.ajax("/events/", {
             data: { id: $('.id').text() },
@@ -138,9 +132,8 @@ function MasterVM() {
             }
         });
     }
+    //supporting function
+    function valueOfOneOrMore(item){return item.amountToBring() > 0}
+
     self.getEvent();
 }
-
-
-
-

@@ -39,7 +39,8 @@ class EventItem < ActiveRecord::Base
       quantity: quantity_needed,
       description: description,
       guest_created: guest_created,
-      quantity_promised: quantity_assigned 
+      quantity_promised: quantity_assigned, 
+      event_id: event_id
     }
   end
 end

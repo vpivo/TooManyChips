@@ -15,23 +15,25 @@ class UsersController < ApplicationController
   end
 
   def create_guest
-    p "+++++++++++++++++"
-    @user = User.find_by_email(person_params[:user][:email]) 
+    @user = User.find_by_email(person_params[:email]) 
+    items = person_params[:items]
     if @user
-      p user
-      p params ["user"]["assigned_items_attributes"]
-      # params["user"]["assigned_items_attributes"].each do |e|
-      #   @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"]) if e[1]["quantity_provided"] > 0
+      puts 'here'
+      # items.each do |e| 
+      #   p e.amountToBring
+      #   @user.assigned_items << AssignedItem.new(quantity_provided: :amountToBring, 
+      #     event_item_id: :id, event_id: :eventId )
       # end
     else
-      @user = User.new(person_params[:user])
+      puts 'in there else'
+      @user = User.new
+      @user.name = person_params[:name]
+      @user.email = person_params[:email]
       @user.guest = true
-      p user
-      puts "**************************"
-            p params ["user"]["assigned_items_attributes"]
-
-      # params["user"]["assigned_items_attributes"].each do |e|
-      #   @user.assigned_items << AssignedItem.new(quantity_provided: e[1]["quantity_provided"], event_item_id: e[1]["event_item_id"]) if e[1]["quantity_provided"] > 0
+      @user.save!
+      # items.each do |e|
+      #   @user.assigned_items << AssignedItem.new(quantity_provided: :amountToBring, 
+      #     event_item_id: :id, event_id: :eventId )
       # end
     end 
     if @user.save
@@ -65,6 +67,7 @@ class UsersController < ApplicationController
 
   def person_params
     params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
-      assigned_items_attributes: [:event_item_id, :quantity_provided])
+      "items" => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
+      )
   end
 end
