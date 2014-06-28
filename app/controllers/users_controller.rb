@@ -18,23 +18,14 @@ class UsersController < ApplicationController
     @user = User.find_by_email(person_params[:email]) 
     items = person_params[:items]
     if @user
-      puts 'here'
-      # items.each do |e| 
-      #   p e.amountToBring
-      #   @user.assigned_items << AssignedItem.new(quantity_provided: :amountToBring, 
-      #     event_item_id: :id, event_id: :eventId )
-      # end
+      add_items(items)
     else
-      puts 'in there else'
       @user = User.new
       @user.name = person_params[:name]
       @user.email = person_params[:email]
       @user.guest = true
       @user.save!
-      # items.each do |e|
-      #   @user.assigned_items << AssignedItem.new(quantity_provided: :amountToBring, 
-      #     event_item_id: :id, event_id: :eventId )
-      # end
+      add_items(items)
     end 
     if @user.save
       redirect_to guest_path(@user.url) 
@@ -64,6 +55,15 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def add_items(items)
+    items.each do |e|
+      puts "looping"
+      puts e
+      @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], event_item_id: e[:id])
+      @user.save!
+    end
+  end
 
   def person_params
     params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
