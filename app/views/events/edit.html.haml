@@ -13,7 +13,7 @@
 .editing-panel.large-2.columns.dark
   .panel
     %span
-      %a{:href => '#items'}Edit Items
+      %a{:id => "editToggleItems", :href => '#items', "data-bind" => "click: $root.toggleEditItems"}Edit Items
   .panel
     %span
       %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  

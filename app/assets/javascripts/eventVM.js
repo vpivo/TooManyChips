@@ -112,6 +112,15 @@ function MasterVM() {
             self.update(self.currentEvent());
         }
     }
+     self.toggleEditItems = function() {
+        if (self.editingItems() == false){
+            self.editingItems(true);
+            $("a#editToggleItems").text('Save')
+        } else { self.editingItems(false),
+            $("a#editToggleItems").text('Edit Items')
+            self.update(self.currentEvent());
+        }
+    }
     self.addGuest = function(data){
         console.log('yeah')
         array = self.currentEvent().items()
