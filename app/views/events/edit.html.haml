@@ -1,7 +1,7 @@
 .id
   =@event.id
 / ko with: currentEvent
-.columns.large-10.background{"data-bind" => "style: backgroundImage"}
+.columns.large-10.dark.background{"data-bind" => "style: backgroundImage"}
   .cover-info
     %h1{'data-bind' => "text:name, visible: !$root.editingText()"}
     %input{:class => 'title-input', 'data-bind' => 'text:name, type: text, visible: $root.editingText(), value: name'}
@@ -9,8 +9,8 @@
       %br
       %br
     .row.center   
-      %a{:href => '#details', :class => 'rsvp-btn'}>RSVP 
-.editing-panel.large-2.columns
+      %a{:href => '#details', 'class' => 'default_button'}>RSVP 
+.editing-panel.large-2.columns.dark
   .panel
     %span
       %a{:href => '#items'}Edit Items
@@ -27,42 +27,42 @@
   /   %span
   /     %a{:href => '#items'}Edit Carpool
 
-
+/ .dark
 .details.large-10.columns{:id => 'details'}
   .details-left.large-5.columns
-    %p 
+    %p.default_label
       Hosted by
       %span{'data-bind' => "text:host_name"}
-    %p{'data-bind' => "text:description, visible: !$root.editingText()"}
-    %textarea{'data-bind' => 'text:description, type: text, visible: $root.editingText(), value: description'}
+    %p{'class' => 'default_label' , 'data-bind' => "text:description, visible: !$root.editingText()"}
+    %textarea{'class' => 'default_input', 'data-bind' => 'text:description, type: text, visible: $root.editingText(), value: description'}
 
   .details-right.large-5.columns
-    .date-box
+    .date-box.default_label
       %span{'data-bind' => "text:date, visible: !$root.editingText()  "}
-      %input{'data-bind' => 'text:date, type: text, visible: $root.editingText(), value: date'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:date, type: text, visible: $root.editingText(), value: date'}
       %br
       %span{'data-bind' => "text:start_time, visible: !$root.editingText()"}
-      %input{'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
       until 
       %span{'data-bind' => "text:end_time, visible: !$root.editingText()"}
-      %input{'data-bind' => 'text:end_time, type: text, visible: $root.editingText(), value: end_time'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:end_time, type: text, visible: $root.editingText(), value: end_time'}
       %br
       %span{'data-bind' => "text:location, visible: !$root.editingText()"}
-      %input{'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
       %br
       %span{'data-bind' => "text:city, visible: !$root.editingText()"},
-      %input{'data-bind' => 'text:city, type: text, visible: $root.editingText(), value: city'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:city, type: text, visible: $root.editingText(), value: city'}
       %span{'data-bind' => "text:state, visible: !$root.editingText()"}
-      %input{'data-bind' => 'text:state, type: text, visible: $root.editingText(), value: state'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:state, type: text, visible: $root.editingText(), value: state'}
       %br
 
       %span{'data-bind' => "text:zip, visible: !$root.editingText()"}
-      %input{'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
+      %input{'class' => 'dark default_input', 'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
 
-.items{"data-bind" => "visible:!$root.editingItems()"}
+.dark.items{"data-bind" => "visible:!$root.editingItems()"}
   = render 'show_event_items'
 
-.items{"data-bind" => "visible:$root.editingItems()"}
+.dark.items{"data-bind" => "visible:$root.editingItems()"}
   = render 'edit_event_items'
 
 / /ko

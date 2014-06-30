@@ -314,12 +314,8 @@ div.login-button{
   color: #5a5a5a;
 }
 
-html {
-  background: #252a2d;
-}
-
 .dark {
-  background: #252a2d;
+  background-color: #252a2d;
 }
 
 .default_screen_height {
@@ -328,17 +324,18 @@ html {
 }
 
 .default_margin {
-  margin: 30px 30px;
+  margin: 60px 30px;
 }
 
 .default_button {
-  background: transparent;
+  background-color: #252a2d;
   color: #71b3ed;
+  padding: 5px 70px;
   border:  1px solid #71b3ed;
 }
 
 .default_button:hover {
-  background: transparent;
+  background-color: #252a2d;
   color: #02e202;
   border:  1px solid #02e202;
 }
@@ -348,7 +345,36 @@ html {
 }
 
 .default_input {
-  color: #FFF;
+  background-color: #252a2d !important; 
+  color: #FFF !important;
+  border: 1px solid #484949 !important;
+}
 
-  border: 1px solid #484949;
+.default_input:focus {
+  border: 1px solid #71b3ed !important;
+}
+
+.default_table {
+  background-color: transparent;
+  border-collapse: collapse;
+  border: 0;
+}
+
+.default_table tr:nth-of-type(even) {
+  color: red !important;
+  background: #2e3438 !important;
+}
+.default_table tr:nth-of-type(odd) {
+  background: #252a2d !important;
+}
+
+.default_table td {
+  color: white !important;
+}
+/*.default_table td:nth-child(2n+1) {
+  color: orange !important;
+}*/
+
+.red_test {
+  background-color: red;
 }
