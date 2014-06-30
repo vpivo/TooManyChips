@@ -51,15 +51,14 @@ class UsersController < ApplicationController
 
   def guest
     @user = User.find_by_url(params[:url])
-    render 'show'
+    session[:id] = @user.id
+    render :js => "window.location = '/guest/#{@user.url}"
   end
 
   private
 
   def add_items(items)
     items.each do |e|
-      puts "looping"
-      puts e
       @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], event_item_id: e[:id])
       @user.save!
     end
