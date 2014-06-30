@@ -53,29 +53,6 @@ class EventsController < ApplicationController
     end
   end
 
-
-  # def create
-  #   @event = Event.find(params[:event][:id])
-  #   unless @event
-  #     @event = Event.new(event_params)
-  #     @event.user_id = current_user.id
-  #     @event.date = Chronic.parse(event_params[:date])
-  #     if @event.save && params[:event][:items]
-  #       params[:event][:items].each do |item|
-  #         @event.event_items <<  EventItem.new(quantity_needed: 1, item_id: 1, description: :name )
-  #       end
-  #       render json: @event
-  #     else
-  #       puts @event.errors.full_messages
-  #       render json: @event.errors.full_messages
-  #     end
-  #   else
-  #     @event.update(event_params)
-  #     p @event.errors.full_messages
-  #     render json: @event
-  #   end
-  # end
-
   def update
     @event = Event.find(params[:id])
     @event.update_attributes(event_params)

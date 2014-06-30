@@ -71,6 +71,7 @@ describe Event do
 
   describe "#format_date" do
     let(:event) { build(:event, date: '2020-07-26')  }
+    pending
     context 'new record' do
       it 'formats event date before save' do
         expect(event.date).to eq(Date.new(2020, 7, 26))
