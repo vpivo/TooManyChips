@@ -59,7 +59,8 @@ class UsersController < ApplicationController
 
   def add_items(items)
     items.each do |e|
-      @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], event_item_id: e[:id])
+      @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], 
+        event_item_id: e[:id], event_id: EventItem.find(e[:id]).event.id)
       @user.save!
     end
   end

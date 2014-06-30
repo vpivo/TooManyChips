@@ -1,52 +1,50 @@
-<!-- needs to be broken up -->
-
 <div class='large-12  wrapper columns'>
-	<div class='row'>
-	<div class='large-12 white cont-show columns'>
-			<h3 class='subheader'><span class='grey'>Guest Contributions.</span></h3>
-			<div class='border-top'>
-				<a href="#" class="medium success button dropdown" data-dropdown="dropdown1">
-					Filter </a>
-					<ul id="dropdown1" class="f-dropdown item-menu" data-dropdown-content>
-						<li><a href="#all">All Items</a></li>
-						<li><a href="#allguest">All Guests</a></li>
-						<% @event.guests.each do |guest| %>
-						<li><a href="#guest<%=guest.id%>"><%= guest.name %></a></li>  
-						<%end%>
-					</ul>
-				</div>
-				<div class='guest-items'>
-					<div class='active' id="all" >
-						<% @event.event_items.each do |item| %>
-						<span><%= item.item.name %>: <%= item.quantity_assigned %>/<%= item.quantity_needed %> <span>
-							<div class="progress large-6">
-								<span class="meter" style="width: <%=item.pecentage%>%"></span>
-							</div>
-							<% end %>
-						</div>
-						<% @event.get_guests.each do |guest| %>
-						<div class='hidden' id="guest<%=guest.id%>" >
-							<ul class='no-style'>
-								<li> <strong>Name:</strong>  <%= guest.name %> </li>
-								<li><strong>Email:</strong> <%= guest.email %> </li>
-								<% guest.get_contributions(@event.id).each do |ai| %>
-								<li> <strong>Item:</strong>  <%= ai.quantity_provided %> <%= ai.event_item.item.name %>  </li>
+  <div class='row'>
+  <div class='large-12 white cont-show columns'>
+      <h3 class='subheader'><span class='grey'>Guest Contributions.</span></h3>
+      <div class='border-top'>
+        <a href="#" class="medium success button dropdown" data-dropdown="dropdown1">
+          Filter </a>
+          <ul id="dropdown1" class="f-dropdown item-menu" data-dropdown-content>
+            <li><a href="#all">All Items</a></li>
+            <li><a href="#allguest">All Guests</a></li>
+            <% @event.guests.each do |guest| %>
+            <li><a href="#guest<%=guest.id%>"><%= guest.name %></a></li>  
+            <%end%>
+          </ul>
+        </div>
+        <div class='guest-items'>
+          <div class='active' id="all" >
+            <% @event.event_items.each do |item| %>
+            <span><%= item.item.name %>: <%= item.quantity_assigned %>/<%= item.quantity_needed %> <span>
+              <div class="progress large-6">
+                <span class="meter" style="width: <%=item.pecentage%>%"></span>
+              </div>
+              <% end %>
+            </div>
+            <% @event.guests.each do |guest| %>
+            <div class='hidden' id="guest<%=guest.id%>" >
+              <ul class='no-style'>
+                <li> <strong>Name:</strong>  <%= guest.name %> </li>
+                <li><strong>Email:</strong> <%= guest.email %> </li>
+                <% guest.get_contributions(@event.id).each do |ai| %>
+                <li> <strong>Item:</strong>  <%= ai.quantity_provided %> <%= ai.event_item.item.name %>  </li>
 
-								<% end %>
-							</ul>
-						</div>
-						<%end%>
-						<div class='hidden' id="allguest" >
-							<% @event.get_guests.each do |guest| %>
-							<ul class='no-style'>
-								<li> <strong>Name:</strong>  <%= guest.name %> </li>
-								<li><strong>Email:</strong> <%= guest.email %> </li>
-							</ul>
-							<%end%>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                <% end %>
+              </ul>
+            </div>
+            <%end%>
+            <div class='hidden' id="allguest" >
+              <% @event.guests.each do |guest| %>
+              <ul class='no-style'>
+                <li> <strong>Name:</strong>  <%= guest.name %> </li>
+                <li><strong>Email:</strong> <%= guest.email %> </li>
+              </ul>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

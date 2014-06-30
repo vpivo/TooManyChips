@@ -67,6 +67,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def contributions
+    @event = Event.find(params[:id])
+  end
+
   def event_params
     params.require(:event).permit(:id, :date, :description, :name, 
       :location, :name, :start_time, 

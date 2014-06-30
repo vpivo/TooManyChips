@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   before_create :set_url
   
   def get_contributions(id)
-    self.assigned_items.select { |item| item if (item.event_item.event_id == id) }
+    self.assigned_items.select { |item| item if (item.event_id == id) }
   end
 
   private
