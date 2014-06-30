@@ -27,47 +27,49 @@ class UsersController < ApplicationController
       @user.save!
       add_items(items)
     end 
-    if @user.save
-      redirect_to guest_path(@user.url) 
-    else 
-      puts @user.errors.full_messages
-    end
+    if @user.save && @user.guest
+      render :js => "window.location = '/guest/#{@user.url}/'"
+    elsif 
+      render :js => "window.location = '/your_profile/'"
+   else 
+    puts @user.errors.full_messages
   end
+end
 
-  def create 
-    @user = User.new(person_params)
-    if @user.save
-      session[:id] = @user.id
-      redirect_to your_profile_path
-    else
-      puts @user.errors.messages
-      redirect_to login_path
-    end 
-  end
-
-  def destroy
-    @user.destroy
-  end
-
-  def guest
-    @user = User.find_by_url(params[:url])
+def create 
+  @user = User.new(person_params)
+  if @user.save
     session[:id] = @user.id
-    render :js => "window.location = '/guest/#{@user.url}"
-  end
+    redirect_to your_profile_path
+  else
+    puts @user.errors.messages
+    redirect_to login_path
+  end 
+end
 
-  private
+def destroy
+  @user.destroy
+end
 
-  def add_items(items)
-    items.each do |e|
-      @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], 
-        event_item_id: e[:id], event_id: EventItem.find(e[:id]).event.id)
-      @user.save!
-    end
-  end
+def guest
+  @user = User.find_by_url(params[:url])
+  session[:id] = @user.id
+  render :show
+end
 
-  def person_params
-    params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
-      "items" => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
-      )
+private
+
+def add_items(items)
+  items.each do |e|
+    @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], 
+      event_item_id: e[:id], event_id: EventItem.find(e[:id]).event.id)
+    @user.save!
   end
+end
+
+def person_params
+  params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
+    "items" => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
+    )
+end
 end

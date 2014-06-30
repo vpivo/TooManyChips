@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   end
 
   def check_permissions
-    @event = Event.find(params[:id])
-    unless current_user and current_user.id == @event.host.id
-      redirect_to invitation_path(@event.url)
-    end
+    # @event = Event.find(params[:id])
+    # unless current_user and current_user.id == @event.host.id
+    #   redirect_to invitation_path(@event.url)
+    # end
   end
 
   def logged_in?
