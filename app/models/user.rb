@@ -25,6 +25,24 @@ class User < ActiveRecord::Base
     self.assigned_items.select { |item| item if (item.event_id == id) }
   end
 
+  def duplicate_item?(item)
+    return !self.assigned_items.find_by_event_item_id(item["id"]).nil?
+  end
+
+  def add_items(items)
+    items.each do |item|
+      if self.duplicate_item?(item)
+        existing_item = self.assigned_items.find_by_event_item_id(item["id"])
+        existing_item.quantity_provided = (existing_item.quantity_provided + item["amountToBring"].to_i)
+        existing_item.save!
+      else
+        self.assigned_items << AssignedItem.new(quantity_provided: item["amountToBring"].to_i, 
+          event_item_id: item["id"], event_id: item["eventId"])
+        self.save!
+      end
+    end
+  end
+
   private
 
   def self.from_omniauth(auth)
@@ -48,6 +66,8 @@ class User < ActiveRecord::Base
     # schedule_result_email unless self.result_date == nil
     send_email
   end
+
+
 
   # def schedule_result_email
   #   EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')

@@ -5,7 +5,7 @@ class EventsController < ApplicationController
 
   def index
     @event = Event.find(params[:id])
-    hash = @event.to_ko(current_user.id)
+    hash = @event.to_ko
     render json: hash
   end
 
