@@ -2,9 +2,12 @@
   <div class='row'>
     <div class='large-12 user-show columns'>
 
-     <%= render 'show_events' %>
+      <% if current_user.guest %>
+      <%= render 'guest' %>
+      <%else%>
+      <%= render 'show_events' %>
 
-
-   </div>
- </div>
+      <%end%>
+    </div>
+  </div>
 </div>
