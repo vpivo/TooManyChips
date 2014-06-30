@@ -377,5 +377,5 @@ div.login-button{
 }*/
 
 .red_test {
-  background-color: red;
+  border: 1px solid red;
 }
