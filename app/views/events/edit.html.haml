@@ -11,29 +11,33 @@
     .row.center   
       %a{:href => '#details', 'class' => 'default_button'}>RSVP 
 .dark{:id => "sticky-anchor"}
-.editing_panel_container.right.dark{:id => "sticky"}
-  .editing-panel
-    .panel
-      %span
-        %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
-    .panel
-      %span
-        %a{:href => '#items', "data-bind" => "click: $root.editItems"}Edit Items
-    .panel
-      %span
-        %a{"data-bind" => "click: $root.saveItems"}Save Items
-    .panel
-      %span
-        %a{:href => '#', "data-bind" => "click: $root.editDetails"}Edit Details
-    .panel
-      %span
-        %a{:href => '#', "data-bind" => "click: $root.saveDetails"}Save Details
-    / .panel
-    /   %span
-    /   Cancel  
-    / .panel
-    /   %span
-    /     %a{:href => '#items'}Edit Carpool
+.editing_panel_container{:id => "sticky"}
+  /.editing-panel
+  .icon_container.change_photo{"data-reveal-id" =>"imageUpload"}
+    %p{:class => 'icon_text'}Change Image
+  /  %a{"data-reveal-id" =>"imageUpload", :href =>"#"} 
+  .icon_container.edit_items{"data-bind" => "click: $root.editItems"}
+    %a{:class => 'icon_text', :href => "#items"}Edit Items
+  / %span
+  /    %a{:id => "editItems",:href => '#items', "data-bind" => "click: $root.editItems"}
+  .icon_container.save_items{"data-bind" => "click: $root.saveItems"}
+    %p{:class => 'icon_text'}Save Items
+  /  %span
+  /    %a{"data-bind" => "click: $root.saveItems"}Save Items
+  .icon_container.edit_details{"data-bind" => "click: $root.editDetails"}
+    %p{:class => 'icon_text'}Edit Details
+  /  %span
+  /    %a{:href => '#', "data-bind" => "click: $root.editDetails"}Edit Details
+  .icon_container.save_details{"data-bind" => "click: $root.saveDetails"}
+    %p{:class => 'icon_text'}Save Details
+  /  %span
+  /    %a{:href => '#', "data-bind" => "click: $root.saveDetails"}
+  / .panel
+  /   %span
+  /   Cancel  
+  / .panel
+  /   %span
+  /     %a{:href => '#items'}Edit Carpool
 
 / .dark
 .details.large-10.columns{:id => 'details'}

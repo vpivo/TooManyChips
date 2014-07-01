@@ -379,3 +379,7 @@ div.login-button{
 .red_test {
   border: 1px solid red;
 }
+
+.full_anchor {
+  display: block;
+}

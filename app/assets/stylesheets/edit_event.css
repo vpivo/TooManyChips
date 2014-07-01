@@ -104,17 +104,68 @@ div.background {
     position: absolute;
     padding: 0.5ex;
     right: 0px;
-    width: 20%;
-    max-width: 300px;
+    width: 10%;
+    max-width: 200px;
     height: 100%;
-    background-color: #333;
+    background-color: #ccc;
     color: #fff;
     font-size: 2em;
-    border-left: 3px solid magenta;
+    border-left: 5px solid #71b3ed;
 }
+
 #sticky.stick {
     position: fixed;
     top: 0px;
     right: 0px;
     z-index: 10000;
+}
+
+.icon_container {
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 15%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.icon_container:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+}
+
+.icon_text {
+    font-size: 0.3em;
+    font-family: 'Helvetica';
+    color: black;
+}
+
+.change_photo {
+    /*background-color: cyan;*/
+    background: url('/assets/photo_portrait.svg') no-repeat top left;
+    background-size: contain;
+}
+
+.change_photo:hover {
+    background-color: darkblue;
+}
+
+.save_items {
+    background: url('/assets/circle-check.svg') no-repeat top left;
+    background-size: contain;
+}
+
+.edit_items {
+    background: url('/assets/list_icon.svg') no-repeat top left;
+    background-size: contain;
+}
+
+.edit_details {
+    background: url('/assets/list_icon.svg') no-repeat top left;
+    background-size: contain;
+}
+
+.save_details {
+    background: url('/assets/circle-check.svg') no-repeat top left;
+    background-size: contain;
 }

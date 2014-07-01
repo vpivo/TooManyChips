@@ -100,10 +100,11 @@ function MasterVM() {
             }
         });
     }
-    
+
     self.editDetails = function() {
         if (self.editingText() == false) {
             self.editingText(true);
+            //window.location.href = "#";
         }
     }
 
@@ -117,6 +118,7 @@ function MasterVM() {
     self.editItems = function() {
         if (self.editingItems() == false){
             self.editingItems(true);
+            //window.location.href = "#items";
         }
     }
 
