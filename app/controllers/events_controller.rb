@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   respond_to :json, :html
-  before_filter :check_permissions, :only => [:edit, :add_image, :destroy]
+  before_filter :check_permissions, :only => [:edit, :add_image, :destroy, :update]
   before_filter :logged_in?, :only => [:new, :update, :create]
 
   def index

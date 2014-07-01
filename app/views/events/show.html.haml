@@ -1,0 +1,49 @@
+.id
+  =@event.id
+/ ko with: currentEvent
+.columns.large-12.dark.background{"data-bind" => "style: backgroundImage"}
+  .cover-info
+    %h1{'data-bind' => "text:name"}
+      %br
+      %br
+      %br
+    .row.center   
+      %a{:href => '#details', 'class' => 'default_button'}>RSVP 
+
+/ .dark
+.details.large-12.columns{:id => 'details'}
+  .details-left.large-6.columns
+    %p.default_label
+      Hosted by
+      %span{'data-bind' => "text:host_name"}
+    %p{'class' => 'default_label' , 'data-bind' => "text:description"}
+
+  .details-right.large-6.columns
+    .date-box.default_label
+      %span{'data-bind' => "text:date  "}
+
+      %br
+      %span{'data-bind' => "text:start_time"}
+
+      until 
+      %span{'data-bind' => "text:end_time"}
+
+      %br
+      %span{'data-bind' => "text:location"}
+
+      %br
+      %span{'data-bind' => "text:city"},
+
+      %span{'data-bind' => "text:state"}
+
+      %br
+
+      %span{'data-bind' => "text:zip"}
+
+
+.dark.items{"data-bind" => "visible:!$root.editingItems()"}
+  = render 'show_event_items'
+
+/ /ko
+#imageUpload.reveal-modal.large{style: "display: none"}
+  = render 'events/add_image'
