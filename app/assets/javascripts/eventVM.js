@@ -9,7 +9,6 @@ function Item(data) {
     this.eventId= ko.observable(data.event_id);
     this.stillNeeded = ko.observable(data.still_needed);
 }
-
 function Event(data) {
     var self = this;
     self.id = ko.observable(data.id );
@@ -28,6 +27,14 @@ function Event(data) {
     self.event_type = ko.observable(data.event_type);
     self.imageString = ko.observable(data.image);
     self.items = ko.observableArray([]);
+    self.deletedItems = ko.observableArray([]);
+    self.addItem = function() {
+        self.items.unshift(new Item(""));
+    }
+    self.removeItem = function(item) { 
+        self.deletedItems.push(item.id());
+        self.items.remove(item);
+    };
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
@@ -38,21 +45,19 @@ function Event(data) {
         }
     }
 };
-
+//toJson Constructor
 Event.prototype.toJSON = function() {
     var copy = ko.toJS(this); //easy way to get a clean copy
     delete copy.imageString; //remove an extra property
     delete copy.backgroundImage; //remove an extra property
     return copy; //return the copy to be serialized
 };
-
 function Guest(data) {
     var self = this;    
     self.email = ko.observable(data.email);
     self.name = ko.observable(data.name);
     self.items = ko.observableArray([]);
 }
-
 function MasterVM() {
     var self = this;    
     self.newItemName = ko.observable();
@@ -100,35 +105,30 @@ function MasterVM() {
             }
         });
     }
-
     self.editDetails = function() {
         if (self.editingText() == false) {
             self.editingText(true);
             //window.location.href = "#";
         }
     }
-
     self.saveDetails = function() {
         if (self.editingText() == true) {
             self.editingText(false);
             self.update(self.currentEvent());
         }
     }
-
     self.editItems = function() {
         if (self.editingItems() == false){
             self.editingItems(true);
             //window.location.href = "#items";
         }
     }
-
     self.saveItems = function() {
         if (self.editingItems() == true) {
             self.editingItems(false);
             self.update(self.currentEvent());
         }
     }
-
     self.addGuest = function(data){
         console.log('yeah')
         array = self.currentEvent().items()
@@ -151,7 +151,6 @@ function MasterVM() {
     }
     //supporting function
     function valueOfOneOrMore(item){return item.amountToBring() > 0}
-
     self.getEvent();
 }
 
@@ -159,7 +158,9 @@ function MasterVM() {
 // Scroll to Sticky Navbar
 function sticky_relocate() {
     var window_top = $(window).scrollTop();
-    var div_top = $('#sticky-anchor').offset().top;
+    if($('#sticky-anchor').offset()){
+        var div_top = $('#sticky-anchor').offset().top ;
+    }
     if (window_top > div_top) {
         $('#sticky').addClass('stick');
     } else {

@@ -55,7 +55,11 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update_attributes(event_params)
+    @event.update_items(event_params[:items], @event.id)
+    @event.delete_items(event_params[:deletedItems])
+    data = event_params.delete([:deletedItems])
+    @event.update_attributes(data)
+    @event.save!
     render json: @event 
   end
 
@@ -73,10 +77,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:id, :date, :description, :name, 
-      :location, :name, :start_time, 
+      :location, :name, :start_time,
       :event_items_attributes, :state, :city, :zip, :event_type, 
       :allow_guest_create, :image, :image_updated_at,
       :host_name, :type, :end_time, :street_address, :remote_image_url, :image,
-      :image_file_name, :image_content_type, :image_file_size)
+      :image_file_name, :image_content_type, :image_file_size, 
+      :items => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded],  :deletedItems => [])
   end
 end

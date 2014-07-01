@@ -12,4 +12,5 @@ class Item < ActiveRecord::Base
   		self.destroy 
   	end
   end
+
 end

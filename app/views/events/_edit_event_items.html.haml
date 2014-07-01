@@ -1,16 +1,23 @@
 .row
   .large-10.columns{:id => 'items'}
+    %button{"data-bind" => "click: addItem", 'class' => 'right'} Add New Item
     %table{"class" => "default_table"}
       %thead
         %tr 
           %th{width: "", "class" => "default_label"} Name
           %th{"class" => "default_label"} Description
-          %th{"class" => "default_label"} Quanity Requested
+          %th{"class" => "default_label"} Quanity Needed
       %tbody{"data-bind" =>"foreach: items"}
         %tr{"class" => "dark"}
-          %td{"data-bind" => "text:name" }
-          %td{"data-bind" => "text:description" }
+          %td
+            %input{'data-bind' => 'text:name, type: text, value: name', "class" => "default_input"}
+          %td
+            %input{'data-bind' => 'text:description, type: text, value: description', "class" => "default_input"}
           %td
             %input{'data-bind' => 'text:quantity, type: text, value: quantity', "class" => "default_input"}
+          %td{"data-bind" => "click: $parent.removeItem"} X
+
+
+
   
 

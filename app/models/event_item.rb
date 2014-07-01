@@ -34,6 +34,7 @@ class EventItem < ActiveRecord::Base
   end
 
   def to_ko
+    p id
     { id: id,
       name: item.name,
       quantity: quantity_needed,

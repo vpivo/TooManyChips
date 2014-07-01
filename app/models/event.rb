@@ -41,8 +41,6 @@ class Event < ActiveRecord::Base
     self.date  <= DateTime.now
   end
 
-  private
-
   def event_type_id(name)
     type = Type.find_or_create_by_name(name.downcase.singularize)
     type.id
@@ -55,6 +53,35 @@ class Event < ActiveRecord::Base
   def format_date
     unless self.date.class == Time
       self.date = Chronic.parse(self.date)
+    end
+  end
+
+  def delete_items(items)
+    if items 
+      items.each do |item_id|
+        item_to_delete = EventItem.find(item_id)
+        item_to_delete.destroy!
+      end
+    end
+  end
+
+  def update_items(items, event_id) #id-update_attrs, no_id means it's new, delete_flag = true delte it
+    items.each do |item|
+      if item["id"] 
+        item_to_update = EventItem.find(item["id"])
+        item_to_update.update(description: item[:description], quantity_needed: item[:quantity])
+        if item_to_update.item.name != item["name"]
+          item_to_update.update(item_id: Item.find_or_create_by_filtered_name(item["name"]))
+        end
+        item_to_update.save!
+      elsif  item["id"].nil?
+        new_event_item = EventItem.new(description: item[:description], quantity_needed: item[:quantity], event_id: event_id)
+        item_parent = Item.find_or_create_by_name(item["name"].chomp.downcase)
+        p item_parent
+        new_event_item.item_id = item_parent.id
+        new_event_item.save!
+        item_parent.save!
+      end
     end
   end
 
