@@ -103,16 +103,16 @@ function MasterVM() {
             }
         });
     }
-    self.toggleEdit = function() {
-        if (self.editingText() == false){
-            self.editingText(true);
+    /*self.toggleEdit = function() {
+        if (self.editingText() == false){ // if true dont switch to edit mode
+            self.editingText(true); // Edit click
             $("a#editToggle").text('Save')
         } else { self.editingText(false),
             $("a#editToggle").text('Edit Details')
-            self.update(self.currentEvent());
+            self.update(self.currentEvent()); // save click
         }
-    }
-     self.toggleEditItems = function() {
+    }*/
+     /*self.toggleEditItems = function() {
         if (self.editingItems() == false){
             self.editingItems(true);
             $("a#editToggleItems").text('Save')
@@ -120,7 +120,32 @@ function MasterVM() {
             $("a#editToggleItems").text('Edit Items')
             self.update(self.currentEvent());
         }
+    }*/
+    self.editDetails = function() {
+        if (self.editingText() == false) {
+            self.editingText(true);
+        }
     }
+    self.saveDetails = function() {
+        if (self.editingText() == true) {
+            self.editingText(false);
+            self.update(self.currentEvent());
+        }
+    }
+    self.editItems = function() {
+        if (self.editingItems() == false){
+            self.editingItems(true);
+        }
+    }
+    self.saveItems = function() {
+        if (self.editingItems() == true) {
+            self.editingItems(false);
+            self.update(self.currentEvent());
+        }
+    }
+
+
+
     self.addGuest = function(data){
         console.log('yeah')
         array = self.currentEvent().items()
@@ -146,3 +171,21 @@ function MasterVM() {
 
     self.getEvent();
 }
+
+
+// Scroll to Sticky Navbar
+function sticky_relocate() {
+    var window_top = $(window).scrollTop();
+    var div_top = $('#sticky-anchor').offset().top;
+    if (window_top > div_top) {
+        $('#sticky').addClass('stick');
+    } else {
+        $('#sticky').removeClass('stick');
+    }
+    console.log("STICKY RELOCATE");
+}
+
+$(function () {
+    $(window).scroll(sticky_relocate);
+    sticky_relocate();
+});

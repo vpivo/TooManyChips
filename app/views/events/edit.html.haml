@@ -10,22 +10,31 @@
       %br
     .row.center   
       %a{:href => '#details', 'class' => 'default_button'}>RSVP 
-.editing-panel.large-2.columns.dark
-  .panel
-    %span
-      %a{:id => "editToggleItems", :href => '#items', "data-bind" => "click: $root.toggleEditItems"}Edit Items
-  .panel
-    %span
-      %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
-  .panel{:id => "save"}
-    %span
-      %a{:id => "editToggle", :href => '#', "data-bind" => "click: $root.toggleEdit"}Edit Details
-  .panel
-    %span
-    Cancel  
-  / .panel
-  /   %span
-  /     %a{:href => '#items'}Edit Carpool
+.dark{:id => "sticky-anchor"}
+.editing_panel_container.right.dark{:id => "sticky"}
+  .editing-panel
+    .panel
+      %span
+        %a{"data-reveal-id" =>"imageUpload", :href =>"#"}>Change Photo  
+    .panel
+      %span
+        %a{:href => '#items', "data-bind" => "click: $root.editItems"}Edit Items
+    .panel
+      %span
+        %a{"data-bind" => "click: $root.saveItems"}Save Items
+    .panel
+      %span
+        %a{:href => '#', "data-bind" => "click: $root.editDetails"}Edit Details
+    .panel
+      %span
+        %a{:href => '#', "data-bind" => "click: $root.saveDetails"}Save Details
+    / .panel
+    /   %span
+    /   Cancel  
+    / .panel
+    /   %span
+    /     %a{:href => '#items'}Edit Carpool
+
 
 / .dark
 .details.large-10.columns{:id => 'details'}
