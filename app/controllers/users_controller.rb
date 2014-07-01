@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   respond_to :json, :html
-  before_filter :logged_in?, :only => [:show, :edit, :update, :destroy, :your_profile]
-  before_filter :load_and_authorize_user, :only => [:show, :edit, :update, :destroy]
+  before_filter :logged_in?, :only => [:show, :edit, :destroy, :your_profile]
+  before_filter :load_and_authorize_user, :only => [:show, :edit, :destroy]
 
   def your_profile
     @user = current_user
@@ -50,15 +50,35 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def update 
+    if current_user.nil?
+      @user = User.find_by_url(person_params[:url])
+      @user.update(person_params)
+      @user.guest = false
+      @user.url = nil
+      @user.save!
+      session[:id] = @user.id
+      redirect_to your_profile_path
+    else
+      current_user.update(person_params)
+      current_user.save!
+      redirect_to your_profile_path
+    end
+  end
+
   def guest
     @user = User.find_by_url(params[:url])
-    render :show
+    if @user
+      render :show
+    else 
+      redirect_to login_path
+    end
   end
 
   private
 
   def person_params
-    params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
+    params.require(:user).permit(:name, :email, :guest, :url, :password, :password_confirmation, 
       :items => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
       )
   end

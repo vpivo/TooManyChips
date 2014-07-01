@@ -4,7 +4,7 @@ Toomanychips::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete 'signout', to: 'session#destroy', via: :destroy
   root to: 'pages#index'
-  resources :users, :only => [:show, :create, :new, :edit, :guest_create] 
+  resources :users, :only => [:show, :create, :new, :edit, :guest_create, :update] 
   post 'create_guest' => 'users#create_guest'
   resources :assigned_items, :except => [:index]
   delete 'remove/:id', to: 'assigned_items#destroy', as: 'remove'

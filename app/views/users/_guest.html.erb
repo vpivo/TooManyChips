@@ -1,9 +1,45 @@
-<h3 class='subheader'><span class='grey'>Your Contributions</span></h3>
-<div class='event-list border-top'>
-<br>
 <% if @user.guest %>
-	<p class='center'>To edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}">this page</a> or  <a href="#">create an account</a>. 
-	<%end%>
+	<p class='center'>To track and edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}", id='createGuestAccount'>this page</a> or  <a href="#" id='createAccountButton'>create an account.</a></p>
+<%end%>
+
+<div class='hide' id='createAccountFromGuest' >
+  <fieldset>
+    <%= form_for @user do |f| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Your name</label>
+        <%= f.text_field :name, :id => "inputName", :required => true, placeholder: "Name" %>
+      </div>
+    </div>
+    <input type="hidden" id="url" name="user[url]" value=<%=@user.url%> />
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>A unique password</label>
+        <%= f.password_field :password, :id => "inputPassword", :required => true, placeholder: "Password" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <label>Confirm your password</label>
+        <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
+      </div>
+    </div>
+     <div class="row">
+      <div class="large-12 columns">
+    <%= f.submit "Sign up", class: 'event_done right' %>
+    </div>
+    </div>
+    <% end %>
+  </fieldset>
+</div>
+
+
+<h3 class='subheader'>
+<span class='grey'>Your Contributions</span>
+</h3>
+<div class='event-list border-top'>
 	<table class='user-show'>
 		<% unless @user.assigned_items.length > 0 %>
 		<h3 class='subheader center'><span class='grey'> You don't have any contributions.</span></h3>
