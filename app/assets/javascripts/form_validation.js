@@ -6,9 +6,21 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
+  $(".edit_event").on('ajaxSuccess', function(e, data, status, xhr){
+    console.log("YAYYYYY")
+  })
+});
+$('#createAccountButton').click(function(){
+  $('#createAccountFromGuest').removeClass('hide')
+});
+
+$(document).ready(function(){
   $('#remove_trigger').on('click', function(){
       $(this).closest('tr').hide();
-  })
+  });
+
+
+
 });
 // input blueprint
 function input(id, error, requiredLength){

@@ -24,6 +24,10 @@ C7406D pink
 B283CB purple
 #515151*/
 
+.hide {
+  display: none;
+}
+
 *{font-family: 'Tienne', serif;}
 
 .id{
