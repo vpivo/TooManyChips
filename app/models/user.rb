@@ -45,6 +45,25 @@ class User < ActiveRecord::Base
 
   private
 
+  def self.from_finished_job finished_job
+    job = Job.build_from_job_profile(finished_job.job_profile)
+    job.weekly = finished_job.weekly
+    job.batch_id = finished_job.batch_id
+    job.base_price = finished_job.base_price
+    job.base_writer_price = finished_job.base_writer_price
+    finished_job.notes.each do |note|
+      note.set(job_id: job.id)
+      note.set(finished_job_id: job.id)
+    end
+    job
+  end
+
+  def self.from_guest(url, password)
+    user = user.find_by_url(url)
+    user.guest = false
+    user.password = password
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider

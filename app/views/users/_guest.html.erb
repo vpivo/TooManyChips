@@ -2,8 +2,7 @@
 <div class='event-list border-top'>
 <br>
 <% if @user.guest %>
-	<p class='center'>To edit your contributions please bookmark this page: 
-	<%=link_to "toomanychips.com/guest/#{@user.url}", guest_path(@user.url)%>
+	<p class='center'>To edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}">this page</a> or  <a href="#">create an account</a>. 
 	<%end%>
 	<table class='user-show'>
 		<% unless @user.assigned_items.length > 0 %>
