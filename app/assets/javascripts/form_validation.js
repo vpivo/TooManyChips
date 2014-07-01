@@ -4,6 +4,12 @@ $(document).ready(function(){
     console.log("YAYYYYY")
   })
 });
+
+$(document).ready(function(){
+  $('#remove_trigger').on('click', function(){
+      $(this).closest('tr').hide();
+  })
+});
 // input blueprint
 function input(id, error, requiredLength){
   this.id = id;

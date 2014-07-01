@@ -52,7 +52,6 @@ class UsersController < ApplicationController
 
   def guest
     @user = User.find_by_url(params[:url])
-    session[:id] = @user.id
     render :show
   end
 

@@ -56,11 +56,12 @@
       %span{'data-bind' => "text:zip, visible: !$root.editingText()"}
       %input{'class' => 'dark default_input', 'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
 
-.dark.items{"data-bind" => "visible:!$root.editingItems()"}
-  = render 'show_event_items'
 
 .dark.items{"data-bind" => "visible:$root.editingItems()"}
   = render 'edit_event_items'
+
+.dark.items{"data-bind" => "visible:!$root.editingItems()"}
+  = render 'show_event_items'
 
 / /ko
 #imageUpload.reveal-modal.large{style: "display: none"}
