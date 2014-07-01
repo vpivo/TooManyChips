@@ -7,10 +7,7 @@ function Item(data) {
     this.quantity = ko.observable(data.quantity);
     this.amountToBring = ko.observable(0);
     this.eventId= ko.observable(data.event_id);
-    this.stillNeeded = ko.computed(function(){
-        return this.quantity - this.amountPromised; 
-    });
-
+    this.stillNeeded = ko.observable(data.still_needed);
 }
 
 function Event(data) {

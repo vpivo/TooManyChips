@@ -18,17 +18,19 @@ class UsersController < ApplicationController
     @user = User.find_by_email(person_params[:email]) 
     items = person_params[:items] || []
     if @user
-      add_items(items)
+      @user.add_items(items)
     else
       @user = User.new
       @user.name = person_params[:name]
       @user.email = person_params[:email]
       @user.guest = true
       @user.save!
-      add_items(items)
+      @user.add_items(items)
     end 
-    if @user.save
-      redirect_to guest_path(@user.url) 
+    if @user.save && @user.guest
+      render :js => "window.location = '/guest/#{@user.url}/'"
+    elsif 
+      render :js => "window.location = '/your_profile/'"
     else 
       puts @user.errors.full_messages
     end
@@ -40,7 +42,6 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       redirect_to your_profile_path
     else
-      puts @user.errors.messages
       redirect_to login_path
     end 
   end
@@ -51,23 +52,14 @@ class UsersController < ApplicationController
 
   def guest
     @user = User.find_by_url(params[:url])
-    session[:id] = @user.id
-    render :js => "window.location = '/guest/#{@user.url}"
+    render :show
   end
 
   private
 
-  def add_items(items)
-    items.each do |e|
-      @user.assigned_items << AssignedItem.new(quantity_provided: e[:amountToBring], 
-        event_item_id: e[:id], event_id: EventItem.find(e[:id]).event.id)
-      @user.save!
-    end
-  end
-
   def person_params
     params.require(:user).permit(:name, :email, :guest, :password, :password_confirmation, 
-      "items" => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
+      :items => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded]
       )
   end
 end

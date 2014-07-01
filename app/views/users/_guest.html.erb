@@ -15,7 +15,7 @@
 			<td><%= item.quantity_provided %></td>
 			<td><%= item.event_item.description%></td>
 			<td> <%= link_to "#{item.event_item.event.name}", event_path(item.event_item.event)%></td>
-			<td> <%= link_to 'remove', remove_path(item), class: 'remove_fields', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json , :confirm => 'Are you sure?'%></td>
+			<td> <%= link_to 'remove', remove_path(item), class: 'remove_fields', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json%></td>
 		</tr>  
 		<% end %>
 	</table>
