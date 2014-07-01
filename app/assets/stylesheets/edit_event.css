@@ -20,10 +20,6 @@ div.background {
 .date-box{
   padding: 3%;
 }
-.editing-panel{
-  /*background-color:white;*/
-  padding-top: 2%;
-}
 
 .panel {
   background-color: #568cce;
@@ -88,4 +84,37 @@ div.background {
   font-size:15px;
   /*color: #626261;*/
   border: 1px solid white;
+}
+
+
+/* Sticky Menu bar */
+.editing_panel_container {
+  height: 100%;
+  background-color: black;
+  z-index: 10000;
+}
+
+.editing-panel{
+  position: absolute;
+  padding-top: 2%;
+  right: 0px;
+}
+
+#sticky {
+    position: absolute;
+    padding: 0.5ex;
+    right: 0px;
+    width: 20%;
+    max-width: 300px;
+    height: 100%;
+    background-color: #333;
+    color: #fff;
+    font-size: 2em;
+    border-left: 3px solid magenta;
+}
+#sticky.stick {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    z-index: 10000;
 }
