@@ -77,7 +77,6 @@ class Event < ActiveRecord::Base
       elsif  item["id"].nil?
         new_event_item = EventItem.new(description: item[:description], quantity_needed: item[:quantity], event_id: event_id)
         item_parent = Item.find_or_create_by_name(item["name"].chomp.downcase)
-        p item_parent
         new_event_item.item_id = item_parent.id
         new_event_item.save!
         item_parent.save!

@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
 
   def create_guest
-    @user = User.find_by_email(person_params[:email]) 
+    email = person_params[:email] || current_user.email
+    @user = User.find_by_email(email) 
     items = person_params[:items] || []
     if @user
       @user.add_items(items)
