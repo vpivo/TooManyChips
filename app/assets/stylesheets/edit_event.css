@@ -86,7 +86,6 @@ div.background {
   border: 1px solid white;
 }
 
-
 /* Sticky Menu bar */
 .editing_panel_container {
   height: 100%;
@@ -94,23 +93,18 @@ div.background {
   z-index: 10000;
 }
 
-.editing-panel{
-  position: absolute;
-  padding-top: 2%;
-  right: 0px;
-}
-
 #sticky {
     position: absolute;
     padding: 0.5ex;
     right: 0px;
     width: 10%;
-    max-width: 200px;
+    max-width: 100px;
+    min-width: 65px;
     height: 100%;
-    background-color: #ccc;
+    background-color: #222;
     color: #fff;
     font-size: 2em;
-    border-left: 5px solid #71b3ed;
+    border-left: 2px solid #71b3ed;
 }
 
 #sticky.stick {
@@ -120,9 +114,11 @@ div.background {
     z-index: 10000;
 }
 
+/* ICON CONTAINER/LABEL STYLING: text styling, show/hide label; */
 .icon_container {
     width: 70%;
     margin-left: 15%;
+    margin-right: 15px;
     margin-top: 15%;
     cursor: pointer;
     text-align: center;
@@ -134,38 +130,53 @@ div.background {
     padding-top: 100%;
 }
 
-.icon_text {
-    font-size: 0.3em;
-    font-family: 'Helvetica';
-    color: black;
+.icon_label_style {
+    position: relative;
+    bottom: 0px;
+    font-size: 12px;
+    color: white;
+    text-decoration: none;
+}
+.icon_text_rollover {
+    opacity: 0.0;
+}
+.icon_container:hover .icon_text_rollover{
+    opacity: 1.0;
 }
 
-.change_photo {
-    /*background-color: cyan;*/
-    background: url('/assets/photo_portrait.svg') no-repeat top left;
-    background-size: contain;
-}
+/* TEST STYLING: ICONS AND COLOR */
+    .change_photo {
+        background: url('/assets/photo_landscape_white.svg') no-repeat top left;
+        background-size: contain;
+    }
+    .change_photo:hover {
+        background: url('/assets/photo_landscape_red.svg') no-repeat top left;
+        background-size: contain;
+    }
 
-.change_photo:hover {
-    background-color: darkblue;
-}
+    .edit_items {
+        background: url('/assets/list_icon_white.svg') no-repeat top left;
+        background-size: contain;
+    }
+    .edit_items:hover {
+        background: url('/assets/list_icon_orange.svg') no-repeat top left;
+        background-size: contain;
+    }
 
-.save_items {
-    background: url('/assets/circle-check.svg') no-repeat top left;
-    background-size: contain;
-}
+    .edit_details {
+        background: url('/assets/list_icon_white.svg') no-repeat top left;
+        background-size: contain;
+    }
+    .edit_details:hover {
+        background: url('/assets/list_icon_green.svg') no-repeat top left;
+        background-size: contain;
+    }
 
-.edit_items {
-    background: url('/assets/list_icon.svg') no-repeat top left;
-    background-size: contain;
-}
-
-.edit_details {
-    background: url('/assets/list_icon.svg') no-repeat top left;
-    background-size: contain;
-}
-
-.save_details {
-    background: url('/assets/circle-check.svg') no-repeat top left;
-    background-size: contain;
-}
+    .save_event {
+        background: url('/assets/circle_check_white.svg') no-repeat top left;
+        background-size: contain;
+    }
+    .save_event:hover {
+        background: url('/assets/circle_check_blue.svg') no-repeat top left;
+        background-size: contain;
+    }
