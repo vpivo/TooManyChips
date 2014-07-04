@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     end 
   end
 
+  #refactor: this probably doesn't work
   def destroy
     @user.destroy
   end

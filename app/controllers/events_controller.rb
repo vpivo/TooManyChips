@@ -42,30 +42,30 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(event_params)
-    @event.user_id = current_user.id
-    @event.date = Chronic.parse(event_params[:date])
-    if @event.save 
-      render :js => "window.location = '/events/#{@event.id}/edit'"
+    event = Event.create(event_params)
+    event.user_id = current_user.id
+    event.date = Chronic.parse(event_params[:date])
+    if event.save 
+      render :js => "window.location = '/events/#{event.id}/edit'"
     else
-      puts @event.errors.full_messages
-      render json: @event.errors.full_messages
+      puts event.errors.full_messages
+      render json: event.errors.full_messages
     end
   end
 
   def update
-    @event = Event.find(params[:id])
-    @event.update_items(event_params[:items], @event.id)
-    @event.delete_items(event_params[:deletedItems])
+    event = Event.find(params[:id])
+    event.update_items(event_params[:items], event.id)
+    event.delete_items(event_params[:deletedItems])
     data = event_params.delete([:deletedItems])
-    @event.update_attributes(data)
-    @event.save!
-    render json: @event 
+    event.update_attributes(data)
+    event.save!
+    render json: event 
   end
 
   def destroy
-    @event = Event.find(params[:id])
-    @event.destroy
+    event = Event.find(params[:id])
+    event.destroy
     respond_to do |format|
       format.html { redirect_to user_path(current_user) }
     end
