@@ -10,9 +10,7 @@ class Event < ActiveRecord::Base
 
   has_attached_file :image, styles: {thumb: '100x100>', square: '200x200#', header: '1000x400>'}
 
-
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
-
 
   def to_ko
     {
@@ -65,7 +63,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def update_items(items, event_id) #id-update_attrs, no_id means it's new, delete_flag = true delte it
+  def update_items(items, event_id) 
     items.each do |item|
       if item["id"] 
         item_to_update = EventItem.find(item["id"])

@@ -108,24 +108,20 @@ function MasterVM() {
     self.editDetails = function() {
         if (self.editingText() == false) {
             self.editingText(true);
-            //window.location.href = "#";
-        }
-    }
-    self.saveDetails = function() {
-        if (self.editingText() == true) {
-            self.editingText(false);
-            self.update(self.currentEvent());
         }
     }
     self.editItems = function() {
         if (self.editingItems() == false){
             self.editingItems(true);
-            //window.location.href = "#items";
         }
     }
-    self.saveItems = function() {
+    self.saveEvent = function() {
         if (self.editingItems() == true) {
             self.editingItems(false);
+            self.update(self.currentEvent());
+        }
+        if (self.editingText() == true) {
+            self.editingText(false);
             self.update(self.currentEvent());
         }
     }
