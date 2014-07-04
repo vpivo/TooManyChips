@@ -33,7 +33,8 @@ class UsersController < ApplicationController
     elsif 
       render :js => "window.location = '/your_profile/'"
     else 
-      puts @user.errors.full_messages
+      #what is this
+      @user.errors.full_messages
     end
   end
 
