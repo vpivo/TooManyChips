@@ -14,7 +14,7 @@
       %button{"class" => "left default_button", "type"=>"submit", "data-bind" => "click: $root.addGuest"}
         Save
 -else
-  .middle
+  .middle{"data-bind" => "visible:!$root.editingItems()"}
     %button{"class" => "default_button middle", "type"=>"submit", "data-bind" => "click: $root.addGuest"}Save
 //ko
 .row

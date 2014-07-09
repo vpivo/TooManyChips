@@ -40,30 +40,46 @@
       Hosted by
       %span{'data-bind' => "text:host_name"}
     %p{'class' => 'default_label' , 'data-bind' => "text:description, visible: !$root.editingText()"}
-    %textarea{'class' => 'default_input', 'data-bind' => 'text:description, type: text, visible: $root.editingText(), value: description'}
+    %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+      Description
+      %textarea{'class' => 'default_input', 'data-bind' => 'text:description, type: text, visible: $root.editingText(), value: description'}
 
   .details-right.large-5.columns
     .date-box.default_label
       %span{'data-bind' => "text:date, visible: !$root.editingText()  "}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:date, type: text, visible: $root.editingText(), value: date'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        Date
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:date, type: text, visible: $root.editingText(), value: date'}
       %br
       %span{'data-bind' => "text:start_time, visible: !$root.editingText()"}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        Start Time
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
       until 
       %span{'data-bind' => "text:end_time, visible: !$root.editingText()"}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:end_time, type: text, visible: $root.editingText(), value: end_time'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        End Time
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:end_time, type: text, visible: $root.editingText(), value: end_time'}
       %br
       %span{'data-bind' => "text:location, visible: !$root.editingText()"}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        Address
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
       %br
       %span{'data-bind' => "text:city, visible: !$root.editingText()"},
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:city, type: text, visible: $root.editingText(), value: city'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        City
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:city, type: text, visible: $root.editingText(), value: city'}
       %span{'data-bind' => "text:state, visible: !$root.editingText()"}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:state, type: text, visible: $root.editingText(), value: state'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        State
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:state, type: text, visible: $root.editingText(), value: state'}
       %br
 
       %span{'data-bind' => "text:zip, visible: !$root.editingText()"}
-      %input{'class' => 'dark default_input', 'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        Zip Code
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:zip, type: text, visible: $root.editingText(), value: zip'}
 
 
 .dark.items{"data-bind" => "visible:$root.editingItems()"}
