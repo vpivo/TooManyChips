@@ -2,6 +2,7 @@ class SessionController < ApplicationController
   respond_to :json
 
   def oauth_create
+    puts request.env["omniauth.auth"]
     puts "params"
     puts 'made it to oauth_create'
     user = User.from_omniauth(env["omniauth.auth"])
