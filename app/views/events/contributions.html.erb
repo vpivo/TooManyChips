@@ -1,9 +1,9 @@
-<div class='large-12  wrapper columns'>
+<div class='large-12  wrapper columns dark'>
   <div class='row'>
-  <div class='large-12 white cont-show columns'>
-      <h3 class='subheader'><span class='grey'>Guest Contributions.</span></h3>
-      <div class='border-top'>
-        <a href="#" class="medium success button dropdown" data-dropdown="dropdown1">
+  <div class='large-12 cont-show columns'>
+      <h3 class='subheader'><span class='white'>Guest Contributions.</span></h3>
+      <div class='border_top_white'>
+        <a href="#" style="background:transparent; border:  1px solid #71b3ed;" class="medium success button dropdown default_button" data-dropdown="dropdown1">
           Filter </a>
           <ul id="dropdown1" class="f-dropdown item-menu" data-dropdown-content>
             <li><a href="#all">All Items</a></li>
@@ -16,9 +16,9 @@
         <div class='guest-items'>
           <div class='active' id="all" >
             <% @event.event_items.each do |item| %>
-            <span><%= item.item.name %>: <%= item.quantity_assigned %>/<%= item.quantity_needed %> <span>
-              <div class="progress large-6">
-                <span class="meter" style="width: <%=item.pecentage%>%"></span>
+            <span class="default_label"><%= item.item.name %>: <%= item.quantity_assigned %>/<%= item.quantity_needed %> <span>
+              <div class="progress large-6 dark_important">
+                <span class="meter" style="background: #71b3ed; width: <%=item.pecentage%>%"></span>
               </div>
               <% end %>
             </div>

@@ -93,7 +93,7 @@ html, body{
 
 div.wrapper{
   min-height: 100%;
-  background-color: #71b3ed;
+  /*background-color: #71b3ed;*/
 }
 span.grey{
   color: #626261;
@@ -176,12 +176,9 @@ table{
 }
 
 div.event-list{
-  margin-bottom: 2%;
-}
-div.event-list{
   margin-left: auto;
   margin-right: auto;
-  border-top: 2px solid #626261;
+  margin-bottom: 2%;
 }
 
 div.user-show{ 
@@ -323,6 +320,14 @@ div.login-button{
   background-color: #252a2d;
 }
 
+.dark_important {
+  background-color: #252a2d !important;
+}
+
+.border_top_white {
+  border-top: 2px solid #FFF;
+}
+
 .default_screen_height {
   height: 100%;
   min-height: 100%;
@@ -379,10 +384,6 @@ div.login-button{
 /*.default_table td:nth-child(2n+1) {
   color: orange !important;
 }*/
-
-.red_test {
-  border: 1px solid red;
-}
 
 .full_anchor {
   display: block;

@@ -97,9 +97,10 @@ div.background {
     position: absolute;
     padding: 0.5ex;
     right: 0px;
-    width: 10%;
+    width: 70px;
+    /*width: 10%;
     max-width: 100px;
-    min-width: 65px;
+    min-width: 65px;*/
     height: 100%;
     background-color: #222;
     color: #fff;
@@ -114,6 +115,54 @@ div.background {
     z-index: 10000;
 }
 
+.side_bar_pull_tab {
+        position: relative;
+        top: 45%;
+        left: -34%;
+        width: 15px;
+        height: 35px;
+        background-color: #222;
+        cursor: pointer;
+        z-index: 1000;
+
+        border-left: 2px solid magenta;
+        border-top: 2px solid magenta;
+        border-bottom: 2px solid magenta;
+
+        -ms-border-radius: 5px 0px 0px 5px;
+        -webkit-border-radius: 5px 0px 0px 5px;
+        -moz-border-radius: 5px 0px 0px 5px;
+        border-radius: 5px 0px 0px 5px;
+    }
+
+    .side_bar_pull_tab_line {
+        position: absolute;
+        width: 9%;
+        height: 80%;
+        margin-top: 20%;
+        background-color: #ccc;
+    }
+
+    /* Animate Side Bar */
+    .sidebar_slide_hide {
+        -ms-transition: 0.4s;
+        -ms-transform: translate(85px);/*  IE 9 */
+
+        -webkit-transition: 0.4s;
+        -webkit-transform: translate(85px); /*Chrome, Safari, Opera*/
+
+        -moz-transition: 0.4s;
+        -moz-transform: translate(85px);/* firefox */
+
+        transition: 0.4s;
+        transform: translate(85px);
+    }
+    .sidebar_slide_hide:hover {
+        -ms-transform: translate(0px); 
+        -moz-transform: translate(0px);
+        -webkit-transform: translate(0px); 
+        transform: translate(0px);
+    }
 /* ICON CONTAINER/LABEL STYLING: text styling, show/hide label; */
 .icon_container {
     width: 70%;

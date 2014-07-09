@@ -1,11 +1,11 @@
-<div class='new-event-outer'>
-  <%= link_to "Create A New Event",  new_event_path, class: "new-event"%>
-</div>
-<h3 class='subheader'><span class='grey'>Your Upcoming Events</span></h3>
-<div class='event-list border-top'>
+<button class='default_button'>
+  <%= link_to "Create A New Event",  new_event_path%>
+</button>
+<h3 class='subheader'><span class='white'>Your Upcoming Events</span></h3>
+<div class='event-list dark'>
 
   <% if current_user.events.length >= 1 %>
-  <table class='user-show'>
+  <table class='user-show default_table'>
     
     <tbody>
       <% current_user.events.each do |event| %>
@@ -18,12 +18,12 @@
   </table>
   <%else%>
 
-  <h3 class='subheader center'> <span class='grey'>You don't have any upcoming events.</span></h3>
+  <h3 class='subheader center'> <span class='white'>You don't have any upcoming events.</span></h3>
   <% end %>
 
 
- <h3 class="subheader"><span class='grey'>Your Past Events</span></h3>
+ <h3 class="subheader"><span class='white'>Your Past Events</span></h3>
 
- <div class='notifcations border-top large-12 columns'>
-   <h3 class="subheader center"><span class='grey'>You don't have any past events.</span></h3>
+ <div class='notifcations large-12 columns border_top_white'>
+   <h3 class="subheader center"><span class='white'>You don't have any past events.</span></h3>
  </div>
