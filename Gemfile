@@ -18,6 +18,7 @@ gem 'aws-sdk'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 
+gem 'rails_12factor'
 ##
 # gem 'protected_attributes'
 # gem 'rails-observers'
