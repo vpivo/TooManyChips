@@ -11,13 +11,15 @@ class SessionController < ApplicationController
 
   def create
     @user = User.find_by_email(params[:email])
-    if @user && @user.password != nil
+    p @user.password.nil?
+    if @user && @user.password.nil?
+      puts 'user has password'
       @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect_to your_profile_path
       session[:login_error] =  '' if session[:login_error]
       redirect_to your_profile_path
     else
+      puts 'user does not have password'
       session[:login_error] =  'Incorrect Email/Password Combination'
       redirect_to login_path
     end

@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       p user.errors.full_messages
-      user.password = auth.credentials.expires_at.to_s
+      user.password = auth.credentials.expires_at.to_s if user.password.nil?
       user.save!
     end
   end

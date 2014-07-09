@@ -70,12 +70,14 @@ function MasterVM() {
     self.guest = ko.observable(new Guest(''));
     //editing data locally
     self.addEvent = function(data) { 
+        console.log('hello')
         self.events.push(new Event(data));
     };
     self.removeEvent = function(event) { self.events.remove(event) }
     self.removeItem = function(item) { self.items.destroy(item);};
     //loading and saving data from the server
     self.save = function(data) {
+        console.log('yep')
         $.ajax("/events", {
             data: ko.toJSON({ event: data }),
             type: "post", contentType: "application/json"
