@@ -1,6 +1,6 @@
 Toomanychips::Application.routes.draw do
 
-  post 'auth/:provider/callback', to: 'session#oauth_create'
+  get 'auth/:provider/callback', to: 'session#oauth_create'
   get 'auth/failure', to: redirect('/')
   post 'auth/failure', to: redirect('/')
   delete 'signout', to: 'session#destroy', via: :destroy
