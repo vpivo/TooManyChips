@@ -1,5 +1,5 @@
 <% if @user.guest %>
-	<p class='center'>To track and edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}", id='createGuestAccount'>this page</a> or  <a href="#" id='createAccountButton'>create an account.</a></p>
+	<p class='center default_label'>To track and edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}", id='createGuestAccount' class="blue_label">this page</a> or  <a href="#" class="blue_label" id='createAccountButton'>create an account.</a></p>
 <%end%>
 
 <div class='hide' id='createAccountFromGuest' >
@@ -37,10 +37,10 @@
 
 
 <h3 class='subheader'>
-<span class='grey'>Your Contributions</span>
+<span class='white'>Your Contributions</span>
 </h3>
-<div class='event-list border-top'>
-	<table class='user-show'>
+<div class='event-list border_top_white'>
+	<table class='user-show default_table'>
 		<% unless @user.assigned_items.length > 0 %>
 		<h3 class='subheader center'><span class='grey'> You don't have any contributions.</span></h3>
 		<%else%>
@@ -50,7 +50,7 @@
 			<td><%= item.quantity_provided %></td>
 			<td><%= item.event_item.description%></td>
 			<td> <%= link_to "#{item.event_item.event.name}", event_path(item.event_item.event)%></td>
-			<td> <%= link_to 'remove', remove_path(item), class: 'remove_fields', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json%></td>
+			<td > <%= link_to 'remove', remove_path(item), class: 'default_button', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json%></td>
 		</tr>  
 		<% end %>
 	</table>

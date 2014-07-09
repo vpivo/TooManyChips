@@ -361,6 +361,9 @@ div.login-button{
 .default_label {
   color: #FFF;
 }
+.blue_label {
+  color: #71b3ed;
+}
 
 .default_input {
   background-color: #252a2d !important; 
