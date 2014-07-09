@@ -16,6 +16,7 @@ class SessionController < ApplicationController
       session[:id] = @user.id
       redirect_to your_profile_path
       session[:login_error] =  '' if session[:login_error]
+      redirect_to your_profile_path
     else
       session[:login_error] =  'Incorrect Email/Password Combination'
       redirect_to login_path
