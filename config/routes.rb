@@ -2,6 +2,7 @@ Toomanychips::Application.routes.draw do
 
   get 'auth/:provider/callback', to: 'session#oauth_create'
   get 'auth/failure', to: redirect('/')
+   post 'auth/failure', to: redirect('/')
   delete 'signout', to: 'session#destroy', via: :destroy
   root to: 'pages#index'
   resources :users, :only => [:show, :create, :new, :edit, :guest_create, :update] 

@@ -53,7 +53,6 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user.password = SecureRandom.hex(4)
       user.save!
     end
   end

@@ -241,6 +241,7 @@ DEPENDENCIES
   faker
   haml
   jquery-rails
+  omniauth
   omniauth-facebook
   paperclip
   pg

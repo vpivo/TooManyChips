@@ -5,6 +5,7 @@ gem 'sinatra', require: false
 gem 'pg'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'chronic'
+gem 'omniauth'
 gem 'omniauth-facebook'
 # gem "mail"
 gem "haml"
