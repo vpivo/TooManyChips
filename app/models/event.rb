@@ -63,7 +63,7 @@ class Event < ActiveRecord::Base
     end
   end
 
-  def update_items(items= [], event_id) 
+  def update_items(items, event_id) 
     items.each do |item|
       if item["id"] 
         item_to_update = EventItem.find(item["id"])

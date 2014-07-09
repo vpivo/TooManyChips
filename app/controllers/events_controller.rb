@@ -55,7 +55,7 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find(params[:id])
-    event.update_items(event_params[:items], event.id)
+    event.update_items(event_params[:items], event.id) if event_params[:items]
     event.delete_items(event_params[:deletedItems])
     data = event_params.delete([:deletedItems])
     event.update_attributes(data)
