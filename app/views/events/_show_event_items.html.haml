@@ -1,41 +1,36 @@
+/ ko with: $root.guest   
 .row
-  .large-12.columns{:id => 'items'}
-    %table{"class" => "default_table"}
-      %thead
-        %tr 
-          %th{width: "", "class" => "default_label"} Item
-          %th{"class" => "default_label"} Quantity
-          %th{"class" => "default_label"} Notes
-          %th{"class" => "default_label"} You're bringing
-      %tbody{"data-bind" =>"foreach: items"}
-        %tr{"class" => "dark"}
-          %td{"data-bind" => "text:name" }
-          %td{"data-bind" => "text:stillNeeded" }
-          %td{"data-bind" => "text:description" }
-          %td
-            %input{'data-bind' => 'text:amountToBring, type: text, value:amountToBring', 'class' => 'dark default_input'}
-
-
-
-/ ko with: $root.guest     
--if current_user.nil?
-  .row    
-    .large-12.columns
-      .large-4.columns
-        %label{"class" => "default_label"}
-          Email
-        %input{'data-bind' => 'text:email, type: text, value:email', 'class' => 'dark default_input'}
-      .large-4.columns.left  
-        %label{"class" => "default_label"}
-          Name
-        %input{'data-bind' => 'text:name, type: text, value:name', 'class' => 'dark default_input'}
-      .large-4.columns
-        %button{"class" => "left default_button", "type"=>"submit", "data-bind" => "click: $root.addGuest"}
-          Save
+-if current_user.nil? 
+  .large-12.columns{'class' => 'paddingT'}  
+    .large-4.columns
+      %label{"class" => "default_label"}
+        Email
+      %input{'data-bind' => 'text:email, type: text, value:email', 'class' => 'dark default_input'}
+    .large-4.columns.left  
+      %label{"class" => "default_label"}
+        Name
+      %input{'data-bind' => 'text:name, type: text, value:name', 'class' => 'dark default_input'}
+    .large-4.columns
+      %button{"class" => "left default_button", "type"=>"submit", "data-bind" => "click: $root.addGuest"}
+        Save
 -else
-  .row    
-    .large-12.columns
-      %button{"class" => "left default_button", "type"=>"submit", "data-bind" => "click: $root.addGuest"}Save
+  .middle
+    %button{"class" => "default_button middle", "type"=>"submit", "data-bind" => "click: $root.addGuest"}Save
 //ko
+.row
+  %table{"class" => "default_table"}
+    %thead
+      %tr 
+        %th{width: "", "class" => "default_label"} Item
+        %th{"class" => "default_label"} Quantity
+        %th{"class" => "default_label"} Notes
+        %th{"class" => "default_label"} You're bringing
+    %tbody{"data-bind" =>"foreach: items"}
+      %tr{"class" => "dark"}
+        %td{"data-bind" => "text:name" }
+        %td{"data-bind" => "text:stillNeeded" }
+        %td{"data-bind" => "text:description" }
+        %td
+          %input{'data-bind' => 'text:amountToBring, type: text, value:amountToBring', 'class' => 'dark default_input'}
 
   

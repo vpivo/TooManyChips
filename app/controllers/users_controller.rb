@@ -5,60 +5,61 @@ class UsersController < ApplicationController
 
   def your_profile
     @user = current_user
-    @event = Event.new
-    @event.event_items.build.item = Item.new
     render :show
   end
 
+  #refactor: put in session controller?
   def simple_login
     @login_error = session[:login_error]
   end
 
   def create_guest
     email = person_params[:email] || current_user.email
-    @user = User.find_by_email(email) 
+    user = User.find_by_email(email) 
     items = person_params[:items] || []
-    if @user
-      @user.add_items(items)
+    if user
+      user.add_items(items)
     else
-      @user = User.new
-      @user.name = person_params[:name]
-      @user.email = person_params[:email]
-      @user.guest = true
-      @user.save!
-      @user.add_items(items)
+      user = User.new
+      user.name = person_params[:name]
+      user.email = person_params[:email]
+      user.guest = true
+      user.save!
+      user.add_items(items)
     end 
-    if @user.save && @user.guest
-      render :js => "window.location = '/guest/#{@user.url}/'"
+    if user.save && user.guest
+      render :js => "window.location = '/guest/#{user.url}/'"
     elsif 
       render :js => "window.location = '/your_profile/'"
     else 
-      puts @user.errors.full_messages
+      #what is this
+      user.errors.full_messages
     end
   end
 
   def create 
-    @user = User.new(person_params)
-    if @user.save
-      session[:id] = @user.id
+    user = User.new(person_params)
+    if user.save
+      session[:id] = user.id
       redirect_to your_profile_path
     else
       redirect_to login_path
     end 
   end
 
+  #refactor: this probably doesn't work
   def destroy
     @user.destroy
   end
 
   def update 
     if current_user.nil?
-      @user = User.find_by_url(person_params[:url])
-      @user.update(person_params)
-      @user.guest = false
-      @user.url = nil
-      @user.save!
-      session[:id] = @user.id
+      user = User.find_by_url(person_params[:url])
+      user.update(person_params)
+      user.guest = false
+      user.url = nil
+      user.save!
+      session[:id] = user.id
       redirect_to your_profile_path
     else
       current_user.update(person_params)

@@ -63,13 +63,13 @@ class User < ActiveRecord::Base
   end
 
   def registration_emails!
-    # schedule_result_email unless self.result_date == nil
+    schedule_result_email unless self.result_date == nil
     send_email
   end
 
-  # def schedule_result_email
-  #   EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')
-  # end
+  def schedule_result_email
+    EmailWorker.perform_at(self.result_date, self.user_id, self.id, 'result')
+  end
 
   def send_email
     EmailWorker.perform_async(self.id)
