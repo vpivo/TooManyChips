@@ -1,16 +1,23 @@
 <div class="row">
-      <div class="large-12 columns">
-<div class='facebook-button center'>
-  <span><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"%></span>
+  <div class="large-12 columns">
+    <div class='facebook-button center'>
+      <span><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"%></span>
+    </div>
+  </div>
 </div>
-</div>
+<div class="row">
+  <div class="large-12 columns">
+   <% flash.each do |name, msg| -%>
+   <%= msg %>
+   <% end -%>
+ </div>
 </div>
 <div class='login'>
   <fieldset>
     <%= form_tag session_index_path, :class => "login"  do %>
     <div class="row">
       <div class="large-12 columns">
-          <span class='errors'> <%= @login_error if @login_error %></span>
+        <span class='errors'> <%= @login_error if @login_error %></span>
         <%= email_field_tag :email, nil, placeholder: "Email" %><br>
       </div>
     </div>
@@ -19,10 +26,10 @@
         <%= password_field_tag :password, nil, placeholder: "Password" %>
       </div>
     </div>
-     <div class="row">
+    <div class="row">
       <div class="large-12 columns">
-    <%= submit_tag "Log In", class: "event_done right" %>
-    </div>
+        <%= submit_tag "Log In", class: "event_done right" %>
+      </div>
     </div>
     <% end %>
   </fieldset>
@@ -59,10 +66,10 @@
         <%= f.password_field :password_confirmation, placeholder: "Password Confirmation" %>
       </div>
     </div>
-     <div class="row">
+    <div class="row">
       <div class="large-12 columns">
-    <%= f.submit "Sign up", class: 'event_done right' %>
-    </div>
+        <%= f.submit "Sign up", class: 'event_done right' %>
+      </div>
     </div>
     <% end %>
   </fieldset>

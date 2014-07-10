@@ -2,7 +2,6 @@ class SessionController < ApplicationController
   respond_to :json
 
   def oauth_create
-
     user = User.from_omniauth(request.env["omniauth.auth"])
     session[:id] = user.id 
     redirect_to your_profile_path
@@ -11,16 +10,23 @@ class SessionController < ApplicationController
 
   def create
     @user = User.find_by_email(params[:email])
-    p @user.password.nil?
-    if @user && @user.password.nil?
-      puts 'user has password'
-      @user.authenticate(params[:password])
-      session[:id] = @user.id
-      session[:login_error] =  '' if session[:login_error]
-      redirect_to your_profile_path
+     if @user  
+      if @user.guest
+         session[:login_error] = "You have a guest account, please login using the link emailed to you"
+        redirect_to login_path
+      elsif @user && !@user.password_digest.nil? && @user.authenticate(params[:password])
+        session[:id] = @user.id
+        session[:login_error] =  '' if session[:login_error]
+        redirect_to your_profile_path
+      elsif @user && @user.password_digest.nil? 
+        session[:login_error] = "You've previously made an account using Facebook login."
+        redirect_to login_path
+      elsif @user  && !@user.authenticate(params[:password])
+        session[:login_error] =  'Incorrect Email/Password Combination'
+        redirect_to login_path
+      end
     else
-      puts 'user does not have password'
-      session[:login_error] =  'Incorrect Email/Password Combination'
+      session[:login_error] = "No account with that email"
       redirect_to login_path
     end
   end

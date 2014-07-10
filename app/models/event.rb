@@ -7,14 +7,11 @@ class Event < ActiveRecord::Base
   has_many :guests, :through => :assigned_items, :class_name => "User", :foreign_key => "user_id"  
   before_save :format_date
   before_create :set_url
-
-  has_attached_file :image, styles: {thumb: '100x100>', square: '200x200#', header: '1000x400>'}
-
+  has_attached_file :image, styles: {thumb: '100x100>', square: '200x200#', header: '1000x400>'}, :default_url => "/assets/missing.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
   def to_ko
-    {
-      id: id,
+    {id: id,
       date: date,
       start_time: start_time,
       end_time: end_time,

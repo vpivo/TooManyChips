@@ -31,7 +31,7 @@ function input(id, error, requiredLength){
 
 //signing up
 var email = new input('#email', 
-  "Incorrect password",  null);
+  "Invalid Email",  null);
 
 var password = new input('#Password', 
   'Password must be at least 5 characters long', 5);

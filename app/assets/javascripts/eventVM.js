@@ -17,6 +17,13 @@ function Item(data) {
     }, this);
 }
 
+Item.prototype.toJSON = function() {
+    var copy = ko.toJS(this); //easy way to get a clean copy
+    delete copy.range; //remove an extra property
+    return copy; //return the copy to be serialized
+};
+
+
 function Event(data) {
     var self = this;
     self.id = ko.observable(data.id );
@@ -40,8 +47,13 @@ function Event(data) {
         self.items.unshift(new Item(""));
     }
     self.removeItem = function(item) { 
-        self.deletedItems.push(item.id());
         self.items.remove(item);
+        self.deletedItems.push(item.id());
+        $.ajax("/event_items/"+item.id(), {
+            data: ko.toJSON({ item: item }),
+            type: "delete", contentType: "application/json"
+        });
+        
     };
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
@@ -79,14 +91,12 @@ function MasterVM() {
     self.guest = ko.observable(new Guest(''));
     //editing data locally
     self.addEvent = function(data) { 
-        console.log('hello')
         self.events.push(new Event(data));
     };
     self.removeEvent = function(event) { self.events.remove(event) }
     self.removeItem = function(item) { self.items.destroy(item);};
     //loading and saving data from the server
     self.save = function(data) {
-        console.log('yep')
         $.ajax("/events", {
             data: ko.toJSON({ event: data }),
             type: "post", contentType: "application/json"
@@ -96,7 +106,7 @@ function MasterVM() {
         $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
             type: "patch", contentType: "application/json",
-            success: function(result) { console.log("") }
+            success: function(result) {  }
         });
     }
     self.submitPhoto = function(data){
@@ -173,9 +183,7 @@ function sticky_relocate() {
         $('#sticky').addClass('stick');
     } else {
         $('#sticky').removeClass('stick');
-    }
-    console.log("STICKY RELOCATE");
-}
+    }}
 
 $(function () {
     $(window).scroll(sticky_relocate);
