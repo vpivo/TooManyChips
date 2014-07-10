@@ -35,9 +35,6 @@ Toomanychips::Application.configure do
       :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
     }
   }
-config.cache_classes = true
-config.serve_static_assets = true
-config.assets.compile = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
