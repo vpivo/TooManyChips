@@ -2,12 +2,13 @@
   <div class='row'>
     <div class='large-12 user-show columns'>
 
-      <% if current_user.nil? || current_user.guest %>
-      <%= render 'guest' %>
-      <%else%>
+      <% if current_user %>
       <%= render 'show_events' %>
+            <%end%>
 
-      <%end%>
+      <%= render 'guest' %>
+      
+
     </div>
   </div>
 </div>

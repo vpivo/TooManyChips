@@ -1,6 +1,6 @@
 <% if @user.guest %>
 	<p class='center default_label'>To track and edit your contributions please bookmark <a href="toomanychips.com/guest/#{@user.url}", id='createGuestAccount' class="blue_label">this page</a> or  <a href="#" class="blue_label" id='createAccountButton'>create an account.</a></p>
-<%end%>
+
 
 <div class='hide' id='createAccountFromGuest' >
   <fieldset>
@@ -35,7 +35,7 @@
   </fieldset>
 </div>
 
-
+<%end%>
 <h3 class='subheader'>
 <span class='white'>Your Contributions</span>
 </h3>
