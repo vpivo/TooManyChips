@@ -58,8 +58,10 @@ class EventsController < ApplicationController
     event.update_items(event_params[:items], event.id) if event_params[:items]
     event.delete_items(event_params[:deletedItems])
     data = event_params.delete([:deletedItems])
+    p data
     event.update_attributes(data)
     event.save!
+    p event.errors.full_messages
     render json: event 
   end
 
