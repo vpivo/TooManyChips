@@ -1,5 +1,5 @@
 class EventItem < ActiveRecord::Base
-  has_many :assigned_items ,:dependent => :destroy, :autosave => true
+  has_many :assigned_items, :dependent => :destroy, :autosave => true
   belongs_to :event
   belongs_to :item 
   validates :description, :length => { :maximum => 140 }
@@ -34,7 +34,6 @@ class EventItem < ActiveRecord::Base
   end
 
   def to_ko
-    p id
     { id: id,
       name: item.name,
       quantity: quantity_needed,

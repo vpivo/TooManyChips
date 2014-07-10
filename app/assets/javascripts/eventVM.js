@@ -100,7 +100,6 @@ function MasterVM() {
     }
     self.refreshPhoto = function(){
         $.ajax("/events/", {
-            console.log('hey there')
             data: { id: $('.id').text() },
             type: "get", contentType: "application/json",
             success: function(result) { 

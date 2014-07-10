@@ -57,10 +57,10 @@ class EventsController < ApplicationController
     event = Event.find(params[:id])
     event.update_items(event_params[:items], event.id) if event_params[:items]
     event.delete_items(event_params[:deletedItems])
-    event_params.delete([:deletedItems])
+    e =  event_params.delete([:deletedItems])
+    e = event_params.delete([:items])  if event_params[:items]
     event.update_attributes(event_params)
     event.save!
-    p event.errors.full_messages
     render json: event 
   end
 
@@ -82,7 +82,7 @@ class EventsController < ApplicationController
       :event_items_attributes, :state, :city, :zip, :event_type, 
       :allow_guest_create, :image, :image_updated_at,
       :host_name, :type, :end_time, :street_address, :remote_image_url, :image,
-      :image_file_name, :image_content_type, :image_file_size, 
-      :items => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded],  :deletedItems => [])
+      :image_file_name, :image_content_type, :image_file_size, :deletedItems => [],
+      :items => [:name, :description, :id, :amountPromised, :quantity, :amountToBring, :eventId, :stillNeeded] )
   end
 end
