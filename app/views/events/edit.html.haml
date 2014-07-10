@@ -64,8 +64,13 @@
       %br
       %span{'data-bind' => "text:location, visible: !$root.editingText()"}
       %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
-        Address
+        Location
         %input{'class' => 'dark default_input', 'data-bind' => 'text:location, type: text, visible: $root.editingText(), value: location'}
+      %br
+      %span{'data-bind' => "text:street_address, visible: !$root.editingText()"}
+      %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
+        Address
+        %input{'class' => 'dark default_input', 'data-bind' => 'text:street_address, type: text, visible: $root.editingText(), value: street_address'}
       %br
       %span{'data-bind' => "text:city, visible: !$root.editingText()"},
       %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
