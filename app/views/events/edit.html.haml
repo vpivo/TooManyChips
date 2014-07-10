@@ -55,7 +55,8 @@
       %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
         Start Time
         %input{'class' => 'dark default_input', 'data-bind' => 'text:start_time, type: text, visible: $root.editingText(), value: start_time'}
-      until 
+        %span{'data-bind' => "visible: end_time"}  
+          until  
       %span{'data-bind' => "text:end_time, visible: !$root.editingText()"}
       %label{'data-bind' => "visible: $root.editingText()", "class" => "default_label"}
         End Time
