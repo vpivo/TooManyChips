@@ -13,6 +13,7 @@ module Toomanychips
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.initialize_on_precompile = false
+    config.serve_static_assets = true
     config.action_view.embed_authenticity_token_in_remote_forms = true
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
