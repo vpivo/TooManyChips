@@ -12,7 +12,7 @@ Toomanychips::Application.routes.draw do
   resources :assigned_items, :except => [:index]
   delete 'remove/:id', to: 'assigned_items#destroy', as: 'remove'
   get 'add_image/:id', to: "events#add_image", as: 'add_image'
-
+  post 'update_all_items/:id' =>'events#update_all_items'
   get 'your_profile', to: 'users#your_profile', as: 'your_profile'
   resources :session, :only => [:create]
   get 'login'  => 'users#simple_login', :as => 'login'

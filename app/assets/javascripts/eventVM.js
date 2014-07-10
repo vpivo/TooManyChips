@@ -42,7 +42,6 @@ function Event(data) {
     self.event_type = ko.observable(data.event_type);
     self.imageString = ko.observable(data.image);
     self.items = ko.observableArray([]);
-    self.deletedItems = ko.observableArray([]);
     self.addItem = function() {
         self.items.unshift(new Item(""));
     }
@@ -70,6 +69,7 @@ Event.prototype.toJSON = function() {
     var copy = ko.toJS(this); //easy way to get a clean copy
     delete copy.imageString; //remove an extra property
     delete copy.backgroundImage; //remove an extra property
+    delete copy.items; //remove an extra property
     return copy; //return the copy to be serialized
 };
 
@@ -106,6 +106,11 @@ function MasterVM() {
         $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
             type: "patch", contentType: "application/json",
+            success: function(result) {  }
+        });
+         $.ajax("/update_all_items/"+data.id(), {
+            data: ko.toJSON({ event: data.items }),
+            type: "post", contentType: "application/json",
             success: function(result) {  }
         });
     }

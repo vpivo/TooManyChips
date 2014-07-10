@@ -54,13 +54,15 @@ class EventsController < ApplicationController
   end
 
   def update
-    puts "updating!!!"
     event = Event.find(params[:id])
-    event.update_items(event_params[:items], event.id) if event_params[:items]
-    event.delete_items(event_params[:deletedItems])
-    e =  event_params.delete([:deletedItems])
-    e = event_params.delete([:items])  if event_params[:items]
-    event.update_attributes(e)
+    event.update_attributes(event_params)
+    event.save!
+    render json: event 
+  end
+
+  def update_all_items
+    event = Event.find(params[:id])
+    event.update_items(params[:event], event.id)
     event.save!
     render json: event 
   end
