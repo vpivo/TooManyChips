@@ -20,7 +20,6 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 
 gem 'rails_12factor'
-gem 'sprockets_better_errors'
 ##
 # gem 'protected_attributes'
 # gem 'rails-observers'
