@@ -7,7 +7,11 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
-
+select {
+  border-radius: 0px;
+-webkit-appearance: none;
+border-color: #71b3ed;
+}
 div.background {
   -webkit-background-size: cover;
   -moz-background-size: cover;

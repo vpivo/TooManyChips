@@ -31,6 +31,7 @@
         %td{"data-bind" => "text:stillNeeded" }
         %td{"data-bind" => "text:description" }
         %td
-          %input{'data-bind' => 'text:amountToBring, type: text, value:amountToBring', 'class' => 'dark default_input'}
+          %select{"data-bind" => "options: range, value: amountToBring"}
+          -# %input{'data-bind' => 'text:amountToBring, type: text, value:amountToBring', 'class' => 'dark default_input'}
 
   

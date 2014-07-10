@@ -8,7 +8,15 @@ function Item(data) {
     this.amountToBring = ko.observable(0);
     this.eventId= ko.observable(data.event_id);
     this.stillNeeded = ko.observable(data.still_needed);
+    this.range = ko.computed(function() {
+        var list = []
+        for (var i = 0; i <= this.stillNeeded(); i++) {
+            list.push(i);
+        }
+        return list;
+    }, this);
 }
+
 function Event(data) {
     var self = this;
     self.id = ko.observable(data.id );
@@ -52,6 +60,7 @@ Event.prototype.toJSON = function() {
     delete copy.backgroundImage; //remove an extra property
     return copy; //return the copy to be serialized
 };
+
 function Guest(data) {
     var self = this;    
     self.email = ko.observable(data.email);
