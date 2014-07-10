@@ -7,6 +7,10 @@ C7406D pink
 7BC0C4 green blue
 B283CB purple
 #515151*/
+
+details.a {
+  text-decoration: underline;
+}
 select {
   border-radius: 0px;
 -webkit-appearance: none;
