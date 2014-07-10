@@ -8,9 +8,9 @@ C7406D pink
 B283CB purple
 #515151*/
 
-a{
+.details a{
   text-decoration: underline;
-  
+
 }
 select {
   border-radius: 0px;

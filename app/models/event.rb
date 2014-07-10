@@ -19,6 +19,7 @@ class Event < ActiveRecord::Base
       city: city,
       allow_guest_create: allow_guest_create,
       state: state,
+      street_address: street_address,
       zip: zip,
       host_name: host_name,
       name: name,

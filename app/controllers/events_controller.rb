@@ -55,7 +55,10 @@ class EventsController < ApplicationController
 
   def update
     event = Event.find(params[:id])
-    event.update_attributes(event_params)
+    event.update_attributes!(event_params)
+
+    puts "look at all the params!!"
+    puts event_params
     event.save!
     render json: event 
   end
