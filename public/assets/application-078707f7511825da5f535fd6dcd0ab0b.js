@@ -32685,7 +32685,22 @@ function Item(data) {
     this.amountToBring = ko.observable(0);
     this.eventId= ko.observable(data.event_id);
     this.stillNeeded = ko.observable(data.still_needed);
+    this.range = ko.computed(function() {
+        var list = []
+        for (var i = 0; i <= this.stillNeeded(); i++) {
+            list.push(i);
+        }
+        return list;
+    }, this);
 }
+
+Item.prototype.toJSON = function() {
+    var copy = ko.toJS(this); //easy way to get a clean copy
+    delete copy.range; //remove an extra property
+    return copy; //return the copy to be serialized
+};
+
+
 function Event(data) {
     var self = this;
     self.id = ko.observable(data.id );
@@ -32704,13 +32719,17 @@ function Event(data) {
     self.event_type = ko.observable(data.event_type);
     self.imageString = ko.observable(data.image);
     self.items = ko.observableArray([]);
-    self.deletedItems = ko.observableArray([]);
     self.addItem = function() {
         self.items.unshift(new Item(""));
     }
     self.removeItem = function(item) { 
-        self.deletedItems.push(item.id());
         self.items.remove(item);
+        self.deletedItems.push(item.id());
+        $.ajax("/event_items/"+item.id(), {
+            data: ko.toJSON({ item: item }),
+            type: "delete", contentType: "application/json"
+        });
+        
     };
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
@@ -32727,8 +32746,10 @@ Event.prototype.toJSON = function() {
     var copy = ko.toJS(this); //easy way to get a clean copy
     delete copy.imageString; //remove an extra property
     delete copy.backgroundImage; //remove an extra property
+    delete copy.items; //remove an extra property
     return copy; //return the copy to be serialized
 };
+
 function Guest(data) {
     var self = this;    
     self.email = ko.observable(data.email);
@@ -32762,7 +32783,12 @@ function MasterVM() {
         $.ajax("/events/"+data.id(), {
             data: ko.toJSON({ event: data }),
             type: "patch", contentType: "application/json",
-            success: function(result) { console.log("") }
+            success: function(result) {  }
+        });
+         $.ajax("/update_all_items/"+data.id(), {
+            data: ko.toJSON({ event: data.items }),
+            type: "post", contentType: "application/json",
+            success: function(result) {  }
         });
     }
     self.submitPhoto = function(data){
@@ -32778,6 +32804,7 @@ function MasterVM() {
             data: { id: $('.id').text() },
             type: "get", contentType: "application/json",
             success: function(result) { 
+                console.log(result)
                 $('.background').css("background-image","url("+result.image+")");
             }
         });
@@ -32838,9 +32865,7 @@ function sticky_relocate() {
         $('#sticky').addClass('stick');
     } else {
         $('#sticky').removeClass('stick');
-    }
-    console.log("STICKY RELOCATE");
-}
+    }}
 
 $(function () {
     $(window).scroll(sticky_relocate);
@@ -32879,7 +32904,7 @@ function input(id, error, requiredLength){
 
 //signing up
 var email = new input('#email', 
-  "Incorrect password",  null);
+  "Invalid Email",  null);
 
 var password = new input('#Password', 
   'Password must be at least 5 characters long', 5);
@@ -32936,6 +32961,11 @@ var validateFormat = function(el){
   });
 }
 
+;
+var states = ['AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 
+'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 
+'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 
+'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY', 'AE', 'AA', 'AP']
 ;
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
