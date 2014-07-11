@@ -26,8 +26,8 @@ Toomanychips::Application.routes.draw do
   resources :items
   
   
-  # resources :guests, :only => [:show, :edit, :new, :create]
-  # get '/rsvp/:url' => 'guests#show', :as => 'rsvp'
+  resources :guests, :only => [:show, :edit, :new, :create]
+  get '/rsvp/:url' => 'guests#show', :as => 'rsvp'
 
   mount Sidekiq::Web, at: "/sidekiq"
 
