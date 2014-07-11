@@ -369,6 +369,8 @@ div.login-button{
   background-color: #252a2d !important; 
   color: #FFF !important;
   border: 1px solid #484949 !important;
+  height: 20px;
+ width: 180px;
 }
 
 .default_input:focus {

@@ -8,6 +8,12 @@ C7406D pink
 B283CB purple
 #515151*/
 
+.paddingT{
+  padding-top: 4%;
+  padding-bottom: 2%;
+
+}
+
 .details a{
   text-decoration: underline;
 
