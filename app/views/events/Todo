@@ -1,0 +1,1 @@
+Bug: getEvent is firing off on any page load, if should only fire off when viewing events. 

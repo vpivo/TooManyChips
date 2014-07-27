@@ -54,6 +54,7 @@ function Event(data) {
         });
         
     };
+
     self.backgroundImage = ko.computed(function() {
         return { "backgroundImage": 'url(' + self.imageString() + ')' };
     }, self); 
@@ -117,12 +118,14 @@ function MasterVM() {
     self.submitPhoto = function(data){
         $('#upload_pic').click(function() {
             $("#form_id").ajaxForm().submit(); 
+            console.log('within the submit block')
             $('#imageUpload').foundation('reveal', 'close');
             self.refreshPhoto();
             return false;
         });
     }
     self.refreshPhoto = function(){
+        console.log('got here!!!!!!!!!!!!');
         $.ajax("/events/", {
             data: { id: $('.id').text() },
             type: "get", contentType: "application/json",
@@ -174,7 +177,9 @@ function MasterVM() {
     }
     //supporting function
     function valueOfOneOrMore(item){return item.amountToBring() > 0}
-    self.getEvent();
+    if ($('.getEvent').text() == 'true'){
+        self.getEvent();
+    }
 }
 
 
