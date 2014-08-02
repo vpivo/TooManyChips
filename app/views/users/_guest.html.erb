@@ -40,21 +40,7 @@
 <span class='white'>Your Contributions</span>
 </h3>
 <div class='event-list border_top_white'>
-	<table class='user-show default_table'>
-		<% unless @user.assigned_items.length > 0 %>
-		<h3 class='subheader center'><span class='grey'> You don't have any contributions.</span></h3>
-		<%else%>
-		<% @user.assigned_items.each do |item| %>
-		<tr id="<%= item.id %>">  
-			<td><%= item.event_item.item.name %></td>
-			<td><%= item.quantity_provided %></td>
-			<td><%= item.event_item.description%></td>
-			<td> <%= link_to "#{item.event_item.event.name}", event_path(item.event_item.event)%></td>
-			<td > <%= link_to 'remove', remove_path(item), class: 'default_button', :method => :delete, :remote => :true,  id: "remove_trigger", "data-type" => :json%></td>
-		</tr>  
-		<% end %>
-	</table>
-	<%end%>
+	<%= render 'item' %>
 </div>
 
 
