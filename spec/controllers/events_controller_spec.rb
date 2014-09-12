@@ -122,12 +122,6 @@ describe EventsController do
       it 'saves a new event in the database' do
         expect{post :create, event: attributes_for(:event)}.to change(Event, :count).by 1
       end
-
-      pending
-      it 'redirects to the invitation_path' do
-        post :create, event: attributes_for(:event)
-        expect(response).to redirect_to(invitation_path(assigns(:event).url))
-      end
     end
 
     context'with invalid attributes' do 
@@ -138,12 +132,6 @@ describe EventsController do
 
       it 'does not saves a new event in the database' do
         expect{post :create, event: attributes_for(:invalid_event)}.to change(Event, :count).by 0
-      end
-
-      pending
-      it 'redirects to the invitation_path' do
-        post :create, event: attributes_for(:invalid_event)
-        expect(response).to render_template(:new)
       end
     end
   end
